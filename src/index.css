@@ -1,36 +1,31 @@
 html {
-  font-size: 40px;
+  font-size: 32px;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  /* font-size: 40px; */
 }
 
 @media all and (max-width: 1199px) {  } 
 @media all and (max-width: 991px) {
   html {
-    font-size: 34px;
+    font-size: 26px;
     /* color: #ff0; */
   }
 } 
 
 @media all and (max-width: 768px) { 
   html {
-    font-size: 28px;
+    font-size: 22px;
     /* color: #f00; */
   }
 } 
 @media all and (max-width: 575px) { 
   html {
-    font-size: 20px;
+    font-size: 16px;
     /* color: #f0f; */
-
-    &.funky-theme {
-      color: #f00;
-    }
   }
 }
 

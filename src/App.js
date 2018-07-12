@@ -6,24 +6,24 @@ class App extends Component {
   constructor() {
     super();
 
-    this.state = {schedule: null};
+    this.state = {tracks: null};
   }
 
   componentDidMount() {
     fetch('/sessions')
       .then(response => response.json())
-      .then(result => this.setState({schedule: result}));
+      .then(result => this.setState({tracks: result}));
   }
 
   render() {
-    if (this.state.schedule === null) {
+    if (this.state.tracks === null) {
       return <div>loading</div>;
     }
 
-    const tracks = Object.keys(this.state.schedule).map(trackKey => {
-      const track = this.state.schedule[trackKey];
+    const tracks = Object.keys(this.state.tracks).map(trackKey => {
+      const track = this.state.tracks[trackKey];
 
-      return <Track key={trackKey} trackKey={trackKey} sessions={track} />;
+      return <Track key={trackKey} {...track} />;
     });
 
     return <ul id="tracks">{tracks}</ul>;

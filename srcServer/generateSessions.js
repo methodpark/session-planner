@@ -7,8 +7,14 @@ function generateSessions() {
   let id = 0;
   const result = {};
   for (var trackNumber = 0; trackNumber < countTracks; trackNumber++) {
-    const myTrack = [];
-    result['track' + trackNumber] = myTrack;
+    const trackId = 'track' + trackNumber;
+    const myTrack = {
+      trackId,
+      name: faker.company.bs(),
+      room: faker.commerce.color(),
+      sessions: []
+    };
+    result[trackId] = myTrack;
 
     const startTime = moment('2018-01-01 08:00:00');
     const lastSession = moment('2018-01-01 16:00:00');
@@ -17,7 +23,7 @@ function generateSessions() {
     while(currentSession.isBefore(lastSession)) {
       const sessionEnd = currentSession.clone().add(2, 'hours');
 
-      myTrack.push({
+      myTrack.sessions.push({
         id: id++,
         title: faker.commerce.productName(),
         description: 'lorem, ey',

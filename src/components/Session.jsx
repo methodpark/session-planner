@@ -3,7 +3,7 @@ import * as moment from 'moment';
 
 export default class Session extends React.Component {
   render () {
-    const {title, start, end} = this.props.data;
+    const {title, description, start, end} = this.props;
 
     const startFormatted = moment(start).format('HH:mm');
     const endFormatted = moment(end).format('HH:mm');
@@ -13,6 +13,6 @@ export default class Session extends React.Component {
         <h4>{title}</h4>
         <span className="time">{startFormatted} - {endFormatted}</span>
       </li>
-    )
+    );
   }
 }
