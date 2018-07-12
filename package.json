@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "concurrently": "^3.6.0",
     "express": "^4.16.3",
     "faker": "^4.1.0",
-    "moment": "^2.22.2",
+    "moment": "^2.22.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.0",    
     "nodemon": "^1.17.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
