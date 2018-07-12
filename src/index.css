@@ -1,32 +1,63 @@
+html {
+  font-size: 40px;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  /* font-size: 40px; */
 }
 
-.tracks, .sessions {
+@media all and (max-width: 1199px) {  } 
+@media all and (max-width: 991px) {
+  html {
+    font-size: 34px;
+    /* color: #ff0; */
+  }
+} 
+
+@media all and (max-width: 768px) { 
+  html {
+    font-size: 28px;
+    /* color: #f00; */
+  }
+} 
+@media all and (max-width: 575px) { 
+  html {
+    font-size: 20px;
+    /* color: #f0f; */
+
+    &.funky-theme {
+      color: #f00;
+    }
+  }
+}
+
+ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.tracks {
-  width: 100%;
-  display: flex;
+.track {
+  padding: 0.4rem 1rem;
 }
 
-.tracks > li {
-  flex-grow: 1;
-  text-align: center;
+.track > h3 {
+  cursor: pointer;
+}
+
+.track > h3 > svg {
+  float: right;
 }
 
 .sessions > li {
-  margin: 25px 0;
+  margin-top: 1rem;
 }
 
-
 .sessions > li .time {
-  font-size: 12px;
+  font-size: 0.8rem;
   color: #aaa;
   font-weight: bold;
 }

@@ -2,7 +2,7 @@ const moment = require('moment');
 const faker = require('faker');
 
 function generateSessions() {
-  const countTracks = 3;
+  const countTracks = 4;
 
   let id = 0;
   const result = {};

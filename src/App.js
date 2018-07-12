@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import * as moment from 'moment';
+
+import Track from './components/Track';
 
 class App extends Component {
   constructor() {
@@ -21,24 +22,11 @@ class App extends Component {
 
     const tracks = Object.keys(this.state.schedule).map(trackKey => {
       const track = this.state.schedule[trackKey];
-      const sessions = track.map(session => {
-        return (
-          <li key={session.id}>
-            <h4>{session.title}</h4>
-            <span className="time">{moment(session.start).format('HH:mm')} - {moment(session.end).format('HH:mm')}</span>
-          </li>
-        )
-      });
 
-      return (
-        <li key={trackKey}>
-          <h3>{trackKey}</h3>
-          <ul className="sessions">{sessions}</ul>
-        </li>
-      );
+      return <Track key={trackKey} trackKey={trackKey} sessions={track} />;
     });
 
-    return <ul className="tracks">{tracks}</ul>;
+    return <ul id="tracks">{tracks}</ul>;
   }
 }
 
