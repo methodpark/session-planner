@@ -41,10 +41,22 @@ ul {
 
 .track > h3 {
   cursor: pointer;
+  margin: 0;
+  padding: 1rem 0.5rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2)
 }
 
 .track > h3 > svg {
   float: right;
+}
+
+.track .room {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.track > ul {
+  padding-left: 0.6rem;
 }
 
 .sessions > li {

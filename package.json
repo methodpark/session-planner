@@ -6,7 +6,8 @@
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "moment": "^2.22.2",
-    "react-icons": "^2.2.7"
+    "react-icons": "^2.2.7",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "concurrently": "^3.6.0",

@@ -22,8 +22,8 @@ export default class Track extends React.Component {
     return (
       <li className="track">
         <h3 onClick={() => this.toggle()}>
-          {name} - {room}
-          {this.state.open ? <Minus /> : <Plus />}
+          {name}{this.state.open ? <Minus /> : <Plus />}
+          <div className="room">room: {room}</div>
         </h3>
         { this.state.open ? <ul className="sessions">{sessionEntries}</ul> : null }
       </li>

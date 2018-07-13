@@ -10,7 +10,7 @@ function generateSessions() {
     const trackId = 'track' + trackNumber;
     const myTrack = {
       trackId,
-      name: faker.company.bs(),
+      name: faker.name.jobType(),
       room: faker.commerce.color(),
       sessions: []
     };
@@ -26,7 +26,7 @@ function generateSessions() {
       myTrack.sessions.push({
         id: id++,
         title: faker.commerce.productName(),
-        description: 'lorem, ey',
+        description: faker.lorem.paragraphs(1),
         start: currentSession.format(),
         end: sessionEnd.format()
       });
