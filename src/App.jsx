@@ -42,10 +42,12 @@ class App extends Component {
 }
 
 function getSessionBySessionId(tracks, sessionId) {
+  sessionId = parseInt(sessionId, 10);
+
   return Object.values(tracks).reduce((carry, track) => {
     if (carry) return carry;
 
-    return track.sessions.find(session => session.id == sessionId);
+    return track.sessions.find(session => session.id === sessionId);
   }, undefined)
 }
 
