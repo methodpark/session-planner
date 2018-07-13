@@ -26,7 +26,7 @@ function generateSessions() {
       myTrack.sessions.push({
         id: id++,
         title: faker.commerce.productName(),
-        description: faker.lorem.paragraphs(1),
+        description: faker.lorem.paragraphs(Math.ceil(Math.random() * 3), "<br><br>"),
         start: currentSession.format(),
         end: sessionEnd.format()
       });

@@ -4,7 +4,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   font-family: sans-serif;
 }
 
@@ -35,12 +35,18 @@ ul {
   list-style: none;
 }
 
+li {
+  margin: 0;
+  padding: 0;
+}
+
 .track {
-  padding: 0.4rem 1rem;
+  margin: 1rem 0;
 }
 
 .track > h3 {
   cursor: pointer;
+  user-select: none;
   margin: 0;
   padding: 1rem 0.5rem;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2)
