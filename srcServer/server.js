@@ -10,6 +10,9 @@ express()
   .use(express.static('build'))
   .get('/sessions', (req, res) => {
     console.log('#### request incoming ####');
+
+    sporadicallyBreak();
+
     return res.json(sessions);
   })
   .listen(PORT, () => console.log(`listening: ${PORT}`));
@@ -19,4 +22,8 @@ setInterval(() => {
   sessions = modifySessions(sessions);
 }, 10000);
 
-sessions = modifySessions(sessions);
+function sporadicallyBreak() {
+  if (Math.random() < 0.3) {
+    throw new Error('doesn\'t compute');
+  }
+}

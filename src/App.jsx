@@ -8,17 +8,22 @@ class App extends Component {
   constructor() {
     super();
 
-    this.state = {tracks: null};
+    this.state = { tracks: null };
   }
 
   componentDidMount() {
     fetch('/sessions')
-      .then(response => response.json())
-      .then(result => this.setState({tracks: result}));
+      .then(response => {
+        if (response.status !== 200) return null;
+
+        return response.json()
+      })
+      .then(result => this.setState({ tracks: result }))
+      .catch(error => console.log(error.message));
   }
 
   render() {
-    const {tracks} = this.state;
+    const { tracks } = this.state;
 
     if (tracks === null) {
       return <div id="loading">loading</div>;
@@ -28,7 +33,7 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={() => <Tracks tracks={tracks} />} />
-          <Route exact path="/session/:sessionId" component={({match}) => {
+          <Route exact path="/session/:sessionId" component={({ match }) => {
             const session = getSessionBySessionId(tracks, match.params.sessionId);
 
             if (!session) return <Redirect to={'/'} />
