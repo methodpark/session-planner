@@ -1,0 +1,94 @@
+html {
+  font-size: 32px;
+
+  @media all and (max-width: 1199px) {} 
+
+  @media all and (max-width: 991px) {
+    font-size: 26px;
+  }
+
+  @media all and (max-width: 768px) { 
+    font-size: 22px;
+  }
+
+  @media all and (max-width: 575px) { 
+    font-size: 16px;
+  }
+}
+
+a {
+  color: #e57c00;
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  font-family: sans-serif;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+#typeChooser {
+  text-align: center;
+  font-size: 1.0rem;
+
+  span {
+    cursor: pointer;
+
+    &.active {
+      font-weight: bold;
+    }
+  }
+}
+
+#overview-entries {
+  .entry {
+    margin: 1rem 0;
+
+    > h3 {
+      color: #e57c00;
+      cursor: pointer;
+      user-select: none;
+      margin: 0;
+      padding: 1rem 0.5rem;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+
+      > svg {
+        float: right;
+      }
+    }
+
+    .sub-title {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    .sessions {
+      padding-left: 0.6rem;
+
+      > li {
+        margin-top: 1rem;
+
+        .addendum {
+          font-size: 0.8rem;
+          color: #aaa;
+          font-weight: bold;
+        }
+
+        h4 {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

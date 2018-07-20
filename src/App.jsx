@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import Tracks from './components/Tracks';
-import SessionDetail from './components/SessionDetail';
+import Overview from './components/overview/Overview';
+import SessionDetail from './components/detail/Detail';
 
 class App extends Component {
   constructor() {
@@ -18,12 +18,48 @@ class App extends Component {
 
         return response.json()
       })
-      .then(result => this.setState({ tracks: result }))
-      .catch(error => console.log(error.message));
+      .then(result => this._handleData(result))
+      // .catch(error => console.log(error.message));
+  }
+
+  _handleData(tracks) {
+    this.setState({tracks});
+
+    const slotsGrouped = {};
+    tracks.forEach(track => {
+      const {sessions, ...trackCopy} = track;
+
+      sessions.forEach(session => {
+        const slot = `${session.start} - ${session.end}`;
+        
+        session.track = trackCopy;
+
+        if (!slotsGrouped[slot]) {
+          slotsGrouped[slot] = []
+          slotsGrouped[slot].start = session.start;
+          slotsGrouped[slot].end = session.end;
+        }
+
+        slotsGrouped[slot].push(session);
+      });
+    });
+
+    const slots = Object.keys(slotsGrouped).map(key => {
+      const slot = slotsGrouped[key];
+
+      return {
+        slotId: key,
+        start: slot.start,
+        end: slot.end,
+        sessions: Array.from(slot)
+      };
+    });
+    
+    this.setState({slots: slots});
   }
 
   render() {
-    const { tracks } = this.state;
+    const { tracks, slots } = this.state;
 
     if (tracks === null) {
       return <div id="loading">loading</div>;
@@ -32,7 +68,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={() => <Tracks tracks={tracks} />} />
+          <Route exact path="/" component={() => <Overview tracks={tracks} slots={slots} />} />
           <Route exact path="/session/:sessionId" component={({ match }) => {
             const session = getSessionBySessionId(tracks, match.params.sessionId);
 
