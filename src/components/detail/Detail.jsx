@@ -15,8 +15,10 @@ export default class SessionDetail extends React.Component {
       <div id="session-detail">
         <Link to="/"><ArrowLeft /></Link>
 
-        <h2>{title}</h2>
-        <div className="time">{startFormatted} - {endFormatted}</div>
+        <h2>
+          {title}
+          <span className="time">{startFormatted} - {endFormatted}</span>
+        </h2>
         <div dangerouslySetInnerHTML={{__html: description}}></div>
       </div>
     );
