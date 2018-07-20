@@ -1,6 +1,6 @@
 const express = require('express');
-const generateSessions = require('./generateSessions');
-const modifySessions = require('./modifySessions');
+
+const {generateSessions, modifySessions} = require('./dummyData');
 
 const PORT = 8080;
 
@@ -11,7 +11,7 @@ express()
   .get('/sessions', (req, res) => {
     console.log('#### request incoming ####');
 
-    sporadicallyBreak();
+    // sporadicallyBreak();
 
     return res.json(sessions);
   })
