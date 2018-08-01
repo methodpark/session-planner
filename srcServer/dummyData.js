@@ -29,8 +29,8 @@ function generateSessions() {
 
       myTrack.sessions.push({
         id: id++,
-        title: faker.company.bs(),
-        description: faker.lorem.paragraphs(Math.ceil(Math.random() * 3), "<br><br>"),
+        title: randomTitle(),
+        description: randomDescription(),
         start: currentSession.format(),
         end: sessionEnd.format()
       });
@@ -46,16 +46,25 @@ function modifySessions(tracks) {
   return tracks.map(track => modifyTrack(track));
 }
 
+const toTitleCase = (title) => title.replace(/\b\w/g, l => l.toUpperCase());
+
+const randomTitle = () => toTitleCase(faker.company.bs());
+
+const randomDescription = () =>
+  faker.lorem.paragraphs(Math.ceil(Math.random() * 3), "<br><br>")
+
 function modifyTrack(track) {
   track.sessions = track.sessions.map(session => {
     if (Math.random() < 0.05) {
-      console.log('title changed');
-      session.title = faker.commerce.productName();
+      const oldTitle = session.title;
+      const newTitle = randomTitle();
+      console.log(`title changed (${oldTitle} → ${newTitle})`);
+      session.title = newTitle;
     }
 
     if (Math.random() < 0.05) {
-      console.log('description changed');
-      session.description = faker.lorem.paragraphs(Math.ceil(Math.random() * 3), "<br><br>");
+      console.log(`description of session "${session.title}" changed`);
+      session.description = randomDescription();
     }
 
     return session;
