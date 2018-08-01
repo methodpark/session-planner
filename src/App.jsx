@@ -31,7 +31,7 @@ class App extends Component {
 
       sessions.forEach(session => {
         const slot = `${session.start} - ${session.end}`;
-        
+
         session.track = trackCopy;
 
         if (!slotsGrouped[slot]) {
@@ -54,7 +54,7 @@ class App extends Component {
         sessions: Array.from(slot)
       };
     });
-    
+
     this.setState({slots: slots});
   }
 
