@@ -16,28 +16,45 @@ npm run start:frontend
 ## PWA Objective
 
 * the app can be added to the homescreen
+* the app shows a "splash screen" 
 * the app is usable even if there is no network connection
 * the app checks for changes of the schedule in the background (even if it is
   not opened)
 * if there is any, the app shows a notification
+* alternatively the server pushes notifications about changes to the client(s)
 
 ## TODO
 
-* overview screen:
-  * shows a complete vertical session list with all tracks side by side
-  * has a dropdown menu that allows for a day selection (saturday/sunday)
-  * shows a line that marks the current time in relation to the session plan
-  * has the possibility to add session to scheduled sessions
-* detail screen:
+* overview story:
+  * shows a list of all tracks
+  * each track can be expanded to show the list of sessions with their respective slot
+  * it is possible to switch from track view to slot view
+  * in the slot view all slots are shown
+  * each slot can be expended to show the list of sessions with their respective track
+* detail story:
   * shows details of a certain session (start/end time, room, title, short
     description)
-  * has the possibility to add session to scheduled sessions
-* schedule screen:
-  * the schedule screen shows the scheduled sessions in order
-  * shows a line that marks the current time in relation to the session plan
-* room plan:
+* room plan story:
   * shows a list of all rooms
-  * shows a building layout with the locations of the rooms
-* settings:
-  * give the user the possibility to switch off notifications for upcoming
-    sessions they have subscribed for
+  * each room links to the respective track
+  * shows a building layout with the locations of the room
+* schedule story:
+  * in the overview screen from each slot one session can be marked as "scheduled"
+    * this is a marker for the user as a reminder which session they want to attend
+    * only one session per slot can be scheduled
+    * if for a given slot another session is already scheduled
+      the user is queried if they want to change this subscription or cancel
+  * on the overview screen sessions that are scheduled are marked as such (❤ symbol)
+  * on the schedule screen all scheduled sessions can be accessed and viewed in order
+  * on the detail screen scheduled sessions are marked as such (❤ symbol)
+  * on the detail screen it is possible to add the session to the scheduled sessions
+  * on the schedule screen a horizontal line marks the current time in relation to the 
+    scheduled session plan
+* settings story:
+  * gives the user the possibility to switch off notifications for upcoming
+    sessions they have scheduled
+* matrix overview story (discuss):
+  * shows a complete vertical session matrix with all tracks side by side
+  * shows a line that marks the current time in relation to the session plan
+  * has the possibility to add session to scheduled sessions
+  * has a dropdown menu that allows for a day selection (saturday/sunday)
