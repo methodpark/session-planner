@@ -1,35 +1,33 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import Overview from './components/overview/Overview';
-import SessionDetail from './components/detail/Detail';
-
+import AppRouter from './AppRouter';
+import Waiting from './components/Waiting';
 class App extends Component {
   constructor() {
     super();
 
-    this.state = { tracks: null };
+    this.state = { tracks: null, slots: null, session: null };
   }
 
   componentDidMount() {
     fetch('/sessions')
       .then(response => {
-        if (response.status !== 200) return null;
+        if (response.status !== 200) throw new Error('could not load sessions');
 
         return response.json()
       })
       .then(result => this._handleData(result))
-      // .catch(error => console.log(error.message));
+      .catch(error => console.error(error.message));
   }
 
   _handleData(tracks) {
-    this.setState({tracks});
-
+    const allSessions = [];
     const slotsGrouped = {};
     tracks.forEach(track => {
       const {sessions, ...trackCopy} = track;
 
       sessions.forEach(session => {
+        allSessions.push(session);
         const slot = `${session.start} - ${session.end}`;
 
         session.track = trackCopy;
@@ -55,41 +53,16 @@ class App extends Component {
       };
     });
 
-    this.setState({slots: slots});
+    setTimeout(() => this.setState({tracks, slots, sessions: allSessions}), 2000);
   }
 
   render() {
-    const { tracks, slots } = this.state;
-
-    if (tracks === null) {
-      return <div id="loading">loading</div>;
+    if (this.state.tracks === null) {
+      return <Waiting />;
     }
 
-    return (
-      <Router>
-        <div>
-          <Route exact path="/" component={() => <Overview tracks={tracks} slots={slots} />} />
-          <Route exact path="/session/:sessionId" component={({ match }) => {
-            const session = getSessionBySessionId(tracks, match.params.sessionId);
-
-            if (!session) return <Redirect to={'/'} />
-
-            return <SessionDetail {...session} />
-          }} />
-        </div>
-      </Router>
-    );
+    return <AppRouter {...this.state} />;
   }
-}
-
-function getSessionBySessionId(tracks, sessionId) {
-  sessionId = parseInt(sessionId, 10);
-
-  return Object.values(tracks).reduce((carry, track) => {
-    if (carry) return carry;
-
-    return track.sessions.find(session => session.id === sessionId);
-  }, undefined)
 }
 
 export default App;
