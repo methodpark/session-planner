@@ -49,11 +49,15 @@ npm run start:frontend
     scheduled session plan
   * if for a given slot another session is already scheduled the user is queried if
     they want to change this subscription or cancel
+  * create a notification shortly before a scheduled session is due
 * settings story:
+  * the settings screen has a list of features that can by defined
   * gives the user the possibility to switch off notifications for upcoming
     sessions they have scheduled
-* matrix overview story (discuss):
+  * gives the user the possibility to switch off notifications from the server
+* matrix overview story:
   * shows a complete vertical session matrix with all tracks side by side
   * shows a line that marks the current time in relation to the session plan
   * has the possibility to add session to scheduled sessions
+  * marks sessions as scheduled
   * has a dropdown menu that allows for a day selection (saturday/sunday)
