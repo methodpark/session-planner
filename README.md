@@ -39,9 +39,9 @@ npm run start:frontend
   * each room links to the respective track
   * shows a building layout with the locations of the room
 * schedule story:
-  * on the overview and the details screen from each slot one session can be marked as "scheduled"
-    * this is a marker for the user as a reminder which session they want to attend
-    * only one session per slot can be scheduled (you cant be on two places at once)
+  * on the overview and the details screen from each slot one session can be marked as "scheduled"  
+  this is a marker for the user as a reminder which session they want to attend  
+  only one session per slot can be scheduled (you can't be on two places at once)
   * on the schedule screen all scheduled sessions can be accessed and viewed in order
   * on the overview screen sessions that are scheduled are marked as such (❤ symbol)
   * on the detail screen scheduled sessions are marked as such (❤ symbol)
