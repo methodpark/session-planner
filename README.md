@@ -34,6 +34,9 @@ npm run start:frontend
 * detail story:
   * shows details of a certain session (start/end time, room, title, short
     description)
+* admin story:
+  * the admin screen is protected by a password
+  * the admin screen gives the possibility to add/modify/delete tracks, add/modify/delete      slots, add/modify sessions and to assign sessions to tracks and slots
 * room plan story:
   * shows a list of all rooms
   * each room links to the respective track
