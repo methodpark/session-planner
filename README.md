@@ -3,6 +3,10 @@
 ## Dev
 
 ```sh
+git clone ssh://git@scm.methodpark.de:29419/MobileTeam/swec-planner.git
+
+npm i
+
 npm start   # start frontend and server concurrently
 ```
 
