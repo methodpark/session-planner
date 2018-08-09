@@ -23,7 +23,7 @@ npm run start:frontend
 * if there is any, the app shows a notification
 * alternatively the server pushes notifications about changes to the client(s)
 
-## TODO
+## Story Map
 
 * overview story:
   * shows a list of all tracks
@@ -53,9 +53,9 @@ npm run start:frontend
     scheduled session plan
   * if for a given slot another session is already scheduled the user is queried if
     they want to change this subscription or cancel
-  * create a notification shortly before a scheduled session is due
+  * create a notification shortly (10min) before a scheduled session is due
 * settings story:
-  * the settings screen has a list of features that can by defined
+  * the settings screen has a list of features that can by customized
   * gives the user the possibility to switch off notifications for upcoming
     sessions they have scheduled
   * gives the user the possibility to switch off notifications from the server
