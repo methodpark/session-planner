@@ -53,7 +53,7 @@ class App extends Component {
       };
     });
 
-    setTimeout(() => this.setState({tracks, slots, sessions: allSessions}), 2000);
+    setTimeout(() => this.setState({tracks, slots, sessions: allSessions}), 200);
   }
 
   render() {

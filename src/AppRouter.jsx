@@ -12,9 +12,8 @@ export default class AppRouter extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={() => <Overview tracks={tracks} slots={slots} />} />
-          <Route exact path="/session/:sessionId" component={({ match }) => {
-            const sessionId = parseInt(match.params.sessionId, 10);
-            const session = sessions.find(session => session.id === sessionId);
+          <Route exact path="/session/:sessionSlug" component={({ match }) => {
+            const session = sessions.find(session => session.slug === match.params.sessionSlug);
 
             if (!session) {
               return <Redirect to={'/'} />;

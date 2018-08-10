@@ -35,7 +35,7 @@ export default class Entry extends React.Component {
 export function TrackEntry({name, room, sessions}) {
   return (
     <Entry title={name} subTitle={'room: ' + room} sessions={sessions}>
-      {session => <SessionWithTime key={session.id} {...session} />}
+      {session => <SessionWithTime key={session.slug} {...session} />}
     </Entry>
   );
 }
@@ -47,7 +47,7 @@ export function SlotEntry({start, end, sessions}) {
 
   return (
     <Entry title={title} sessions={sessions}>
-      {session => <SessionWithRoom key={session.id} room={'room: ' + session.track.room} {...session} />}
+      {session => <SessionWithRoom key={session.slug} room={'room: ' + session.track.room} {...session} />}
     </Entry>
   );
 }

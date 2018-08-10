@@ -1,6 +1,7 @@
 const moment = require('moment');
 const faker = require('faker');
 const dedupe = require('dedupe');
+const slug = require('slug');
 
 const trackNames = dedupe(Array.from(Array(30), _ => faker.name.jobType()));
 const roomNames = dedupe(Array.from(Array(30), _ => faker.commerce.color()));
@@ -26,10 +27,12 @@ function generateSessions() {
 
     while(currentSession.isBefore(lastSession)) {
       const sessionEnd = currentSession.clone().add(2, 'hours');
+      const title = randomTitle();
 
       myTrack.sessions.push({
         id: id++,
-        title: randomTitle(),
+        title,
+        slug: slug(title),
         description: randomDescription(),
         start: currentSession.format(),
         end: sessionEnd.format()
@@ -59,7 +62,9 @@ function modifyTrack(track) {
       const oldTitle = session.title;
       const newTitle = randomTitle();
       console.log(`title changed (${oldTitle} → ${newTitle})`);
+
       session.title = newTitle;
+      session.slug = slug(newTitle);
     }
 
     if (Math.random() < 0.05) {
