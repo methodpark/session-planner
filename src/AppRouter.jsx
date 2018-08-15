@@ -11,6 +11,7 @@ export default class AppRouter extends React.Component {
     return (
       <Router>
         <div>
+          <Route exact path="/index.html" component={() => <Overview tracks={tracks} slots={slots} />} />
           <Route exact path="/" component={() => <Overview tracks={tracks} slots={slots} />} />
           <Route exact path="/session/:sessionSlug" component={({ match }) => {
             const session = sessions.find(session => session.slug === match.params.sessionSlug);
@@ -19,7 +20,7 @@ export default class AppRouter extends React.Component {
               return <Redirect to={'/'} />;
             }
 
-            return <SessionDetail {...session} />;
+              return <SessionDetail {...session} />;
           }} />
         </div>
       </Router>
