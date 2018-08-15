@@ -2,24 +2,27 @@
 
 const STATIC_CACHE = 'swecache_static';
 const DYNAMIC_CACHE = 'swecache_dynamic';
+const { assets } = global.serviceWorkerOption;
 const STATIC_RESOURCES = [
-  '/',
-  '/index.html'
-];
+  '/'
+].concat(assets);
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', () => {
   console.log('install');
-
-  event.waitUntil((async () => {
-    const cache = await caches.open(STATIC_CACHE);
-    return cache.addAll(STATIC_RESOURCES);
-  })());
 
   self.skipWaiting();
 });
 
-self.addEventListener('activate', () => {
+self.addEventListener('activate', (event) => {
   console.log('activate');
+
+  event.waitUntil((async () => {
+    const cacheNames = await caches.keys();
+    await Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)));
+
+    const cache = await caches.open(STATIC_CACHE);
+    return cache.addAll(STATIC_RESOURCES);
+  })());
 });
 
 self.addEventListener('fetch', (event) => {

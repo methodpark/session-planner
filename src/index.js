@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
 import App from './App.jsx';
 
@@ -8,7 +9,8 @@ import './index.less';
 ReactDOM.render(<App />, document.getElementById('root'));
 
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('serviceWorker.js').then(registration => {
+  const serviceWorkerRegistration = runtime.register();
+  serviceWorkerRegistration.then(registration => {
     console.log(registration);
     askPermission().then(() => {
       const subscribeOptions = {
