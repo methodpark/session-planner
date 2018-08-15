@@ -1,7 +1,8 @@
 /* eslint no-restricted-globals: "off" */
 
-const CACHE_NAME = 'swecache';
-const RESOURCES = [
+const STATIC_CACHE = 'swecache_static';
+const DYNAMIC_CACHE = 'swecache_dynamic';
+const STATIC_RESOURCES = [
   '/',
   '/index.html'
 ];
@@ -10,8 +11,8 @@ self.addEventListener('install', (event) => {
   console.log('install');
 
   event.waitUntil((async () => {
-    const cache = await caches.open(CACHE_NAME);
-    return cache.addAll(RESOURCES);
+    const cache = await caches.open(STATIC_CACHE);
+    return cache.addAll(STATIC_RESOURCES);
   })());
 
   self.skipWaiting();
@@ -27,6 +28,11 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
 
+  if (request.method.toLowerCase() !== 'get') {
+    console.log('passing non-GET request');
+    return;
+  }
+
   if (!url.protocol.startsWith('http')) {
     console.log('passing non-HTTP(s) request');
     return;
@@ -38,20 +44,18 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith((async () => {
-    const cache = await caches.open(CACHE_NAME);
-    const cachedResult = await tryGetFromCache(request, cache);
+    const cachedResult = await tryGetFromStaticCache(request);
     if (cachedResult) {
       return cachedResult;
     } else {
-      const response = await fetch(request);
-      // TODO check result before putting into cache
-      await cache.put(request, response);
-      return response;
+      return fetchAndStoreInDynamicCache(request);
+
     }
   })());
 });
 
-async function tryGetFromCache(request, cache) {
+async function tryGetFromStaticCache(request) {
+  const cache = await caches.open(STATIC_CACHE);
   const entry = await cache.match(request);
   if (entry) {
     console.log(`found cache entry for ${request.url}`);
@@ -59,6 +63,14 @@ async function tryGetFromCache(request, cache) {
   } else {
     console.log(`found no cache entry for ${request.url}, passing request to browser`);
   }
+}
+
+async function fetchAndStoreInDynamicCache(request) {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  const response = await fetch(request);
+  // TODO check result before putting into cache
+  await cache.put(request, response.clone());
+  return response;
 }
 
 self.addEventListener('push', event => {
