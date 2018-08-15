@@ -3,9 +3,7 @@
 const CACHE_NAME = 'swecache';
 const RESOURCES = [
   '/',
-  '/index.html',
-  '/favicon.ico',
-  '/static/js/bundle.js'
+  '/index.html'
 ];
 
 self.addEventListener('install', (event) => {
@@ -40,7 +38,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith((async () => {
-    const cache = await caches.open(CACHE_NAME)
+    const cache = await caches.open(CACHE_NAME);
     const cachedResult = await tryGetFromCache(request, cache);
     if (cachedResult) {
       return cachedResult;

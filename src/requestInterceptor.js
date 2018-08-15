@@ -2,12 +2,11 @@ export function interceptRequest(url, callback) {
   var networkDataReceived = false;
 
   // fetch fresh data
-  var networkUpdate = fetch(url).then(function (response) {
-    return response;
-  }).then(function (data) {
-    networkDataReceived = true;
-    callback(data);
-  });
+  var networkUpdate = fetch(url)
+    .then(function (data) {
+      networkDataReceived = true;
+      callback(data);
+    });
 
   // fetch cached data
   caches.match(url).then(function (response) {
