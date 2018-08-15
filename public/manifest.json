@@ -3,7 +3,7 @@
     "short_name": "SwecPlaner",
     "start_url": ".",
     "display": "standalone",
-    "background_color" : "#e57c00" ,
+    "theme_color": "#e57c00" ,
     "Icons": [{
       "src": "/logo/logo16x16.png",
       "sizes": "16x16",
