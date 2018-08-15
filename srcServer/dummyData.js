@@ -2,7 +2,7 @@ const moment = require('moment');
 const faker = require('faker');
 const dedupe = require('dedupe');
 const slug = require('slug');
-
+const { sendNotification } = require('./server');
 const trackNames = dedupe(Array.from(Array(30), _ => faker.name.jobType()));
 const roomNames = dedupe(Array.from(Array(30), _ => faker.commerce.color()));
 
@@ -77,6 +77,7 @@ function modifyTrack(track) {
 
   return track;
 }
+
 
 module.exports.generateSessions = generateSessions;
 module.exports.modifySessions = modifySessions;
