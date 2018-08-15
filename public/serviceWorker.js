@@ -27,6 +27,18 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   console.log(`fetch: ${request.method} ${request.url}`);
 
+  const url = new URL(request.url);
+
+  if (!url.protocol.startsWith('http')) {
+    console.log('passing non-HTTP(s) request');
+    return;
+  }
+
+  if (url.pathname.startsWith('/sockjs-node/')) {
+    console.log('passing WebSocket request');
+    return;
+  }
+
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME)
     const cachedResult = await tryGetFromCache(request, cache);
