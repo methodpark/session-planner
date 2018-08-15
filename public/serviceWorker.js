@@ -1,3 +1,5 @@
+/* eslint no-restricted-globals: "off" */
+
 self.addEventListener('install', () => {
   console.log('install');
   self.skipWaiting();
