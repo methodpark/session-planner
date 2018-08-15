@@ -1,7 +1,21 @@
 /* eslint no-restricted-globals: "off" */
 
-self.addEventListener('install', () => {
+const CACHE_NAME = 'swecache';
+const RESOURCES = [
+  '/',
+  '/index.html',
+  '/favicon.ico',
+  '/static/js/bundle.js'
+];
+
+self.addEventListener('install', (event) => {
   console.log('install');
+
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    return cache.addAll(RESOURCES);
+  })());
+
   self.skipWaiting();
 });
 
@@ -9,9 +23,33 @@ self.addEventListener('activate', () => {
   console.log('activate');
 });
 
-self.addEventListener('fetch', event => {
-  console.log(event.request.url);
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  console.log(`fetch: ${request.method} ${request.url}`);
+
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME)
+    const cachedResult = await tryGetFromCache(request, cache);
+    if (cachedResult) {
+      return cachedResult;
+    } else {
+      const response = await fetch(request);
+      // TODO check result before putting into cache
+      await cache.put(request, response);
+      return response;
+    }
+  })());
 });
+
+async function tryGetFromCache(request, cache) {
+  const entry = await cache.match(request);
+  if (entry) {
+    console.log(`found cache entry for ${request.url}`);
+    return entry;
+  } else {
+    console.log(`found no cache entry for ${request.url}, passing request to browser`);
+  }
+}
 
 self.addEventListener('push', event => {
   let content = event.data.json();
@@ -23,5 +61,4 @@ self.addEventListener('push', event => {
   }
 
   self.registration.showNotification(title, options);
-
 });

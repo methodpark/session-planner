@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import AppRouter from './AppRouter';
 import Waiting from './components/Waiting';
+import { interceptRequest } from './requestInterceptor';
+
 class App extends Component {
   constructor() {
     super();
@@ -10,14 +12,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/sessions')
-      .then(response => {
-        if (response.status !== 200) throw new Error('could not load sessions');
-
-        return response.json()
-      })
-      .then(result => this._handleData(result))
-      .catch(error => console.error(error.message));
+    interceptRequest('/sessions', (response) => {
+      Promise.resolve(response)
+        .then(response => {
+          if (response.status !== 200) throw new Error('could not load sessions');
+          return response.json()
+        })
+        .then(result => this._handleData(result))
+        .catch(error => console.error(error.message));
+    });
   }
 
   _handleData(tracks) {
