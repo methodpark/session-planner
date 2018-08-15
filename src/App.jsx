@@ -13,11 +13,10 @@ class App extends Component {
 
   componentDidMount() {
     interceptRequest('/sessions', (response) => {
-      Promise.resolve(response)
-        .then(response => {
-          if (response.status !== 200) throw new Error('could not load sessions');
-          return response.json()
-        })
+      if (response.status !== 200) {
+        throw new Error('could not load sessions');
+      }
+      response.json()
         .then(result => this._handleData(result))
         .catch(error => console.error(error.message));
     });
