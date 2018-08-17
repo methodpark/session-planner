@@ -1,0 +1,6 @@
+image: node:10
+
+test:
+    script:
+        - npm ci
+        - npm test

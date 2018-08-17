@@ -4,7 +4,7 @@ import AppRouter from './AppRouter';
 import Waiting from './components/Waiting';
 import { interceptRequest } from './requestInterceptor';
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super();
 
