@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const webpush = require('web-push');
+const readline = require('readline');
 
 const { generateSessions, modifySessions } = require('./dummyData');
 const { isValidPushSubscription, saveSubscriptionToArray, subscriptions, deleteSubscriptionFromArray, sendNotification } = require('./notifications');
@@ -40,13 +41,20 @@ express()
   })
   .listen(PORT, () => console.log(`listening: ${PORT}`));
 
-setInterval(() => {
+
+let readlineClient = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
+});
+readlineClient.on('line', function (line) {
   console.log('--- simulating update ---');
   sessions = modifySessions(sessions);
   subscriptions.forEach(subscription => {
-    // sendNotification(subscription, JSON.stringify({ notification: { title: 'Title change:', body: 'test' } }));
+    sendNotification(subscription, JSON.stringify({ notification: { title: 'Title change:', body: 'test' } }));
   });
-}, 10000);
+});
+console.log('--- press enter to send a notification to clients ---');
 
 function sporadicallyBreak() {
   if (Math.random() < 0.3) {
