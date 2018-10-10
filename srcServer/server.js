@@ -1,10 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const webpush = require('web-push');
 const readline = require('readline');
 
 const { generateSessions, modifySessions } = require('./dummyData');
-const { isValidPushSubscription, saveSubscriptionToArray, subscriptions, deleteSubscriptionFromArray, sendNotification } = require('./notifications');
+const { isValidPushSubscription, saveSubscriptionToArray, subscriptions, sendNotification } = require('./notifications');
 
 const PORT = 8080;
 
@@ -15,9 +14,6 @@ express()
   .use(bodyParser.json())
   .get('/sessions', (req, res) => {
     console.log('#### request incoming ####');
-
-    // sporadicallyBreak();
-
     return res.json(sessions);
   })
   .post('/api/save-subscription/', (request, response) => {
@@ -41,7 +37,6 @@ express()
   })
   .listen(PORT, () => console.log(`listening: ${PORT}`));
 
-
 let readlineClient = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -55,9 +50,3 @@ readlineClient.on('line', function (line) {
   });
 });
 console.log('--- press enter to send a notification to clients ---');
-
-function sporadicallyBreak() {
-  if (Math.random() < 0.3) {
-    throw new Error('doesn\'t compute');
-  }
-}
