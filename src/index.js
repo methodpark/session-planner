@@ -1,82 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import { Provider } from 'react-redux'
+
+import { reducer, saga, addSession } from './lib/state';
+import { interceptRequest } from './lib/requestInterceptor';
+import setupSW from './lib/setupSW';
 
 import App from './App.jsx';
 
 import './index.less';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+)
+sagaMiddleware.run(saga)
 
-if (navigator.serviceWorker) {
-  const serviceWorkerRegistration = runtime.register();
-  serviceWorkerRegistration.then(registration => {
-    console.log(registration);
-    askPermission().then(() => {
-      const subscribeOptions = {
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(
-          'BJRs5N-80wspERG5agPCaZILtDhX3f3DOF0iYu5URcNPNPcx2FCktXf0y9kIqpFgsTI_IXO-3JQHhhwIDsShorA'
-        )
-      };
-      return registration.pushManager.subscribe(subscribeOptions);
-    }).then(function (pushSubscription) {
-      console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
-      return  sendSubscriptionToBackEnd(pushSubscription);
-    });
+ReactDOM.render((
+  <Provider store={store}>
+    <App />
+  </Provider>
+), document.getElementById('root'));
+
+interceptRequest('/sessions', response => {
+  if (response.status !== 200) {
+    throw new Error('could not load sessions');
+  }
+  response.json()
+    .then(result => _handleData(result))
+    .catch(error => console.error(error.message));
+});
+
+function _handleData(sessions) {
+  sessions.forEach(session => {
+    store.dispatch(addSession(session.id, session.title, session.room, session.start, session.end));
   });
 }
 
-function askPermission() {
-  return new Promise(function (resolve, reject) {
-    const permissionResult = Notification.requestPermission(function (result) {
-      resolve(result);
-    });
-
-    if (permissionResult) {
-      permissionResult.then(resolve, reject);
-    }
-  })
-    .then(function (permissionResult) {
-      if (permissionResult !== 'granted') {
-        throw new Error('We weren\'t granted permission.');
-      }
-    });
-}
-
- function sendSubscriptionToBackEnd(subscription) {
-  return fetch('/api/save-subscription/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(subscription)
-  })
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error('Bad status code from server.');
-      }
-
-      return response.json();
-    })
-    .then(function (responseData) {
-      if (!(responseData.data && responseData.data.success)) {
-        throw new Error('Bad response from server.');
-      }
-    });
-}
-
-function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/-/g, '+')
-    .replace(/_/g, '/');
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
+setupSW();

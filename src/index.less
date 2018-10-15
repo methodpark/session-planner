@@ -41,19 +41,6 @@ li {
   padding: 0;
 }
 
-#typeChooser {
-  text-align: center;
-  font-size: 1.0rem;
-
-  span {
-    cursor: pointer;
-
-    &.active {
-      font-weight: bold;
-    }
-  }
-}
-
 #waiting {
   position: absolute;
   top: 0;
@@ -97,16 +84,7 @@ li {
   }
 }
 
-#session-detail {
-  .time {
-    float: right;
-    font-size: 1.2rem;
-    color: @color-secondary;
-    font-weight: bold;
-  }
-}
-
-#overview-entries {
+#slots {
   .entry {
     margin: 1rem 0;
 
@@ -123,24 +101,20 @@ li {
       }
     }
 
-    .sub-title {
-      font-size: 0.8rem;
-      color: @color-secondary;
-    }
-
     .sessions {
       padding-left: 0.6rem;
 
       > li {
         margin-top: 1rem;
 
-        .subTitle {
+        .room {
           font-size: 0.8rem;
           color: @color-secondary;
           font-weight: bold;
         }
 
         h4 {
+          color: @color-primary;
           margin: 0;
         }
       }

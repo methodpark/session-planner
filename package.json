@@ -7,6 +7,9 @@
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "moment": "^2.22.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2",
     "slug": "^0.9.1",
     "web-push": "^3.3.2"
   },

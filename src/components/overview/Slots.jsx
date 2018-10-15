@@ -1,13 +1,18 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-import {SlotEntry} from './Entry';
+import Entry from './Entry';
 
-export default class Slots extends React.Component {
+class Slots extends React.Component {
   render() {
     return (
-      <ul id="overview-entries">
-        {this.props.slots.map(slot => <SlotEntry key={slot.slotId} {...slot} />)}
+      <ul id="slots">
+        {this.props.slots.map(slot => <Entry key={slot} slot={slot}/>)}
       </ul>
     );
   }
 }
+
+export default connect(state => {
+  return {slots: state.slots};
+})(Slots);

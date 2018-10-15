@@ -1,15 +1,16 @@
 import React from 'react';
 import Plus from 'react-icons/lib/fa/plus';
 import Minus from 'react-icons/lib/fa/minus';
-import * as moment from 'moment';
+import { connect } from 'react-redux';
 
-import {SessionWithRoom, SessionWithTime} from './Session';
+import Session from './Session';
 
-export default class Entry extends React.Component {
+export class Entry extends React.Component {
   constructor() {
     super();
 
     this.state = {open: false};
+    this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
@@ -17,37 +18,25 @@ export default class Entry extends React.Component {
   }
 
   render() {
-    const {title, subTitle, sessions} = this.props;
-    const sessionEntries = sessions.map(session => this.props.children(session));
+    const {slot, sessions} = this.props;
+    const sessionList = <ul className="sessions">
+      {sessions.map(session => <Session key={session.id} {...session} />)}
+    </ul>;
 
     return (
       <li className="entry">
-        <h3 onClick={() => this.toggle()}>
-          {title}{this.state.open ? <Minus /> : <Plus />}
-          <div className="sub-title">{subTitle}</div>
+        <h3 onClick={this.toggle}>
+          {slot}{this.state.open ? <Minus /> : <Plus />}
         </h3>
-        { this.state.open ? <ul className="sessions">{sessionEntries}</ul> : null }
+        { this.state.open ? sessionList : null }
       </li>
     );
   }
 }
 
-export function TrackEntry({name, room, sessions}) {
-  return (
-    <Entry title={name} subTitle={'room: ' + room} sessions={sessions}>
-      {session => <SessionWithTime key={session.slug} {...session} />}
-    </Entry>
-  );
-}
-
-export function SlotEntry({start, end, sessions}) {
-  const startFormatted = moment(start).format('HH:mm');
-  const endFormatted = moment(end).format('HH:mm');
-  const title = `${startFormatted} - ${endFormatted}`;
-
-  return (
-    <Entry title={title} sessions={sessions}>
-      {session => <SessionWithRoom key={session.slug} room={'room: ' + session.track.room} {...session} />}
-    </Entry>
-  );
-}
+export default connect(({sessions}, {slot}) => {
+  return {
+    slot,
+    sessions: sessions.filter(session => session.slot === slot)
+  }
+})(Entry);
