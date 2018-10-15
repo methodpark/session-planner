@@ -15,13 +15,14 @@ function generateSessions() {
     const lastSession = moment('2018-01-01 16:00:00');
     let currentSession = startTime.clone();
 
-    while(currentSession.isBefore(lastSession)) {
+    while (currentSession.isBefore(lastSession)) {
       const sessionEnd = currentSession.clone().add(2, 'hours');
       const title = randomTitle();
 
       result.push({
-        id: id++, 
-        title, 
+        id: id++,
+        title,
+        speaker: `${faker.name.firstName()} ${faker.name.lastName()}`,
         room,
         start: currentSession.format(),
         end: sessionEnd.format()

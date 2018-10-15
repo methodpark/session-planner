@@ -1,12 +1,15 @@
 import React from 'react';
 
 export default function Session (props) {
-  const {id, title, room, start, end} = props;
+  const {title, speaker, room} = props;
 
   return (
     <li>
       <h4>{title}</h4>
-      <span className="room">{room}</span>
+      <div className="sub-title">
+        room: <em>{room.toLowerCase()}</em><br />
+        speaker: <em>{speaker.toLowerCase()}</em>
+      </div>
     </li>
   );
 }

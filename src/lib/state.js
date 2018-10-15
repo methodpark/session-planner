@@ -8,8 +8,8 @@ import {createAction} from '../lib/util';
 
 export const ADD_SESSION = 'ADD_SESSION';
 
-export function addSession(id, title, room, start, end) {
-  return createAction(ADD_SESSION, {id, title, room, start, end});
+export function addSession(id, title, speaker, room, start, end) {
+  return createAction(ADD_SESSION, {id, title, speaker, room, start, end});
 }
 
 // ---------------------- reducers ----------------------
@@ -22,6 +22,7 @@ function sessionsReducer(sessions=[], action) {
         {
           id: action.id,
           title: action.title,
+          speaker: action.speaker,
           room: action.room,
           start: action.start,
           end: action.end,
