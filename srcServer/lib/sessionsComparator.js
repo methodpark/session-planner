@@ -27,14 +27,14 @@ function sessionComparator(oldSessions, newSessions) {
 }
 
 function compareSessions(oldSession, newSession) {
-  // compare title, room, speaker, end,   begin
-  let resultMessage = "";  
-  
+  // compare title, room, host, end,   begin
+  let resultMessage = "";
+
   if (oldSession.title !== newSession.title) {
     resultMessage = 'titleChange';
   }
-  else if (oldSession.speaker !== newSession.speaker) {
-    resultMessage = 'speakerChange';
+  else if (oldSession.host !== newSession.host) {
+    resultMessage = 'hostChange';
   }
   else if (oldSession.room !== newSession.room) {
     resultMessage = 'roomChange';
@@ -50,7 +50,7 @@ function compareSessions(oldSession, newSession) {
     return { what: 'CHANGE', message: resultMessage, session: newSession };
   }
 
-  return null;      
+  return null;
 }
 
 module.exports = sessionComparator;

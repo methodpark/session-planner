@@ -3,7 +3,12 @@ const path = require('path');
 const SessionProvider = require('./SessionProvider');
 
 describe('SessionProvider', () => {
-  const sessionProvider = new SessionProvider(path.join(__dirname, '../../testData'));
+  let sessionProvider = null;
+  beforeAll(done => {
+    sessionProvider = new SessionProvider(path.join(__dirname, '../../testData/sessionsData.json'));
+
+    sessionProvider.on('initialized', done);
+  });
 
   describe('validation', () => {
     it('should throw on null', () => {

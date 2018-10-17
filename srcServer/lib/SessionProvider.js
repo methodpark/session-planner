@@ -1,30 +1,31 @@
-const path = require('path');
-
 const fs = require('fs');
+const {EventEmitter} = require('events');
 
 const chokidar = require('chokidar');
 
-class SessionProvider {
-  constructor(basePath) {
-    this._basePath = basePath;
-    this._filePath = path.join(this._basePath, 'sessionsData.json');
-    this._currentData = null;
+const sessionComparator = require('./sessionsComparator');
 
-    this.watchFileChange();
+class SessionProvider extends EventEmitter {
+  constructor(filePath) {
+    super();
+    this._filePath = filePath;
+    this._currentData = [];
+
+    this._watchFileChange();
+    this._loadData().then(() => this.emit('initialized'));
   }
 
-  watchFileChange() {
-    chokidar.watch(this._filePath).on('change', (event, path) => {
-      console.log("file changed", event, path);
-      this._loadData();
+  _watchFileChange() {
+    chokidar.watch(this._filePath).on('change', async (event, path) => {
+      const oldList = this._currentData;
+      await this._loadData();
+      
+      sessionComparator(oldList, this._currentData)
+        .forEach(change => this.emit('sessionUpdate', change));
     });
   }
 
   async getSessions() {
-    if (!this._currentData) {
-      await this._loadData();
-    }
-
     return this._currentData;
   }
 
