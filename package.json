@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "chokidar": "^2.0.4",
     "dedupe": "^2.1.0",
     "express": "^4.16.3",
     "faker": "^4.1.0",
