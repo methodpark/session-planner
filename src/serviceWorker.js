@@ -1,8 +1,7 @@
-import { clearCaches } from "./lib/cache";
+import { clearCaches, fillStaticCache, STATIC_CACHE } from "./lib/cache";
 
 /* eslint no-restricted-globals: "off" */
 
-const STATIC_CACHE = 'swecache_static';
 const DYNAMIC_CACHE = 'swecache_dynamic';
 const { assets } = global.serviceWorkerOption;
 const STATIC_RESOURCES = [
@@ -20,8 +19,7 @@ self.addEventListener('activate', (event) => {
 
   event.waitUntil((async () => {
     await clearCaches(caches);
-    const cache = await caches.open(STATIC_CACHE);
-    return cache.addAll(STATIC_RESOURCES);
+    await fillStaticCache(caches, STATIC_RESOURCES);
   })());
 });
 
