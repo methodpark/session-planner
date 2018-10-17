@@ -30,7 +30,6 @@ publish:
     - docker:dind
   only:
     - master
-    - deploy-app
   variables:
     IMAGE: mobileteam/swec-planner
   script:
