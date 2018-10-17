@@ -14,3 +14,25 @@ export async function fillStaticCache(caches, resources) {
   const cache = await caches.open(STATIC_CACHE);
   return cache.addAll(resources);
 }
+
+export async function tryGetFromStaticCache(caches, request) {
+  const cache = await caches.open(STATIC_CACHE);
+  const entry = await cache.match(request);
+  if (entry) {
+    console.log(`found cache entry for ${request.url}`);
+    return entry;
+  } else {
+    console.log(`found no cache entry for ${request.url}, passing request to browser`);
+  }
+}
+
+export async function fetchAndStoreInDynamicCache(caches, request) {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  const response = await fetch(request);
+
+  if(response.ok) {
+    await cache.put(request, response.clone());
+  }
+
+  return response;
+}
