@@ -18,7 +18,7 @@ express()
   .post('/api/save-subscription/', saveSubscriptions)
   .listen(PORT, () => console.log(`listening: ${PORT}`));
 
-sessionsProvider.on('sessionupdate', change => {
+sessionsProvider.on('sessionUpdate', change => {
   //notify everybody!!!
 
   console.log('change happened', change);

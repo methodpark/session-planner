@@ -11,18 +11,21 @@ class SessionProvider extends EventEmitter {
     this._filePath = filePath;
     this._currentData = [];
 
-    this._watchFileChange();
+    this._installFileWatcher();
     this._loadData().then(() => this.emit('initialized'));
   }
 
-  _watchFileChange() {
-    chokidar.watch(this._filePath).on('change', async (event, path) => {
-      const oldList = this._currentData;
-      await this._loadData();
-      
-      sessionComparator(oldList, this._currentData)
-        .forEach(change => this.emit('sessionUpdate', change));
-    });
+  _installFileWatcher() {
+    chokidar.watch(this._filePath)
+      .on('change', () => this._handleFileUpdate());
+  }
+
+  async _handleFileUpdate() {
+    const oldList = this._currentData;
+    await this._loadData();
+
+    sessionComparator(oldList, this._currentData)
+      .forEach(change => this.emit('sessionUpdate', change));
   }
 
   async getSessions() {
