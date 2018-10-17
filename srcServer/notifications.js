@@ -4,13 +4,6 @@ const fs = require('fs');
 let publicKey = null;
 let subscriptions = [];
 
-function _loadVapidKeys(filename) {
-  const jsonString = fs.readFileSync(filename);
-  const keys = JSON.parse(jsonString);
-  publicKey = keys.publicKey;
-  return keys;
-}
-
 function initializeNotifications(vapidKeysFile) {
   const vapidKeys = _loadVapidKeys(vapidKeysFile);
 
@@ -19,6 +12,19 @@ function initializeNotifications(vapidKeysFile) {
     vapidKeys.publicKey,
     vapidKeys.privateKey
   );
+}
+
+async function sendNotifications(data) {
+  const numberOfSubscribers = subscriptions.length;
+  console.log(`Sending notifications to ${numberOfSubscribers} subscribers.`);
+
+  subscriptions.forEach(async subscription => {
+    try {
+      await _sendNotification(subscription, JSON.stringify(data));
+    } catch (err) {
+      console.log('Error for sub', subscription, err);
+    }
+  });
 }
 
 function isValidPushSubscription(request, response) {
@@ -64,6 +70,13 @@ function saveSubscriptionToArray(subscription) {
   });
 };
 
+function _loadVapidKeys(filename) {
+  const jsonString = fs.readFileSync(filename);
+  const keys = JSON.parse(jsonString);
+  publicKey = keys.publicKey;
+  return keys;
+}
+
 function _deleteSubscriptionFromArray(staleSubscription) {
   subscriptions = subscriptions.filter(
     subscription => subscription !== staleSubscription
@@ -86,18 +99,6 @@ async function _sendNotification(subscription, dataToSend) {
   }
 };
 
-async function sendNotifications(data) {
-  const numberOfSubscribers = subscriptions.length;
-  console.log(`Sending notifications to ${numberOfSubscribers} subscribers.`);
-
-  subscriptions.forEach(async subscription => {
-    try {
-      await _sendNotification(subscription, JSON.stringify(data));
-    } catch (err) {
-      console.log('Error for sub', subscription, err);
-    }
-  });
-}
 
 module.exports.initializeNotifications = initializeNotifications;
 module.exports.isValidPushSubscription = isValidPushSubscription;
