@@ -1,4 +1,4 @@
-import { clearCaches, fillStaticCache, tryGetFromStaticCache, fetchAndStoreInDynamicCache } from "./lib/cache";
+import { clearCaches, fillStaticCache, tryToFetchAndStoreInCache } from "./lib/cache";
 
 /* eslint no-restricted-globals: "off" */
 
@@ -43,14 +43,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  event.respondWith((async () => {
-    const cachedResult = await tryGetFromStaticCache(caches, request);
-    if (cachedResult) {
-      return cachedResult;
-    } else {
-      return fetchAndStoreInDynamicCache(caches, request);
-    }
-  })());
+  event.respondWith(tryToFetchAndStoreInCache());
 });
 
 self.addEventListener('push', event => {

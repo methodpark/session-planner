@@ -1,4 +1,11 @@
-import { clearCaches, fillStaticCache, tryGetFromStaticCache, fetchAndStoreInDynamicCache } from "./cache";
+import {
+  clearCaches,
+  fillStaticCache,
+  tryGetFromStaticCache,
+  fetchAndStoreInDynamicCache,
+  tryToFetchAndStoreInCache,
+  STATIC_CACHE
+} from "./cache";
 
 describe('cache', () => {
   describe('clearCaches', () => {
@@ -134,6 +141,34 @@ describe('cache', () => {
       await fetchAndStoreInDynamicCache(cachesMock, request);
 
       expect(dynamicCacheMock.put).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('tryToFetchAndStoreInCache', () => {
+    it('uses the resource from the static cache if it is in there', async () => {
+      const resource = 'resource',
+        staticCacheMock = {
+          match: jest.fn(() => resource)
+        }, cachesMock = {
+          open: jest.fn(() => staticCacheMock)
+        };
+
+      const response = await tryToFetchAndStoreInCache(cachesMock, 'request');
+
+      expect(response).toBe(resource);
+    });
+
+    it('fetches the resource if it is not present in the static cache', async () => {
+      const request = 'request',
+        staticCacheMock = {
+          match: jest.fn(() => undefined)
+        }, cachesMock = {
+          open: jest.fn(() => staticCacheMock)
+        };
+
+      await tryToFetchAndStoreInCache(cachesMock, request);
+
+      expect(fetch).toBeCalledWith(request);
     });
   });
 });

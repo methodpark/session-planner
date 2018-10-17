@@ -30,9 +30,18 @@ export async function fetchAndStoreInDynamicCache(caches, request) {
   const cache = await caches.open(DYNAMIC_CACHE);
   const response = await fetch(request);
 
-  if(response.ok) {
+  if (response.ok) {
     await cache.put(request, response.clone());
   }
 
   return response;
+}
+
+export async function tryToFetchAndStoreInCache(caches, request) {
+  const cachedResult = await tryGetFromStaticCache(caches, request);
+  if (cachedResult) {
+    return cachedResult;
+  } else {
+    return fetchAndStoreInDynamicCache(caches, request);
+  }
 }
