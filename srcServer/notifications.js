@@ -86,15 +86,13 @@ async function sendNotification(subscription, dataToSend) {
   }
 };
 
-async function sendNotifications() {
+async function sendNotifications(data) {
   const numberOfSubscribers = subscriptions.length;
   console.log(`Sending notifications to ${numberOfSubscribers} subscribers.`);
 
   subscriptions.forEach(async subscription => {
     try {
-      await sendNotification(subscription, JSON.stringify(
-        { notification: { title: 'Title change:', body: 'test' } }
-      ));
+      await sendNotification(subscription, JSON.stringify(data));
     } catch (err) {
       console.log('Error for sub', subscription, err);
     }
