@@ -1,6 +1,39 @@
-image: node:10
+stages:
+  - test
+  - build
+  - deploy
 
 test:
-    script:
-        - npm ci
-        - npm test
+  image: node:10
+  stage: test
+  script:
+    - npm --no-color ci
+    - npm test
+
+build:
+  image: node:10
+  stage: build
+  artifacts:
+    expire_in: 3 days
+    paths:
+      - build/
+  script:
+    - npm --no-color ci
+    - npm run build
+
+publish:
+  image: docker:stable
+  stage: deploy
+  dependencies:
+    - build
+  services:
+    - docker:dind
+  only:
+    - master
+    - deploy-app
+  variables:
+    IMAGE: mobileteam/swec-planner
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY/$IMAGE:latest .
+    - docker push $CI_REGISTRY/$IMAGE:latest
