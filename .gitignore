@@ -22,3 +22,6 @@ yarn-error.log*
 
 # VAPID key files for notifications
 vapid-keys.*.json
+
+# Subscriptions persistance file
+subscriptions.json
