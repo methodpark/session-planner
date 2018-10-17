@@ -1,9 +1,6 @@
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
 export default function setupSW() {
-  console.log('not installing SW');
-  return;
-
   if (navigator.serviceWorker) {
     const serviceWorkerRegistration = runtime.register();
     serviceWorkerRegistration.then(registration => {
