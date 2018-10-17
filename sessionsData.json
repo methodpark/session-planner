@@ -1,0 +1,98 @@
+[
+  {
+    "id": 0,
+    "title": "Scalable Monetize Vortals",
+    "speaker": "Collin Leannon",
+    "room": "Officer",
+    "start": "2018-01-01T08:00:00+01:00",
+    "end": "2018-01-01T10:00:00+01:00"
+  },
+  {
+    "id": 1,
+    "title": "Front-End Unleash Eyeballs",
+    "speaker": "Leone Roberts",
+    "room": "Officer",
+    "start": "2018-01-01T10:00:00+01:00",
+    "end": "2018-01-01T12:00:00+01:00"
+  },
+  {
+    "id": 2,
+    "title": "Cross-Platform Reinvent Infrastructures",
+    "speaker": "Adeline Kohler",
+    "room": "Officer",
+    "start": "2018-01-01T12:00:00+01:00",
+    "end": "2018-01-01T14:00:00+01:00"
+  },
+  {
+    "id": 3,
+    "title": "Leading-Edge Innovate Infrastructures",
+    "speaker": "Jayden Terry",
+    "room": "Officer",
+    "start": "2018-01-01T14:00:00+01:00",
+    "end": "2018-01-01T16:00:00+01:00"
+  },
+  {
+    "id": 4,
+    "title": "Clicks-And-Mortar Envisioneer Web Services",
+    "speaker": "Josiah Murphy",
+    "room": "Engineer",
+    "start": "2018-01-01T08:00:00+01:00",
+    "end": "2018-01-01T10:00:00+01:00"
+  },
+  {
+    "id": 5,
+    "title": "Viral Visualize Metrics",
+    "speaker": "Korbin Abernathy",
+    "room": "Engineer",
+    "start": "2018-01-01T10:00:00+01:00",
+    "end": "2018-01-01T12:00:00+01:00"
+  },
+  {
+    "id": 6,
+    "title": "Bleeding-Edge Brand Experiences",
+    "speaker": "Onie Jerde",
+    "room": "Engineer",
+    "start": "2018-01-01T12:00:00+01:00",
+    "end": "2018-01-01T14:00:00+01:00"
+  },
+  {
+    "id": 7,
+    "title": "End-To-End Implement Methodologies",
+    "speaker": "Merle Kihn",
+    "room": "Engineer",
+    "start": "2018-01-01T14:00:00+01:00",
+    "end": "2018-01-01T16:00:00+01:00"
+  },
+  {
+    "id": 8,
+    "title": "Collaborative Deploy Content",
+    "speaker": "Willard Braun",
+    "room": "Strategist",
+    "start": "2018-01-01T08:00:00+01:00",
+    "end": "2018-01-01T10:00:00+01:00"
+  },
+  {
+    "id": 9,
+    "title": "Bleeding-Edge Reintermediate Networks",
+    "speaker": "Marvin Anderson",
+    "room": "Strategist",
+    "start": "2018-01-01T10:00:00+01:00",
+    "end": "2018-01-01T12:00:00+01:00"
+  },
+  {
+    "id": 10,
+    "title": "Cross-Platform Transition Platforms",
+    "speaker": "Loren Harris",
+    "room": "Strategist",
+    "start": "2018-01-01T12:00:00+01:00",
+    "end": "2018-01-01T14:00:00+01:00"
+  },
+  {
+    "id": 11,
+    "title": "Cutting-Edge Envisioneer Schemas",
+    "speaker": "Liam Thompson",
+    "room": "Strategist",
+    "start": "2018-01-01T14:00:00+01:00",
+    "end": "2018-01-01T16:00:00+01:00"
+  }
+]

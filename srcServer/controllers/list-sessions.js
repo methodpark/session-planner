@@ -1,8 +1,12 @@
-const { getSessions } = require('../sessions');
+const path = require('path');
 
-function listSessions(request, response) {
-  console.log('#### request incoming ####');
-  const sessions = getSessions();
+const SessionProvider = require('../lib/SessionProvider');
+
+const sessionProvider = new SessionProvider(path.join(__dirname, '../../'));
+
+async function listSessions(request, response) {
+  const sessions = await sessionProvider.getSessions();
+
   return response.json(sessions);
 }
 
