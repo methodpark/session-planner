@@ -17,18 +17,17 @@ export function addSession(id, title, host, room, start, end) {
 function sessionsReducer(sessions=[], action) {
   switch (action.type) {
     case ADD_SESSION:
-      return [
-        ...sessions, 
-        {
-          id: action.id,
-          title: action.title,
-          host: action.host,
-          room: action.room,
-          start: action.start,
-          end: action.end,
-          slot: _formatSlot(action.start, action.end)
-        }
-      ];
+      const newSessions = sessions.filter(session => session.id !== action.id);
+      newSessions.push({
+        id: action.id,
+        title: action.title,
+        host: action.host,
+        room: action.room,
+        start: action.start,
+        end: action.end,
+        slot: _formatSlot(action.start, action.end)
+      });
+      return newSessions;
     
     default:
       return sessions;
