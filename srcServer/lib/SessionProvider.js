@@ -36,7 +36,7 @@ class SessionProvider extends EventEmitter {
     return new Promise((resolve, reject) => {
       fs.readFile(this._filePath, "utf8", (err, data) => {
         if (err) {
-          reject(err);
+          return reject(err);
         }
 
         try {
