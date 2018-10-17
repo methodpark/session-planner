@@ -43,7 +43,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  event.respondWith(tryToFetchAndStoreInCache());
+  event.respondWith(tryToFetchAndStoreInCache(caches, request));
 });
 
 self.addEventListener('push', event => {
