@@ -67,6 +67,7 @@
     "start": "concurrently --default-input-target 0 \"npm run start:server\" \"npm run start:frontend\"",
     "start:server": "nodemon ./srcServer/server.js --watch srcServer",
     "start:frontend": "node scripts/start.js",
+    "generate-notification-keys": "node scripts/vapid.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
