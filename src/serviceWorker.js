@@ -1,3 +1,5 @@
+import { clearCaches } from "./lib/cache";
+
 /* eslint no-restricted-globals: "off" */
 
 const STATIC_CACHE = 'swecache_static';
@@ -17,9 +19,7 @@ self.addEventListener('activate', (event) => {
   console.log('activate');
 
   event.waitUntil((async () => {
-    const cacheNames = await caches.keys();
-    await Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)));
-
+    await clearCaches(caches);
     const cache = await caches.open(STATIC_CACHE);
     return cache.addAll(STATIC_RESOURCES);
   })());
