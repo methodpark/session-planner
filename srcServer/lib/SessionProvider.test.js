@@ -7,25 +7,32 @@ describe('SessionProvider', () => {
 
   describe('validation', () => {
     it('should throw on null', () => {
-      expect(() => {
-        sessionProvider._validate(null);
-      }).toThrow('must be an array');
+      const input = null;
+      const expectedErrorMessage = 'must be an array';
+
+      expect(() => sessionProvider._validate(input)).toThrow(expectedErrorMessage);
     });
 
     it('should throw if array is empty', () => {
-      expect(() => {
-        sessionProvider._validate([]);
-      }).toThrow('can not be empty');
+      const input = [];
+      const expectedErrorMessage = 'can not be empty';
+
+      expect(() => sessionProvider._validate(input)).toThrow(expectedErrorMessage);
     });
 
     it('should return [1,2,3] ', () => {
-      expect(sessionProvider._validate([1,2,3])).toEqual([1,2,3]);
+      const input = [1, 2, 3];
+      const expectedResult = input;
+
+      expect(sessionProvider._validate(input)).toEqual(expectedResult);
     });
   });
 
   describe('getSessions', () => {
-    it('should return [1,2,3] from test file', async() => {
-      expect(await sessionProvider.getSessions() ).toEqual([1,2,3]);
+    it('should return [1,2,3] from test file', async () => {
+      const expectedResult = [1, 2, 3];
+
+      expect(await sessionProvider.getSessions()).toEqual(expectedResult);
     });
   });
 

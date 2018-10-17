@@ -36,7 +36,7 @@ interceptRequest('/sessions', response => {
 
 function _handleData(sessions) {
   sessions.forEach(session => {
-    store.dispatch(addSession(session.id, session.title, session.speaker, session.room, session.start, session.end));
+    store.dispatch(addSession(session.id, session.title, session.host, session.room, session.start, session.end));
   });
 }
 

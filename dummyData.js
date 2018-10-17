@@ -22,7 +22,7 @@ function generateSessions() {
       result.push({
         id: id++,
         title,
-        speaker: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        host: `${faker.name.firstName()} ${faker.name.lastName()}`,
         room,
         start: currentSession.format(),
         end: sessionEnd.format()
