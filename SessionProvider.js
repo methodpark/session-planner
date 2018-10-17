@@ -6,7 +6,6 @@ class SessionProvider {
   }
 
   async getSessions() {
-    console.log(path.join(this._basePath, 'sessionsData.json'))
     return require(path.join(this._basePath, 'sessionsData.json'));
   }
 }
