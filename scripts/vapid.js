@@ -1,21 +1,38 @@
 const fs = require('fs');
 const webpush = require('web-push');
 
-const KEYS_FILE = "vapid-keys.json";
+const PRIVATE_KEYS_FILE = "vapid-keys.private.json";
+const PUBLIC_KEY_FILE = "src/vapid-keys.public.json";
 
-function writeKeysToFile(filename) {
+function writeKeysToFile(filenamePrivate, filenamePublic) {
   const keys = webpush.generateVAPIDKeys();
-  fs.writeFileSync(filename, JSON.stringify(keys));
+
+  fs.writeFileSync(filenamePrivate, JSON.stringify(keys));
+  fs.writeFileSync(filenamePublic, JSON.stringify({ publicKey: keys.publicKey }));
+
   console.log('Generated keys: ' + JSON.stringify(keys));
-  console.log(`Wrote keys to ${filename}.`);
+  console.log(`Wrote keys to ${filenamePrivate} and ${filenamePublic}.`);
 }
 
-fs.access(KEYS_FILE, fs.constants.F_OK, (err) => {
-  if (!err) {
-    console.log(`'${KEYS_FILE}' exists, won't re-generate keys.`);
-    console.log('If you really want to use new keys, manually delete the file.');
-    process.exit(0);
-  } else {
-    writeKeysToFile(KEYS_FILE);
+if (fileExists(PRIVATE_KEYS_FILE)) {
+  console.log(`'${PRIVATE_KEYS_FILE}' exists, won't re-generate keys.`);
+  console.log('If you really want to use new keys, manually delete the file.');
+  process.exit(0);
+}
+
+if (fileExists(PUBLIC_KEY_FILE)) {
+  console.log(`'${PUBLIC_KEY_FILE}' exists, won't re-generate keys.`);
+  console.log('If you really want to use new keys, manually delete the file.');
+  process.exit(0);
+}
+
+function fileExists(filename) {
+  try {
+    fs.accessSync(filename, fs.constants.F_OK);
+    return true;
+  } catch(e) {
+    return false;
   }
-});
+}
+
+writeKeysToFile(PRIVATE_KEYS_FILE, PUBLIC_KEY_FILE);

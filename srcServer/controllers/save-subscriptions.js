@@ -3,9 +3,10 @@ const { isValidPushSubscription, saveSubscriptionToArray } = require('../notific
 async function saveSubscriptions(request, response) {
   if (isValidPushSubscription(request, response)) {
     try {
-      const subscriptionId = await saveSubscriptionToArray(request.body);
+      const subscription = request.body.subscription;
+      const subscriptionId = await saveSubscriptionToArray(subscription);
       response.setHeader('Content-Type', 'application/json');
-      response.send(JSON.stringify({ data: { success: true, id: subscriptionId } }));
+      response.send(JSON.stringify({ id: subscriptionId }));
     }
     catch (err) {
       response.status(500);
