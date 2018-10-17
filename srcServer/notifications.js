@@ -4,7 +4,7 @@ const fs = require('fs');
 let publicKey = null;
 let subscriptions = [];
 
-function loadVapidKeys(filename) {
+function _loadVapidKeys(filename) {
   const jsonString = fs.readFileSync(filename);
   const keys = JSON.parse(jsonString);
   publicKey = keys.publicKey;
@@ -12,7 +12,7 @@ function loadVapidKeys(filename) {
 }
 
 function initializeNotifications(vapidKeysFile) {
-  const vapidKeys = loadVapidKeys(vapidKeysFile);
+  const vapidKeys = _loadVapidKeys(vapidKeysFile);
 
   webpush.setVapidDetails(
     'mailto:info@methodpark.de',
@@ -64,20 +64,20 @@ function saveSubscriptionToArray(subscription) {
   });
 };
 
-function deleteSubscriptionFromArray(staleSubscription) {
+function _deleteSubscriptionFromArray(staleSubscription) {
   subscriptions = subscriptions.filter(
     subscription => subscription !== staleSubscription
   );
 }
 
-async function sendNotification(subscription, dataToSend) {
+async function _sendNotification(subscription, dataToSend) {
   try {
     await webpush.sendNotification(subscription, dataToSend);
   }
   catch (err) {
     if (err.statusCode === 410) {
       console.log('removing stale subscription');
-      deleteSubscriptionFromArray(subscription);
+      _deleteSubscriptionFromArray(subscription);
       const numberOfSubscribers = subscriptions.length;
       console.log(`${numberOfSubscribers} subscribers left.`);
     } else {
@@ -92,7 +92,7 @@ async function sendNotifications(data) {
 
   subscriptions.forEach(async subscription => {
     try {
-      await sendNotification(subscription, JSON.stringify(data));
+      await _sendNotification(subscription, JSON.stringify(data));
     } catch (err) {
       console.log('Error for sub', subscription, err);
     }
