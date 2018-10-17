@@ -21,5 +21,12 @@ express()
 sessionsProvider.on('sessionUpdate', change => {
   //notify everybody!!!
 
+  //this is how a possible change event looks like:
+  //{ 
+  //  what: 'CHANGE', 
+  //  message: titleChange|hostChange|roomChange|startChange|endChange,
+  //  session: theChangedSession 
+  //}
+
   console.log('change happened', change);
 });
