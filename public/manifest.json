@@ -1,6 +1,6 @@
 {
-  "name": "SwecPlannerApp",
-  "short_name": "SwecPlanner",
+  "name": "SwecSessionApp",
+  "short_name": "SwecSessions",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#e57c00",
