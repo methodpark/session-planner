@@ -27,38 +27,31 @@ async function sendNotifications(data) {
   });
 }
 
-function isValidPushSubscription(request, response) {
+function checkSubscriptionRequestForErrors(request) {
   // Check the request body has at least an endpoint.
-  if (!request.body || !request.body.subscription || !request.body.subscription.endpoint) {
+  if (!request || !request.subscription || !request.subscription.endpoint) {
     // Not a valid subscription.
-    response.status(400);
-    response.setHeader('Content-Type', 'application/json');
-    response.send(JSON.stringify({
-      error: {
-        id: 'no-endpoint',
-        message: 'Subscription must have an endpoint.'
+    return {
+      errorCode: 400,
+      response: {
+        id: 'missing-data',
+        message: 'Request must have a subscription, its basing key and an subscription endpoint'
       }
-    }));
-    return false;
+    };
   }
 
-  const { basedOnKey } = request.body;
-  console.log("Expecting", publicKey);
-  console.log("Received ", basedOnKey);
-
-  if (basedOnKey !== publicKey) {
-    response.status(409);
-    response.setHeader('Content-Type', 'application/json');
-    response.send(JSON.stringify({
-      error: {
+  if (request.basedOnKey !== publicKey) {
+    return {
+      errorCode: 409,
+      response: {
         id: 'expired-key',
         newKey: publicKey,
         message: 'Subscription was sent using the wrong (expired) public key.'
       }
-    }));
-    return false;
+    };
   }
-  return true;
+
+  return null;
 };
 
 function saveSubscriptionToArray(subscription) {
@@ -101,6 +94,6 @@ async function _sendNotification(subscription, dataToSend) {
 
 
 module.exports.initializeNotifications = initializeNotifications;
-module.exports.isValidPushSubscription = isValidPushSubscription;
+module.exports.checkSubscriptionRequestForErrors = checkSubscriptionRequestForErrors;
 module.exports.saveSubscriptionToArray = saveSubscriptionToArray;
 module.exports.sendNotifications       = sendNotifications;
