@@ -11,26 +11,43 @@ export default async function setupSW() {
   }
 
   const registration = await runtime.register();
+
   try {
+    console.log('Unregistering possibly stale subscriptions');
+    await unregisterExistingSubscriptions(registration);
     console.log('Registering for notifications');
     await registerSubscription(registration);
   } catch (e) {
     console.log('Registering failed:', e);
-    const existingSubscription = await registration.pushManager.getSubscription();
-    console.log('The existing subscription is: ', existingSubscription);
+    await reRegisterSubscription(registration);
+  }
+}
 
-    if (existingSubscription != null) {
-      console.log('Registering subscription failed. Found an existing subscription -- unsubscribing first.')
-      existingSubscription.unsubscribe();
+async function unregisterExistingSubscriptions(registration) {
+  //We have no chance of knowing whether the key has changed
+  const subscription = await registration.pushManager.getSubscription();
+  if (subscription != null){
+    subscription.unsubscribe();
+  }
+}
 
-      try {
-        console.log('Trying to re-reqister...', publicKey);
-        await registerSubscription(registration);
-        console.log('Re-Registering successful');
-      } catch(e) {
-        console.log('Re-registering failed, because reasons.', e);
-      }
-    }
+async function reRegisterSubscription(registration) {
+  const existingSubscription = await registration.pushManager.getSubscription();
+
+  if (!existingSubscription) {
+    return;
+  }
+
+  console.log('The existing subscription is: ', existingSubscription);
+  console.log('Found an existing subscription -- unsubscribing first.')
+  existingSubscription.unsubscribe();
+
+  try {
+    console.log('Trying to re-register...', publicKey);
+    await registerSubscription(registration);
+    console.log('Re-registering successful');
+  } catch (e) {
+    console.log('Re-registering failed', e);
   }
 }
 

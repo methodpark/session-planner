@@ -64,19 +64,24 @@ function saveSubscriptionToArray(subscription) {
   });
 };
 
-function deleteSubscriptionFromArray(id) {
-  subscriptions.splice(id, 1);
+function deleteSubscriptionFromArray(staleSubscription) {
+  subscriptions = subscriptions.filter(
+    subscription => subscription !== staleSubscription
+  );
 }
 
 async function sendNotification(subscription, dataToSend) {
   try {
-    return webpush.sendNotification(subscription, dataToSend);
+    await webpush.sendNotification(subscription, dataToSend);
   }
   catch (err) {
     if (err.statusCode === 410) {
-      return deleteSubscriptionFromArray(subscription._id);
+      console.log('removing stale subscription');
+      deleteSubscriptionFromArray(subscription);
+      const numberOfSubscribers = subscriptions.length;
+      console.log(`${numberOfSubscribers} subscribers left.`);
     } else {
-      console.log('Subscription is no longer valid: ', err);
+      console.error('ERROR FIXME WTF Subscription is no longer valid: ', err);
     }
   }
 };
