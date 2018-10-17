@@ -85,7 +85,7 @@ function askPermission() {
 async function sendSubscriptionToBackEnd(subscription) {
   const subscriptionRequest = {
     subscription,
-    basedOnKey: publicKeyJson.publicKey
+    basedOnKey: publicKey
   }
 
   let response = null;
