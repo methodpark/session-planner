@@ -1,30 +1,41 @@
 @color-primary: #003c72;
 @color-secondary: #777;
 
+@breakpoint-s: 575px;
+@breakpoint-m: 768px;
+@breakpoint-l: 991px;
+@breakpoint-xl: 1199px;
+
 html {
-  font-size: 24px;
+  font-size: 16px;
+  color: green;
 
-  @media all and (max-width: 1199px) {
+  @media all and (min-width: @breakpoint-s) { 
+    font-size: 20px;
+    color: #f00;
+  }
+
+  @media all and (min-width: @breakpoint-m) { 
+    color: #f0f;
+    font-size: 24px;
+  }
+
+  @media all and (min-width: @breakpoint-l) {
+    color: #fff;
+    font-size: 28px;
+  }
+
+  @media all and (min-width: @breakpoint-xl) {
+    color: #000;
   } 
-
-  @media all and (max-width: 991px) {
-  }
-
-  @media all and (max-width: 768px) { 
-    font-size: 22px;
-  }
-
-  @media all and (max-width: 575px) { 
-    font-size: 16px;
-  }
 }
 
 h1 {
-  color: @color-primary;
+  // color: @color-primary;
   font-weight: 600;
   letter-spacing: 0;
-  line-height: 45px;
-  margin-bottom: 30px;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
@@ -50,18 +61,18 @@ li {
   padding: 0;
 }
 
-header{
-  img{
-	height: 1em;
+header {
+  img {
+    height: 1em;
     position: relative;
-    top: 2.5px;  	
+    top: 0.2rem;
   }
 }
-footer{
-  p{
+footer {
+  p {
     text-align: center;  
     color: @color-secondary;  
-    font-size: 16px;
+    font-size: 0.8rem;
   }
 }
 
@@ -118,7 +129,7 @@ footer{
       user-select: none;
       margin: 0;
       padding: 1rem 0.5rem;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
 
       > svg {
         float: right;
@@ -132,6 +143,7 @@ footer{
         margin-top: 1rem;
 
         .sub-title {
+          padding-top: 0.2rem;
           font-size: 0.8rem;
           color: @color-primary;
           font-weight: bold;
@@ -149,23 +161,21 @@ footer{
       }
     }
   }
-}
 
-// media query for large displays
-@media screen and (min-width: 1199px) {
-	#slots {
-		display: inline-block;
+  @media screen and (min-width: @breakpoint-xl) {
+    display: inline-block;
 		display: flex;
-		justify-content: center;
-		
-		li.entry{
-		  margin-right: 30px;
-		  h3{
-			padding: 0.5rem 0.5rem;
-		  }
-		  li .sub-title{
-			padding-top: 5px;
-		  }
-		}
-	}
+    justify-content: center;
+    
+    .entry {
+      width: 20%;
+      margin: 1rem;
+
+      h3 {
+        svg {
+          display: none;
+        }
+      }
+    }
+  }
 }
