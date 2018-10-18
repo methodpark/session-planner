@@ -2,12 +2,12 @@
 @color-secondary: #777;
 
 html {
-  font-size: 32px;
+  font-size: 24px;
 
-  @media all and (max-width: 1199px) {} 
+  @media all and (max-width: 1199px) {
+  } 
 
   @media all and (max-width: 991px) {
-    font-size: 26px;
   }
 
   @media all and (max-width: 768px) { 
@@ -150,24 +150,20 @@ footer{
     }
   }
 }
+
 // media query for large displays
-@media screen and (min-width: 1900px) {
-	h1{font-size: 1.6rem;}
-	h2{font-size: 1.1rem;}
-	h3{font-size: 0.85rem;}
-	h4{font-size: 0.6rem;}
-	
+@media screen and (min-width: 1199px) {
 	#slots {
 		display: inline-block;
 		display: flex;
-		justify-content: center;		
+		justify-content: center;
+		
 		li.entry{
 		  margin-right: 30px;
 		  h3{
 			padding: 0.5rem 0.5rem;
 		  }
 		  li .sub-title{
-			font-size: 0.5rem!important;
 			padding-top: 5px;
 		  }
 		}
