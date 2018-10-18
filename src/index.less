@@ -25,6 +25,7 @@ h1 {
   letter-spacing: 0;
   line-height: 45px;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 a {
@@ -52,13 +53,15 @@ li {
 header{
   img{
 	height: 1em;
+    position: relative;
+    top: 2.5px;  	
   }
 }
 footer{
   p{
     text-align: center;  
     color: @color-secondary;  
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -146,4 +149,27 @@ footer{
       }
     }
   }
+}
+// media query for large displays
+@media screen and (min-width: 1900px) {
+	h1{font-size: 1.6rem;}
+	h2{font-size: 1.1rem;}
+	h3{font-size: 0.85rem;}
+	h4{font-size: 0.6rem;}
+	
+	#slots {
+		display: inline-block;
+		display: flex;
+		justify-content: center;		
+		li.entry{
+		  margin-right: 30px;
+		  h3{
+			padding: 0.5rem 0.5rem;
+		  }
+		  li .sub-title{
+			font-size: 0.5rem!important;
+			padding-top: 5px;
+		  }
+		}
+	}
 }
