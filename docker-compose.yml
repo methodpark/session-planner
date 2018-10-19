@@ -1,0 +1,27 @@
+version: '2.0'
+
+# This configuration file is used on the deployment server
+# to configure the docker container that runs the application.
+#
+# The swecapp container runs the swec planner web app.
+# The watchtower container is a watchdog that checks every 5 minutes
+# for new images for swecapp and watchtower. If a new image is found
+# it stops the running container, updates the image and starts a new
+# container with the same parameters.
+
+services:
+    swecapp:
+        image: registry.er.methodpark.de:4567/mobileteam/swec-planner:latest
+        ports:
+            - "3000:8080"
+        volumes:
+            - /home/swec/data:/data
+        container_name: swecapp
+
+    watchtower:
+        image: v2tec/watchtower
+        container_name: watchtower
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /home/swec/.docker/config.json:/config.json
+        command: swecapp watchtower
