@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const { initializeNotifications } = require('./notifications');
+const { initializeNotifications, sendNotifications } = require('./notifications');
 const listSessions = require('./controllers/list-sessions');
 const { saveSubscriptions } = require('./controllers/save-subscriptions');
 const SessionProvider = require('../srcServer/lib/SessionProvider');
@@ -27,15 +27,22 @@ express()
   .post('/api/save-subscription/', saveSubscriptions)
   .listen(PORT, () => console.log(`listening: ${PORT}`));
 
-sessionsProvider.on('sessionUpdate', change => {
+sessionsProvider.on('sessionUpdate', async change => {
   //notify everybody!!!
 
   //this is how a possible change event looks like:
-  //{ 
-  //  what: 'CHANGE', 
+  //{
+  //  what: 'CHANGE',
   //  message: titleChange|hostChange|roomChange|startChange|endChange,
-  //  session: theChangedSession 
+  //  session: theChangedSession
   //}
 
   console.log('change happened', change);
+
+  // TODO: check diff, send s.th. that's actually useful
+  const notification = {
+    title: 'Sessions updated! \\o/',
+    body: 'Check out the new stuff and such.'
+  }
+  await sendNotifications({ notification });
 });

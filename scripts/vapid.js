@@ -2,13 +2,13 @@ const fs = require('fs');
 const webpush = require('web-push');
 
 const PRIVATE_KEYS_FILE = "vapid-keys.private.json";
-const PUBLIC_KEY_FILE = "src/vapid-keys.public.json";
+const PUBLIC_KEY_FILE   = "build/static/vapid-keys.public.json";
 
 function writeKeysToFile(filenamePrivate, filenamePublic) {
   const keys = webpush.generateVAPIDKeys();
 
   fs.writeFileSync(filenamePrivate, JSON.stringify(keys));
-  fs.writeFileSync(filenamePublic, JSON.stringify({ publicKey: keys.publicKey }));
+  fs.writeFileSync(filenamePublic,  JSON.stringify({ publicKey: keys.publicKey }));
 
   console.log('Generated keys: ' + JSON.stringify(keys));
   console.log(`Wrote keys to ${filenamePrivate} and ${filenamePublic}.`);

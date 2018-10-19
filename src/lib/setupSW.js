@@ -1,10 +1,6 @@
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
-import publicKeyJson from '../vapid-keys.public.json'
-
-let publicKey = publicKeyJson.publicKey;
 
 export default async function setupSW() {
-
   if (!navigator.serviceWorker) {
     console.log("No service worker support.");
     return;
@@ -43,17 +39,31 @@ async function reRegisterSubscription(registration) {
   existingSubscription.unsubscribe();
 
   try {
-    console.log('Trying to re-register...', publicKey);
+    console.log('Trying to re-register...');
     await registerSubscription(registration);
     console.log('Re-registering successful');
   } catch (e) {
     console.log('Re-registering failed', e);
   }
 }
+async function retrievePublicKey() {
+  try {
+    const response = await fetch('/static/vapid-keys.public.json');
+    const json = await response.json();
+    if (!json || !json.publicKey) {
+      throw Error("invalid public VAPID key received");
+    }
+    return json.publicKey;
+  } catch (e) {
+    throw Error('Could not retrieve public VAPID key', e)
+  }
+}
 
 async function registerSubscription(registration) {
   console.log('===== asking for permission');
   await askPermission();
+
+  const publicKey = await retrievePublicKey();
 
   const subscribeOptions = {
     userVisibleOnly: true,
@@ -64,7 +74,7 @@ async function registerSubscription(registration) {
   const pushSubscription = await registration.pushManager.subscribe(subscribeOptions);
 
   console.log('===== Received PushSubscription: ', JSON.stringify(pushSubscription));
-  return sendSubscriptionToBackEnd(pushSubscription);
+  await sendSubscriptionToBackEnd(pushSubscription, publicKey);
 }
 
 function askPermission() {
@@ -82,7 +92,7 @@ function askPermission() {
     });
 }
 
-async function sendSubscriptionToBackEnd(subscription) {
+async function sendSubscriptionToBackEnd(subscription, publicKey) {
   const subscriptionRequest = {
     subscription,
     basedOnKey: publicKey
@@ -102,26 +112,10 @@ async function sendSubscriptionToBackEnd(subscription) {
 
   if (!response.ok) {
     if (response.status === 409) {
-      await saveNewPublicKey(response);
       throw Error('Public key has changed');
+    } else {
+      throw Error('Unknown error when saving subscription', response);
     }
-    throw Error('Unknown error when saving subscription', response);
-  }
-
-  const responseData = await response.json();
-  if(!responseData || !responseData.hasOwnProperty('id')) {
-    throw Error('Malformed response: missing subscription id');
-  }
-  return responseData.id;
-}
-
-async function saveNewPublicKey(response) {
-  const json = await response.json();
-  if (json && json.error && json.error.newKey) {
-    console.log('Using new public key from server for notifications.');
-    publicKey = json.error.newKey;
-  } else {
-    console.error('Response did not contain a new public key.');
   }
 }
 
