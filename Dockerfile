@@ -10,7 +10,7 @@ ADD ./start_app.sh /
 VOLUME ["/data"]
 
 RUN set -ex && \
-  rm /home/node/app/build/static/vapid-keys.public.json && \
+  rm /home/node/app/build/static/vapid-keys.public.json || echo ignore missing file && \
   ln -s /data/vapid-keys.private.json /home/node/app/vapid-keys.private.json && \
   ln -s /data/vapid-keys.public.json /home/node/app/build/static/vapid-keys.public.json && \
   ln -s /data/sessionsData.json /home/node/app/sessionsData.json && \
