@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Slots from './components/overview/Slots';
+import Screen from './components/screen/Screen';
 
 export default class AppRouter extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export default class AppRouter extends React.Component {
       <Router>
         <div>
           <Route exact path="/" component={() => <Slots />} />
+          <Route path="/screen" component={() => <Screen />} />
         </div>
       </Router>
     );   

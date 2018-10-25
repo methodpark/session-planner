@@ -3,8 +3,8 @@
   "short_name": "SwecSessions",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#e57c00",
-  "theme_color": "#e57c00",
+  "background_color": "#003c72",
+  "theme_color": "#003c72",
   "icons": [
     {
       "src": "/logo/logo16x16.png",
