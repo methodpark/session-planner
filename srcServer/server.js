@@ -23,8 +23,9 @@ try {
 express()
   .use(express.static('build'))
   .use(bodyParser.json())
-  .get('/sessions', listSessions(sessionsProvider))
+  .get('/api/sessions', listSessions(sessionsProvider))
   .post('/api/save-subscription/', saveSubscriptions)
+  .get('/*', (req, res) => res.sendFile(path.join(__dirname, '../build/index.html')))
   .listen(PORT, () => console.log(`listening: ${PORT}`));
 
 sessionsProvider.on('sessionUpdate', async change => {

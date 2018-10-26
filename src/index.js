@@ -29,7 +29,7 @@ ReactDOM.render((
   </Provider>
 ), document.getElementById('root'));
 
-interceptRequest('/sessions', response => {
+interceptRequest('/api/sessions', response => {
   if (response.status !== 200) {
     throw new Error('could not load sessions');
   }
