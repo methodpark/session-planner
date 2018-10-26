@@ -5,7 +5,7 @@ const dedupe = require('dedupe');
 const roomNames = dedupe(Array.from(Array(30), _ => faker.name.jobType()));
 
 function generateSessions() {
-  const countTracks = 3;
+  const countTracks = 7;
 
   let id = 0;
   const result = [];
