@@ -169,7 +169,16 @@ footer {
     }
 
     .sessions {
+      display: none;
       padding-left: 0.6rem;
+
+      &.open {
+        display: block;
+      }
+
+      @media screen and (min-width: @breakpoint-xl) {
+        display: block;
+      }
 
       > li {
         margin-top: 1rem;

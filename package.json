@@ -4,13 +4,13 @@
   "private": true,
   "dependencies": {
     "chokidar": "^2.0.4",
+    "classnames": "^2.2.6",
     "dedupe": "^2.1.0",
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "moment": "^2.22.2",
     "ms": "^2.1.1",
     "react-redux": "^5.0.7",
-    "react-responsive": "^5.0.0",
     "redux": "^4.0.1",
     "redux-saga": "^0.16.2",
     "web-push": "^3.3.2"
