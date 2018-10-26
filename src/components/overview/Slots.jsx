@@ -7,7 +7,7 @@ class Slots extends React.Component {
   render() {
     return (
       <ul id="slots">
-        {this.props.slots.map(slot => <Entry key={slot} slot={slot}/>)}
+        {this.props.slots.map(slot => <Entry key={slot.title} slot={slot}/>)}
       </ul>
     );
   }

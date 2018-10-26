@@ -26,7 +26,7 @@ export class Entry extends React.Component {
     return (
       <li className="entry">
         <h3 onClick={this.toggle}>
-          {slot}{this.state.open ? <Minus /> : <Plus />}
+          {slot.title}{this.state.open ? <Minus /> : <Plus />}
         </h3>
         { this.state.open ? sessionList : null }
       </li>
@@ -37,6 +37,6 @@ export class Entry extends React.Component {
 export default connect(({sessions}, {slot}) => {
   return {
     slot,
-    sessions: sessions.filter(session => session.slot === slot)
+    sessions: sessions.filter(session => session.slot === slot.title)
   }
 })(Entry);

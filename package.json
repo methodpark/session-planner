@@ -41,7 +41,7 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "jest-fetch-mock": "^1.6.6",
-    "less": "^3.7.1",
+    "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "nodemon": "^1.17.5",
     "object-assign": "4.1.1",
