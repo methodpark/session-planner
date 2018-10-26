@@ -7,7 +7,7 @@ export default function Session (props) {
     <li>
       <h4>{title}</h4>
       <div className="sub-title">
-        room: <em>{room.toLowerCase()}</em><br />
+        room: <em>{room.toLowerCase()}</em>, 
         host: <em>{host.toLowerCase()}</em>
       </div>
     </li>

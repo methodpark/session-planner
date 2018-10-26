@@ -11,7 +11,9 @@ export default function* () {
 }
 
 function* activeSaga() {
-  yield delay(ms('3s'));
+  while ((yield select(state => state.slots)).length === 0) {
+    yield delay(ms('0.2s'));
+  }
 
   while (true) {
     const slots = yield select(state => state.slots);

@@ -10,22 +10,40 @@ export class Entry extends React.Component {
   constructor() {
     super();
 
-    this.state = {open: false};
+    this.state = {
+      open: false,
+      localOpen: null
+    };
     this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
-    this.setState({open: !this.state.open});
+    const localOpen = this.state.localOpen === null ? !this.state.open : !this.state.localOpen;
+    this.setState({ localOpen });
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return { 
+      open: props.slot.active,
+      localOpen: state.localOpen
+    };
   }
 
   render() {
-    const {slot, sessions} = this.props;
-    const listClassName = classnames('sessions', {open: this.state.open} );
+    console.log('---', this.state.open);
+    const { slot, sessions } = this.props;
+
+    let open = this.state.open;
+    if (this.state.localOpen !== null) {
+      open = this.state.localOpen;
+    }
+
+    const listClassName = classnames('sessions', { open });
 
     return (
       <li className="entry">
         <h3 onClick={this.toggle}>
-          {slot.title}{this.state.open ? <Minus /> : <Plus />}
+          {slot.title}{open ? <Minus /> : <Plus />}
         </h3>
 
         <ul className={listClassName}>
@@ -36,7 +54,7 @@ export class Entry extends React.Component {
   }
 }
 
-export default connect(({sessions}, {slot}) => {
+export default connect(({ sessions }, { slot }) => {
   return {
     slot,
     sessions: sessions.filter(session => session.slot === slot.title)
