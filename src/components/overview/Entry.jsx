@@ -30,7 +30,6 @@ export class Entry extends React.Component {
   }
 
   render() {
-    console.log('---', this.state.open);
     const { slot, sessions } = this.props;
 
     let open = this.state.open;
