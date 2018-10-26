@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import Session from './Session';
+
 function Screen(props) {
   const {sessions, slots, rooms} = props;
 
@@ -9,29 +11,16 @@ function Screen(props) {
       <tbody>
         <tr>
           <th></th>
-          {
-            rooms.map(room => {
-              return <th>{room}</th>;
-            })
-          }
+          {rooms.map(room => <th key={room}>{room}</th>)}
         </tr>
       {
         slots.map(slot => {
+          const {title, active} = slot;
+
           return (
-            <tr>
-              <th>{slot}</th>
-              {
-                rooms.map(room => {
-                  const session = getSession(sessions, room, slot);
-
-                  let title = '';
-                  if (session) {
-                    title = session.title;
-                  }
-
-                  return <td>{title}</td>;
-                })
-              }
+            <tr key={title} className={active ? 'active' : ''}>
+              <th>{title}</th>
+              {rooms.map(room => <Session key={room + title} session={getSession(sessions, room, title)} />)}
             </tr>
           );
         })
@@ -42,7 +31,7 @@ function Screen(props) {
 }
 
 function getSession(sessions, room, slot) {
-  return sessions.find(session => session.room == room && session.slot === slot);
+  return sessions.find(session => session.room === room && session.slot === slot);
 }
 
 export default connect(state => state)(Screen);

@@ -2,14 +2,20 @@ import moment from 'moment';
 import dedupe from 'dedupe';
 
 import {combineReducers} from 'redux';
-import {createAction} from '../lib/util';
+
+import {createAction} from '../../lib/util';
 
 // ---------------------- actions ----------------------
 
 export const ADD_SESSION = 'ADD_SESSION';
+export const SET_ACTIVE = 'SET_ACTIVE';
 
 export function addSession(id, title, host, room, start, end) {
   return createAction(ADD_SESSION, {id, title, host, room, start, end});
+}
+
+export function setActive(slot) {
+  return createAction(SET_ACTIVE, {slot});
 }
 
 // ---------------------- reducers ----------------------
@@ -27,6 +33,7 @@ function sessionsReducer(sessions=[], action) {
         end: action.end,
         slot: _formatSlot(action.start, action.end)
       });
+
       return newSessions;
     
     default:
@@ -37,7 +44,18 @@ function sessionsReducer(sessions=[], action) {
 function slotsReducer(slots=[], action) {
   switch (action.type) {
     case ADD_SESSION:
-      return dedupe([...slots, _formatSlot(action.start, action.end)]);
+      const slotTitle = _formatSlot(action.start, action.end);
+      //TODO: ditch dedupe
+      return dedupe([...slots, {title: slotTitle, start: action.start, end: action.end, active: false}]);
+
+    case SET_ACTIVE:
+      return slots.map(slot => {
+        if (slot.title === action.slot) {
+          return {...slot, active: true};
+        }
+
+        return {...slot, active: false}
+      });
 
     default:
       return slots;
@@ -59,13 +77,6 @@ export const reducer = combineReducers({
   slots: slotsReducer,
   rooms: roomsReducer
 });
-
-// ---------------------- sagas ----------------------
-
-export const saga = function* () {
-  //here a sideeffects will be handled
-}
-
 
 
 

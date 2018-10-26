@@ -1,6 +1,11 @@
 @color-primary: #003c72;
 @color-secondary: #777;
 
+@font-color-contrast: #fff;
+
+@border-color: #aaa;
+
+
 html {
   font-size: 32px;
 
@@ -113,18 +118,27 @@ footer {
   border-spacing: 0px;
   width: 100%;
 
-  th, td {
-    padding: 0.5rem;
-    font-size: 0.8rem;
-    border-bottom: 3px solid #aaa;
-  }
-
   tr {
     height: 4rem;
-  }
 
-  th {
-    background-color: #eee;
+    &.active {
+      background-color: @border-color;
+    }
+
+    th, td {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+    }
+  
+    th {
+      background-color: @color-primary;
+      color: @font-color-contrast;
+      border-bottom: 3px solid @color-primary;
+    }
+  
+    td {
+      border-bottom: 3px solid @border-color;
+    }
   }
 }
 
