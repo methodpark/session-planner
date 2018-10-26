@@ -5,31 +5,37 @@
 
 @border-color: #aaa;
 
+@breakpoint-s: 575px;
+@breakpoint-m: 768px;
+@breakpoint-l: 991px;
+@breakpoint-xl: 1199px;
 
 html {
-  font-size: 32px;
+  font-size: 16px;
 
-  @media all and (max-width: 1199px) {} 
-
-  @media all and (max-width: 991px) {
-    font-size: 26px;
+  @media all and (min-width: @breakpoint-s) { 
+    font-size: 20px;
   }
 
-  @media all and (max-width: 768px) { 
-    font-size: 22px;
+  @media all and (min-width: @breakpoint-m) { 
+    font-size: 24px;
   }
 
-  @media all and (max-width: 575px) { 
-    font-size: 16px;
+  @media all and (min-width: @breakpoint-l) {
+    font-size: 28px;
   }
+
+  @media all and (min-width: @breakpoint-xl) {
+  } 
 }
 
 h1 {
   color: @color-primary;
   font-weight: 600;
   letter-spacing: 0;
-  line-height: 45px;
-  margin-bottom: 30px;
+  line-height: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 a {
@@ -60,14 +66,16 @@ header {
   }
 
   img {
-	  height: 1em;
+    height: 1em;
+    position: relative;
+    top: 0.2rem;
   }
 }
 footer {
   p {
     text-align: center;  
     color: @color-secondary;  
-    font-size: 18px;
+    font-size: 0.8rem;
   }
 }
 
@@ -153,7 +161,7 @@ footer {
       user-select: none;
       margin: 0;
       padding: 1rem 0.5rem;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
 
       > svg {
         float: right;
@@ -167,6 +175,7 @@ footer {
         margin-top: 1rem;
 
         .sub-title {
+          padding-top: 0.2rem;
           font-size: 0.8rem;
           color: @color-primary;
           font-weight: bold;
@@ -180,6 +189,23 @@ footer {
         h4 {
           color: @color-primary;
           margin: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: @breakpoint-xl) {
+    display: inline-block;
+		display: flex;
+    justify-content: center;
+    
+    .entry {
+      width: 20%;
+      margin: 1rem;
+
+      h3 {
+        svg {
+          display: none;
         }
       }
     }
