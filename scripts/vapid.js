@@ -2,13 +2,17 @@ const fs = require('fs');
 const webpush = require('web-push');
 
 const PRIVATE_KEYS_FILE = "vapid-keys.private.json";
-const PUBLIC_KEY_FILE   = "build/static/vapid-keys.public.json";
+const PUBLIC_KEY_DIR = "build/static/";
+const PUBLIC_KEY_FILE = PUBLIC_KEY_DIR + "vapid-keys.public.json";
 
-function writeKeysToFile(filenamePrivate, filenamePublic) {
+function writeKeysToFile(filenamePrivate, fileDirPublic, filenamePublic) {
   const keys = webpush.generateVAPIDKeys();
 
   fs.writeFileSync(filenamePrivate, JSON.stringify(keys));
-  fs.writeFileSync(filenamePublic,  JSON.stringify({ publicKey: keys.publicKey }));
+  if (!fs.existsSync(fileDirPublic)) {
+    fs.mkdirSync(fileDirPublic);
+  }
+  fs.writeFileSync(filenamePublic, JSON.stringify({ publicKey: keys.publicKey }));
 
   console.log('Generated keys: ' + JSON.stringify(keys));
   console.log(`Wrote keys to ${filenamePrivate} and ${filenamePublic}.`);
@@ -30,9 +34,9 @@ function fileExists(filename) {
   try {
     fs.accessSync(filename, fs.constants.F_OK);
     return true;
-  } catch(e) {
+  } catch (e) {
     return false;
   }
 }
 
-writeKeysToFile(PRIVATE_KEYS_FILE, PUBLIC_KEY_FILE);
+writeKeysToFile(PRIVATE_KEYS_FILE,PUBLIC_KEY_DIR, PUBLIC_KEY_FILE);
