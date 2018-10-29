@@ -1,3 +1,6 @@
+variables:
+  GENERATE_SOURCEMAP: 'false'
+
 stages:
   - test
   - build
