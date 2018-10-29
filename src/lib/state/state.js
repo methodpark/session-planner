@@ -45,8 +45,8 @@ function slotsReducer(slots=[], action) {
   switch (action.type) {
     case ADD_SESSION:
       const slotTitle = _formatSlot(action.start, action.end);
-      //TODO: ditch dedupe
-      return dedupe([...slots, {title: slotTitle, start: action.start, end: action.end, active: false}]);
+      const slotList = [...slots, {title: slotTitle, start: action.start, end: action.end, active: false}];
+      return dedupe(slotList, slot => slot.title);
 
     case SET_ACTIVE:
       return slots.map(slot => {
