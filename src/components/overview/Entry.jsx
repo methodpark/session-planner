@@ -23,7 +23,7 @@ export class Entry extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    return { 
+    return {
       open: props.slot.active,
       localOpen: state.localOpen
     };

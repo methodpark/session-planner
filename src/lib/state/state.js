@@ -7,8 +7,10 @@ import {createAction} from '../../lib/util';
 
 // ---------------------- actions ----------------------
 
-export const ADD_SESSION = 'ADD_SESSION';
-export const SET_ACTIVE = 'SET_ACTIVE';
+export const ADD_SESSION    = 'ADD_SESSION';
+export const SET_ACTIVE     = 'SET_ACTIVE';
+export const SET_FAVORITE   = 'SET_FAVORITE';
+export const UNSET_FAVORITE = 'UNSET_FAVORITE';
 
 export function addSession(id, title, host, room, start, end) {
   return createAction(ADD_SESSION, {id, title, host, room, start, end});
@@ -16,6 +18,14 @@ export function addSession(id, title, host, room, start, end) {
 
 export function setActive(slot) {
   return createAction(SET_ACTIVE, {slot});
+}
+
+export function setFavorite(id) {
+  return createAction(SET_FAVORITE, {id});
+}
+
+export function unsetFavorite(id) {
+  return createAction(UNSET_FAVORITE, {id});
 }
 
 // ---------------------- reducers ----------------------
@@ -35,7 +45,7 @@ function sessionsReducer(sessions=[], action) {
       });
 
       return newSessions;
-    
+
     default:
       return sessions;
   }
@@ -72,13 +82,27 @@ function roomsReducer(rooms=[], action) {
   }
 }
 
+function favoritesReducer(favorites=[], action) {
+  switch (action.type) {
+    case SET_FAVORITE:
+      return favorites.find(id => id === action.id) !== undefined
+        ? favorites
+        : [...favorites, action.id];
+
+    case UNSET_FAVORITE:
+      return favorites.filter(id => id !== action.id);
+
+    default:
+      return favorites;
+  }
+}
+
 export const reducer = combineReducers({
-  sessions: sessionsReducer,
-  slots: slotsReducer,
-  rooms: roomsReducer
+  sessions:  sessionsReducer,
+  slots:     slotsReducer,
+  rooms:     roomsReducer,
+  favorites: favoritesReducer
 });
-
-
 
 
 

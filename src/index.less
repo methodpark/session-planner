@@ -13,11 +13,11 @@
 html {
   font-size: 16px;
 
-  @media all and (min-width: @breakpoint-s) { 
+  @media all and (min-width: @breakpoint-s) {
     font-size: 20px;
   }
 
-  @media all and (min-width: @breakpoint-m) { 
+  @media all and (min-width: @breakpoint-m) {
     font-size: 24px;
   }
 
@@ -26,7 +26,7 @@ html {
   }
 
   @media all and (min-width: @breakpoint-xl) {
-  } 
+  }
 }
 
 h1 {
@@ -46,7 +46,7 @@ a {
 body {
   margin: 0;
   padding: 1rem;
-  font-family: Helvetica,Arial,sans-serif;  
+  font-family: Helvetica,Arial,sans-serif;
 }
 
 ul {
@@ -73,8 +73,8 @@ header {
 }
 footer {
   p {
-    text-align: center;  
-    color: @color-secondary;  
+    text-align: center;
+    color: @color-secondary;
     font-size: 0.8rem;
   }
 }
@@ -137,14 +137,14 @@ footer {
       padding: 0.5rem;
       font-size: 0.8rem;
     }
-  
+
     th {
       white-space: nowrap;
       background-color: @color-primary;
       color: @font-color-contrast;
       border-bottom: 3px solid @color-primary;
     }
-  
+
     td {
       border-bottom: 3px solid @border-color;
     }
@@ -207,7 +207,7 @@ footer {
     display: inline-block;
 		display: flex;
     justify-content: center;
-    
+
     .entry {
       width: 20%;
       margin: 1rem;
@@ -217,6 +217,37 @@ footer {
           display: none;
         }
       }
+    }
+  }
+}
+
+
+.favorite {
+  position: relative;
+  right: 0.2em;
+  align-content: center;
+  font-size: 90%;
+  color: black;
+  border: none;
+  background: transparent;
+
+  &:focus {
+    border: none;
+    background: transparent;
+  }
+
+  &:hover {
+    font-size: 110%;
+    color: red;
+    transition: all ease-in-out 0.3s;
+  }
+
+  &.active {
+    color: red;
+    &:hover {
+      color: black;
+      font-size: 90%;
+      transition: all ease-in-out 0.3s;
     }
   }
 }
