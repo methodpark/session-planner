@@ -4,8 +4,9 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'
 
-import { reducer, addSession } from './lib/state/state';
 import saga from './lib/state/saga';
+import { reducer, addSession, initFavorites } from './lib/state/state';
+import { loadFavorites } from './lib/localStorage';
 import { interceptRequest } from './lib/requestInterceptor';
 import setupSW from './lib/setupSW';
 
@@ -22,6 +23,8 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(saga);
 
+const favorites = loadFavorites();
+store.dispatch(initFavorites(favorites));
 
 ReactDOM.render((
   <Provider store={store}>

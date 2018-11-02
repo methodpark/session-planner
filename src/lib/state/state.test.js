@@ -1,5 +1,6 @@
 import {
-  setFavorite, SET_FAVORITE,
+  initFavorites, INIT_FAVORITES,
+  setFavorite,   SET_FAVORITE,
   unsetFavorite, UNSET_FAVORITE,
   addSession,
   setActive,
@@ -7,6 +8,16 @@ import {
 } from './state';
 
 describe("redux state handling", () => {
+
+  describe("initFavorites", () => {
+    it("returns an action with the given list", () => {
+      const favorites = [23, 42, 666];
+
+      const action = initFavorites(favorites);
+
+      expect(action).toEqual({ type: INIT_FAVORITES, favorites });
+    });
+  });
 
   describe("setFavorite", () => {
     it("returns an action with the given id", () => {
@@ -175,7 +186,46 @@ describe("redux state handling", () => {
       });
     });
 
-    describe('favs', () => {
+    describe('favorites', () => {
+
+      describe("when called with an initFavorites action", () => {
+
+        const favorites = [23, 42, 666];
+        const action = initFavorites(favorites);
+
+        describe("when no favorites exist yet", () => {
+          it("stores the given favorites", () => {
+            const state = {};
+
+            const newState = reducer(state, action);
+
+            expect(newState.favorites).toEqual(favorites);
+          });
+        });
+
+        describe("when favorites in state already exist", () => {
+          it("overwrites them with the given favorites", () => {
+            const state = { favorites: [1, 2] };
+
+            const newState = reducer(state, action);
+
+            expect(newState.favorites).toEqual(favorites);
+          });
+        });
+
+        describe("when init action carries no favorites", () => {
+          it("sets the favorites in the state to the empty list", () => {
+            const state = { favorites: null };
+            const actionWithoutFavs = initFavorites(null);
+
+            const newState = reducer(state, actionWithoutFavs);
+
+            expect(newState.favorites).toEqual([]);
+          });
+        });
+
+      });
+
       describe("when called with a setFavorite action", () => {
 
         const id = 42
@@ -287,6 +337,7 @@ describe("redux state handling", () => {
         });
 
       });
+
     });
 
 

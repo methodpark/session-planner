@@ -9,6 +9,8 @@ import {createAction} from '../../lib/util';
 
 export const ADD_SESSION    = 'ADD_SESSION';
 export const SET_ACTIVE     = 'SET_ACTIVE';
+
+export const INIT_FAVORITES = 'INIT_FAVORITES';
 export const SET_FAVORITE   = 'SET_FAVORITE';
 export const UNSET_FAVORITE = 'UNSET_FAVORITE';
 
@@ -18,6 +20,10 @@ export function addSession(id, title, host, room, start, end) {
 
 export function setActive(slot) {
   return createAction(SET_ACTIVE, {slot});
+}
+
+export function initFavorites(favorites) {
+  return createAction(INIT_FAVORITES, {favorites});
 }
 
 export function setFavorite(id) {
@@ -84,6 +90,9 @@ function roomsReducer(rooms=[], action) {
 
 function favoritesReducer(favorites=[], action) {
   switch (action.type) {
+    case INIT_FAVORITES:
+      return action.favorites || [];
+
     case SET_FAVORITE:
       return favorites.find(id => id === action.id) !== undefined
         ? favorites
