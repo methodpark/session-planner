@@ -18,9 +18,9 @@ if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.env.NODE_ENV !== 'pro
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({});
 }
 
-const sagaMiddleware = createSagaMiddleware()
-const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)))
-sagaMiddleware.run(saga)
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
+sagaMiddleware.run(saga);
 
 
 ReactDOM.render((
