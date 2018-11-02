@@ -233,23 +233,16 @@ footer {
   border: none;
   background: transparent;
 
+  transition: all ease-in-out 0.3s;
+  outline-width: 0;
+
   &:focus {
     border: none;
     background: transparent;
   }
 
-  &:hover {
-    font-size: 110%;
-    color: red;
-    transition: all ease-in-out 0.3s;
-  }
-
   &.active {
     color: red;
-    &:hover {
-      color: black;
-      font-size: 90%;
-      transition: all ease-in-out 0.3s;
-    }
+    font-size: 110%;
   }
 }
