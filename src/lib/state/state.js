@@ -7,15 +7,15 @@ import {createAction} from '../../lib/util';
 
 // ---------------------- actions ----------------------
 
-export const ADD_SESSION    = 'ADD_SESSION';
-export const SET_ACTIVE     = 'SET_ACTIVE';
+export const UPDATE_SESSIONS = 'UPDATE_SESSIONS';
+export const SET_ACTIVE      = 'SET_ACTIVE';
 
-export const INIT_FAVORITES = 'INIT_FAVORITES';
-export const SET_FAVORITE   = 'SET_FAVORITE';
-export const UNSET_FAVORITE = 'UNSET_FAVORITE';
+export const INIT_FAVORITES  = 'INIT_FAVORITES';
+export const SET_FAVORITE    = 'SET_FAVORITE';
+export const UNSET_FAVORITE  = 'UNSET_FAVORITE';
 
-export function addSession(id, title, host, room, start, end) {
-  return createAction(ADD_SESSION, {id, title, host, room, start, end});
+export function updateSessions(sessions) {
+  return createAction(UPDATE_SESSIONS, sessions);
 }
 
 export function setActive(slot) {
@@ -38,20 +38,8 @@ export function unsetFavorite(id) {
 
 function sessionsReducer(sessions=[], action) {
   switch (action.type) {
-    case ADD_SESSION:
-      const newSessions = sessions.filter(session => session.id !== action.id);
-      newSessions.push({
-        id: action.id,
-        title: action.title,
-        host: action.host,
-        room: action.room,
-        start: action.start,
-        end: action.end,
-        slot: _formatSlot(action.start, action.end)
-      });
-
-      return newSessions;
-
+    case UPDATE_SESSIONS:
+      return action.sessions.map(s => ({...s, slot: _formatSlot(s.start, s.end)}));
     default:
       return sessions;
   }
@@ -59,10 +47,14 @@ function sessionsReducer(sessions=[], action) {
 
 function slotsReducer(slots=[], action) {
   switch (action.type) {
-    case ADD_SESSION:
-      const slotTitle = _formatSlot(action.start, action.end);
-      const slotList = [...slots, {title: slotTitle, start: action.start, end: action.end, active: false}];
-      return dedupe(slotList, slot => slot.title);
+    case UPDATE_SESSIONS:
+      let newSlotList = slots;
+      action.sessions.forEach(session => {
+        const slotTitle = _formatSlot(session.start, session.end);
+        const slotList = [...newSlotList, {title: slotTitle, start: session.start, end: session.end, active: false}];
+        newSlotList = dedupe(slotList, slot => slot.title);
+      });
+      return newSlotList;
 
     case SET_ACTIVE:
       return slots.map(slot => {
@@ -80,8 +72,12 @@ function slotsReducer(slots=[], action) {
 
 function roomsReducer(rooms=[], action) {
   switch (action.type) {
-    case ADD_SESSION:
-      return dedupe([...rooms, action.room]);
+    case UPDATE_SESSIONS:
+      let newRoomList = rooms;
+      action.sessions.forEach(session => {
+        newRoomList = dedupe([...newRoomList, session.room]);
+      })
+      return newRoomList;
 
     default:
       return rooms;

@@ -2,7 +2,7 @@ import {
   initFavorites, INIT_FAVORITES,
   setFavorite,   SET_FAVORITE,
   unsetFavorite, UNSET_FAVORITE,
-  addSession,
+  updateSessions,
   setActive,
   reducer
 } from './state';
@@ -83,7 +83,15 @@ describe("redux state handling", () => {
 
     describe('add session', () => {
       describe('rooms', () => {
-        const action = addSession(42, 'fooTitle', 'fooHost', 'fooRoom', '2018-01-01 10:00:00', '2018-01-01 12:00:00');
+        const sessions = [{
+          id: 42,
+          title: 'fooTitle',
+          host: 'fooHost',
+          room: 'fooRoom',
+          start: '2018-01-01 10:00:00',
+          end: '2018-01-01 12:00:00'
+        }];
+        const action = updateSessions({sessions});
 
         it('should add the room if there is none', () => {
           const state = {};
@@ -103,7 +111,15 @@ describe("redux state handling", () => {
       });
 
       describe('slots', () => {
-        const action = addSession(42, 'fooTitle', 'fooHost', 'fooRoom', '2018-01-01 10:00:00', '2018-01-01 12:00:00');
+        const sessions = [{
+          id: 23,
+          title: 'fooTitle',
+          host: 'fooHost',
+          room: 'fooRoom',
+          start: '2018-01-01 10:00:00',
+          end: '2018-01-01 12:00:00'
+        }];
+        const action = updateSessions({sessions});
 
         it('should add the slot if there is none', () => {
           const state = {};
@@ -137,7 +153,15 @@ describe("redux state handling", () => {
     });
 
     describe('sessions', () => {
-      const action = addSession(42, 'fooTitle', 'fooHost', 'fooRoom', '2018-01-01 10:00:00', '2018-01-01 12:00:00');
+      const sessions = [{
+        id: 42,
+        title: 'fooTitle',
+        host: 'fooHost',
+        room: 'fooRoom',
+        start: '2018-01-01 10:00:00',
+        end: '2018-01-01 12:00:00'
+      }];
+      const action = updateSessions({sessions});
 
       it('should add the session if there is none', () => {
         const state = {};

@@ -1,11 +1,9 @@
-import { addSession } from './state/state';
+import { updateSessions } from './state/state';
 import { interceptRequest } from './requestInterceptor';
 import { UPDATE_SESSION_DATA } from './workerMessages';
 
 function _handleData(store, sessions) {
-  sessions.forEach(session => {
-    store.dispatch(addSession(session.id, session.title, session.host, session.room, session.start, session.end));
-  });
+  store.dispatch(updateSessions({sessions}));
 }
 
 function updateSessionData(store) {
