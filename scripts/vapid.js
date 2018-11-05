@@ -1,4 +1,5 @@
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 const webpush = require('web-push');
 
 const PRIVATE_KEYS_FILE = "vapid-keys.private.json";
@@ -10,7 +11,7 @@ function writeKeysToFile(filenamePrivate, fileDirPublic, filenamePublic) {
 
   fs.writeFileSync(filenamePrivate, JSON.stringify(keys));
   if (!fs.existsSync(fileDirPublic)) {
-    fs.mkdirSync(fileDirPublic);
+    mkdirp.sync(fileDirPublic);
   }
   fs.writeFileSync(filenamePublic, JSON.stringify({ publicKey: keys.publicKey }));
 
