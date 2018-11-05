@@ -22,10 +22,11 @@ html {
   }
 
   @media all and (min-width: @breakpoint-l) {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   @media all and (min-width: @breakpoint-xl) {
+    font-size: 28px;
   }
 }
 
@@ -187,7 +188,13 @@ footer {
         margin-top: 1rem;
         padding-bottom: 1rem;
 
-        border-bottom: 1px solid @border-color;
+        @media screen and (max-width: @breakpoint-xl) {
+          border-bottom: 1px solid @border-color;
+
+          &:last-child {
+            border: 0;
+          }
+        }
 
         .sub-title {
           padding-top: 0.2rem;
