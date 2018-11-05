@@ -183,7 +183,11 @@ footer {
       }
 
       > li {
+        /* collapsing margins are not your friend */
         margin-top: 1rem;
+        padding-bottom: 1rem;
+
+        border-bottom: 1px solid @border-color;
 
         .sub-title {
           padding-top: 0.2rem;
@@ -200,6 +204,8 @@ footer {
         h4 {
           color: @color-primary;
           margin: 0;
+          position: relative;
+          padding-right: 2em;
         }
       }
     }
@@ -209,6 +215,7 @@ footer {
     display: inline-block;
 		display: flex;
     justify-content: center;
+    align-content: center;
 
     .entry {
       width: 20%;
@@ -225,14 +232,12 @@ footer {
 
 
 .favorite {
-  position: relative;
-  right: 0.2em;
   align-content: center;
+  position: absolute;
+  right: 0.5em;
   font-size: 90%;
-  color: black;
   border: none;
   background: transparent;
-
   transition: all ease-in-out 0.3s;
   outline-width: 0;
 
