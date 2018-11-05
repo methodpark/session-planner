@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import Heart from 'react-icons/lib/fa/heart';
+
 import { setFavorite, unsetFavorite } from '../../lib/state/state';
 
 class FavButton extends React.Component {
@@ -20,7 +22,7 @@ class FavButton extends React.Component {
 
     return (
       <button className={classes} onClick={() => this.toggle()}>
-        ❤
+        <Heart />
       </button>
     );
   }
