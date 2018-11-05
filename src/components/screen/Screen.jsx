@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import {connect} from 'react-redux';
 
 import Session from './Session';
@@ -16,9 +17,10 @@ function Screen(props) {
       {
         slots.map(slot => {
           const {title, active} = slot;
+          const classname = classnames({active});
 
           return (
-            <tr key={title} className={active ? 'active' : ''}>
+            <tr key={title} className={classname}>
               <th>{title}</th>
               {rooms.map(room => <Session key={room + title} session={getSession(sessions, room, title)} />)}
             </tr>
