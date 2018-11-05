@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'
-
+import { initSessionData } from './lib/sessionData';
 import saga from './lib/state/saga';
-import { reducer, addSession, initFavorites } from './lib/state/state';
+import { reducer, initFavorites } from './lib/state/state';
 import { loadFavorites } from './lib/localStorage';
-import { interceptRequest } from './lib/requestInterceptor';
+
 import setupSW from './lib/setupSW';
 
 import App from './App.jsx';
@@ -32,19 +32,6 @@ ReactDOM.render((
   </Provider>
 ), document.getElementById('root'));
 
-interceptRequest('/api/sessions', response => {
-  if (response.status !== 200) {
-    throw new Error('could not load sessions');
-  }
-  response.json()
-    .then(result => _handleData(result))
-    .catch(error => console.error(error.message));
-});
-
-function _handleData(sessions) {
-  sessions.forEach(session => {
-    store.dispatch(addSession(session.id, session.title, session.host, session.room, session.start, session.end));
-  });
-}
+initSessionData(store);
 
 setupSW();

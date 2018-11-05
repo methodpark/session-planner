@@ -1,4 +1,5 @@
-import { clearCaches, fillStaticCache, tryToFetchAndStoreInCache } from "./lib/cache";
+import { clearCaches, fillStaticCache, tryToFetchAndStoreInCache } from './lib/cache';
+import { updateSessionData } from './lib/workerMessages';
 
 /* eslint no-restricted-globals: "off" */
 
@@ -46,6 +47,11 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(tryToFetchAndStoreInCache(caches, request));
 });
 
+function notifyClientOfSessionUpdate(client) {
+  const messageChannel = new MessageChannel();
+  client.postMessage(updateSessionData(), [messageChannel.port2]);
+}
+
 self.addEventListener('push', event => {
   let content = event.data.json();
   console.log(content);
@@ -56,4 +62,10 @@ self.addEventListener('push', event => {
   }
 
   self.registration.showNotification(title, options);
+
+  self.clients.matchAll()
+    .then(clients => {
+      clients.forEach(notifyClientOfSessionUpdate);
+    })
+    .catch(console.error);
 });
