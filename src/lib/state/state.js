@@ -4,6 +4,7 @@ import dedupe from 'dedupe';
 import {combineReducers} from 'redux';
 
 import {createAction} from '../../lib/util';
+import { filtersReducer } from './filterState';
 
 // ---------------------- actions ----------------------
 
@@ -30,11 +31,11 @@ export function initFavorites(favorites) {
 }
 
 export function setFavorite(id) {
-  return createAction(SET_FAVORITE, {id});
+  return createAction(SET_FAVORITE, { id });
 }
 
 export function unsetFavorite(id) {
-  return createAction(UNSET_FAVORITE, {id});
+  return createAction(UNSET_FAVORITE, { id });
 }
 
 export function initPrompt() {
@@ -130,10 +131,9 @@ export const reducer = combineReducers({
   slots:     slotsReducer,
   rooms:     roomsReducer,
   favorites: favoritesReducer,
-  prompt:    promptReducer
+  prompt:    promptReducer,
+  filters:   filtersReducer
 });
-
-
 
 function _formatSlot(start, end) {
   return `${moment(start).format('HH:mm')} - ${moment(end).format('HH:mm')}`;
