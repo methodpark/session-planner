@@ -14,6 +14,9 @@ export const INIT_FAVORITES  = 'INIT_FAVORITES';
 export const SET_FAVORITE    = 'SET_FAVORITE';
 export const UNSET_FAVORITE  = 'UNSET_FAVORITE';
 
+export const INIT_PROMPT     = 'INIT_PROMPT';
+export const DISCARD_PROMPT  = 'DISCARD_PROMPT';
+
 export function updateSessions(sessions) {
   return createAction(UPDATE_SESSIONS, sessions);
 }
@@ -32,6 +35,14 @@ export function setFavorite(id) {
 
 export function unsetFavorite(id) {
   return createAction(UNSET_FAVORITE, {id});
+}
+
+export function initPrompt() {
+  return createAction(INIT_PROMPT, {});
+}
+
+export function discardPrompt(timestamp) {
+  return createAction(DISCARD_PROMPT, {timestamp});
 }
 
 // ---------------------- reducers ----------------------
@@ -102,11 +113,24 @@ function favoritesReducer(favorites=[], action) {
   }
 }
 
+function promptReducer(prompt={}, action) {
+  switch (action.type) {
+    case DISCARD_PROMPT:
+      return {
+        discarded: true,
+        discardedAt: action.timestamp
+      };
+    default:
+      return prompt;
+  }
+}
+
 export const reducer = combineReducers({
   sessions:  sessionsReducer,
   slots:     slotsReducer,
   rooms:     roomsReducer,
-  favorites: favoritesReducer
+  favorites: favoritesReducer,
+  prompt:    promptReducer
 });
 
 

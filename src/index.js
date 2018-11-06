@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'
 import { initSessionData } from './lib/sessionData';
 import saga from './lib/state/saga';
-import { reducer, initFavorites } from './lib/state/state';
+import { reducer, initFavorites, initPrompt } from './lib/state/state';
 import { loadFavorites } from './lib/localStorage';
 
 import setupSW from './lib/setupSW';
@@ -25,6 +25,8 @@ sagaMiddleware.run(saga);
 
 const favorites = loadFavorites();
 store.dispatch(initFavorites(favorites));
+
+store.dispatch(initPrompt());
 
 ReactDOM.render((
   <Provider store={store}>

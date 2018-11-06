@@ -1,4 +1,8 @@
+import moment from 'moment';
 import React from 'react';
+import { connect } from 'react-redux';
+import { discardPrompt } from '../../lib/state/state';
+
 import './AddToHomeScreenPrompt.less';
 import share from './share.svg';
 
@@ -11,20 +15,14 @@ function isInStandaloneMode() {
   return ('standalone' in window.navigator) && (window.navigator.standalone);
 }
 
-export class AddToHomeScreenPrompt extends React.Component {
-  constructor() {
-    super();
-    this.state = {discarded: false};
-  }
-
+class AddToHomeScreenPrompt extends React.Component {
   discard() {
-    this.setState(() => ({
-      discarded: true
-    }));
+    const { dispatch } = this.props;
+    dispatch(discardPrompt(moment()));
   }
 
   display() {
-    const {discarded} = this.state;
+    const {discarded} = this.props;
     return !discarded && isIOsDevice() && !isInStandaloneMode();
   }
 
@@ -43,3 +41,9 @@ export class AddToHomeScreenPrompt extends React.Component {
     </div>;
   }
 }
+
+function mapStateToProps({prompt}) {
+  return prompt;
+}
+
+export default connect(mapStateToProps)(AddToHomeScreenPrompt);
