@@ -5,7 +5,9 @@ import { updateSessionData } from './lib/workerMessages';
 
 const { assets } = global.serviceWorkerOption;
 const STATIC_RESOURCES = [
-  '/'
+  '/',
+  '/static/vapid-keys.public.json',
+  '/logo/logo144x144.png'
 ].concat(assets);
 
 self.addEventListener('install', () => {
