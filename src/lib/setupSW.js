@@ -8,6 +8,12 @@ export default async function setupSW() {
 
   const registration = await runtime.register();
 
+  // in case there is no support for push api, exit
+  // early instead of provoking exceptions
+  if (!registration.pushManager) {
+    return;
+  }
+
   try {
     console.log('Unregistering possibly stale subscriptions');
     await unregisterExistingSubscriptions(registration);
