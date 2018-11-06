@@ -1,0 +1,25 @@
+#ios-install-prompt {
+  position: absolute;
+  position: sticky;
+  bottom: 20px;
+  left: 0px;
+  border: 0;
+  background-color: lightgrey;
+  z-index: 99999;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  opacity: 0.8;
+
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: block;
+  }
+
+  & .ios-install-prompt-icon {
+    width: 20px;
+  }
+}
