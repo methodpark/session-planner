@@ -39,6 +39,10 @@ export class Entry extends React.Component {
 
     const listClassName = classnames('sessions', { open });
 
+    if(sessions.length === 0) {
+      return '';
+    }
+
     return (
       <li className="entry">
         <h3 onClick={this.toggle}>
@@ -53,9 +57,13 @@ export class Entry extends React.Component {
   }
 }
 
-export default connect(({ sessions }, { slot }) => {
+export default connect(({ sessions, filters, favorites }, { slot }) => {
+  const isFavorite = (id) => favorites.find(favId => favId === id) !== undefined;
+
   return {
     slot,
-    sessions: sessions.filter(session => session.slot === slot.title)
+    sessions: sessions
+                .filter(session => session.slot === slot.title)
+                .filter(session => !filters.onlyFavorites || isFavorite(session.id))
   }
 })(Entry);

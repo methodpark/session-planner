@@ -237,11 +237,10 @@ footer {
   }
 }
 
-
-.favorite {
+.favorite,
+.filters button {
   align-content: center;
-  position: absolute;
-  right: 0.5em;
+
   font-size: 100%;
   border: none;
   background: transparent;
@@ -255,6 +254,18 @@ footer {
 
   &.active {
     color: red;
+  }
+}
+
+.favorite {
+  position: absolute;
+  right: 0.5em;
+
+  &.active {
     font-size: 110%;
   }
+}
+
+.filters {
+  text-align: center;
 }

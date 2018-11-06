@@ -16,9 +16,9 @@ class FavButton extends React.Component {
   }
 
   render() {
-    const { isFavorite } = this.props;
+    const { isFavorite, hiddenByFilter } = this.props;
 
-    const classes = classnames('favorite', { active: isFavorite });
+    const classes = classnames('favorite', { active: isFavorite }, {hidden:hiddenByFilter});
 
     return (
       <button className={classes} onClick={() => this.toggle()}>
@@ -28,8 +28,12 @@ class FavButton extends React.Component {
   }
 }
 
-function mapStateToProps({ favorites }, { id }) {
-  return { isFavorite: favorites.find(favId => favId === id) !== undefined };
+function mapStateToProps({ favorites, filters }, { id }) {
+  const isFavorite = favorites.find(favId => favId === id) !== undefined;
+  return {
+    isFavorite,
+    hiddenByFilter: filters.onlyFavorites && isFavorite
+  };
 }
 
 export default connect(mapStateToProps)(FavButton);
