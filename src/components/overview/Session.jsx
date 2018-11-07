@@ -1,12 +1,13 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import FavButton from './FavButton';
 
 export default function Session (props) {
-  const {title, host, room, id} = props;
+  const { title, host, room, id, filtered} = props;
 
   return (
-    <li>
+    <li className={classnames({filtered: filtered})}>
       <h4>
         <FavButton id={id} />
         {title}

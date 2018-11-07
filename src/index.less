@@ -187,6 +187,19 @@ footer {
         /* collapsing margins are not your friend */
         margin-top: 1rem;
         padding-bottom: 1rem;
+        transition-duration: 0.3s;
+        opacity: 1;
+        visibility: visible;
+
+        &.filtered {
+            visibility: hidden;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            max-height: 0;
+            transition: 0.3s;
+        }
 
         @media screen and (max-width: @breakpoint-xl) {
           border-bottom: 1px solid @border-color;

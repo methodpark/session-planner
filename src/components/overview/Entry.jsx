@@ -64,6 +64,6 @@ export default connect(({ sessions, filters, favorites }, { slot }) => {
     slot,
     sessions: sessions
                 .filter(session => session.slot === slot.title)
-                .filter(session => !filters.onlyFavorites || isFavorite(session.id))
+                .map(session => ({...session, filtered: filters.onlyFavorites && !isFavorite(session.id)}))
   }
 })(Entry);
