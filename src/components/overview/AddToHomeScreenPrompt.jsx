@@ -1,19 +1,11 @@
 import moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
+import { isInStandaloneMode, isIOsDevice } from '../../lib/iosDetection';
 
 import './AddToHomeScreenPrompt.less';
 import share from './share.svg';
 import { discardPrompt } from '../../lib/state/reducers/prompt';
-
-function isIOsDevice() {
-  const userAgent = window.navigator.userAgent.toLowerCase();
-  return /iphone|ipad|ipod/.test(userAgent);
-}
-
-function isInStandaloneMode() {
-  return ('standalone' in window.navigator) && (window.navigator.standalone);
-}
 
 class AddToHomeScreenPrompt extends React.Component {
   discard() {
