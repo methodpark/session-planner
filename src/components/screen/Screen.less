@@ -1,0 +1,31 @@
+
+#screen {
+  border-spacing: 0px;
+  width: 100%;
+
+  tr {
+    background-color: #fff;
+    height: 4rem;
+    transition: background-color 5s;
+
+    &.active {
+      background-color: @border-color;
+    }
+
+    th, td {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    th {
+      white-space: nowrap;
+      background-color: @color-primary;
+      color: @font-color-contrast;
+      border-bottom: 3px solid @color-primary;
+    }
+
+    td {
+      border-bottom: 3px solid @border-color;
+    }
+  }
+}

@@ -5,6 +5,8 @@ import classnames from 'classnames';
 
 import { setFavoritesFilter, setOnlyInFutureFilter } from '../../lib/state/filterState';
 
+import './Filters.less';
+
 export class Filters extends React.Component {
   toggleFavoriteFilter() {
     const { filters, dispatch } = this.props;

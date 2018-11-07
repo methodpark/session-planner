@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Entry from './Entry';
 import Filters from './Filters';
 
+import './Slots.less';
+
 class Slots extends React.Component {
   render() {
     return (

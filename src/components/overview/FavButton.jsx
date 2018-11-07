@@ -5,6 +5,7 @@ import Heart from 'react-icons/lib/fa/heart';
 
 import { unsetFavorite, setFavorite } from '../../lib/state/reducers/favorites';
 
+import './FavButton.less';
 
 class FavButton extends React.Component {
   toggle() {
