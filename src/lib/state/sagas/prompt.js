@@ -19,6 +19,10 @@ export function* watchPromptGetInitialized() {
 export function* handlePromptInit() {
   const { discardedAt } = yield call(loadPrompt);
 
+  if (discardedAt === undefined) {
+    return;
+  }
+
   const timestamp = moment(discardedAt);
   const twoWeeksAgo = moment().subtract(2, 'weeks');
 
