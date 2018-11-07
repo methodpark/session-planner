@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { FaHeart, FaFilter, FaClockO } from 'react-icons/lib/fa';
+import { FaHeart, FaClockO } from 'react-icons/lib/fa';
 import classnames from 'classnames';
 
 import { setFavoritesFilter, setOnlyInFutureFilter } from '../../lib/state/filterState';
@@ -16,21 +16,37 @@ export class Filters extends React.Component {
     dispatch(setOnlyInFutureFilter(!filters.onlyInFuture));
   }
 
+  renderFavoritesFilter() {
+    const { filters, favorites } = this.props;
+
+    return (
+      <button className={classnames({ active: filters.onlyFavorites })}
+        title="Show only favorited"
+        disabled={favorites.length === 0}
+        onClick={() => this.toggleFavoriteFilter()}><FaHeart /> Only favorited</button>
+    );
+  }
+
+  renderFutureFilter() {
+    const { filters,  sessions } = this.props;
+    const isInFuture = (session) => new Date(session.start).getHours() >= new Date().getHours();
+
+    return (<button className={classnames({ active: filters.onlyInFuture })}
+      title="Show only future sessions"
+      disabled={sessions.length === 0 || isInFuture(sessions[0]) || !isInFuture(sessions[sessions.length-1])}
+      onClick={() => this.toggleFutureFilter()}><FaClockO /> Only future slots</button>);
+  }
+
   render() {
     return (
-        <div class="filters">
-          <FaFilter />
-          <button className={classnames({ active: this.props.filters.onlyFavorites })}
-            title="Show only favorited"
-            onClick={() => this.toggleFavoriteFilter()}><FaHeart /></button>
-          <button className={classnames({ active: this.props.filters.onlyInFuture })}
-            title="Show only future sessions"
-            onClick={() => this.toggleFutureFilter()}><FaClockO /></button>
+        <div className="filters">
+          {this.renderFavoritesFilter()}
+          {this.renderFutureFilter()}
         </div>
     );
   }
 }
 
-export default connect(({ filters }) => {
-  return { filters };
+export default connect(({ favorites, filters, sessions }) => {
+  return { favorites, filters, sessions };
 })(Filters);
