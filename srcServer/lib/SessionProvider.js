@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {EventEmitter} = require('events');
+const { EventEmitter } = require('events');
 
 const chokidar = require('chokidar');
 
@@ -16,8 +16,9 @@ class SessionProvider extends EventEmitter {
   }
 
   _installFileWatcher() {
-    chokidar.watch(this._filePath)
-      .on('change', () => this._handleFileUpdate());
+    chokidar.watch(this._filePath, { usePolling: true, interval: 500 })
+      .on('change', () => this._handleFileUpdate())
+      .on('error', error => console.error('Chokidar error: ', error));
   }
 
   async _handleFileUpdate() {
