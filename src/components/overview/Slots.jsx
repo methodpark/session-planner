@@ -17,6 +17,9 @@ class Slots extends React.Component {
   }
 }
 
-export default connect(({slots}) => {
-  return { slots };
+export default connect(({slots, filters}) => {
+  // TODO: Zeitzonendinge?
+  const startsInFuture = (slot) => new Date(slot.start).getTime() - new Date().getTime() > 0;
+  const futureSlots = slots.filter(slot => !filters.onlyInFuture || startsInFuture(slot));
+  return { slots: futureSlots.length === 0 ? slots : futureSlots };
 })(Slots);

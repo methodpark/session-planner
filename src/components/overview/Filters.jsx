@@ -1,24 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Heart from 'react-icons/lib/fa/heart';
-import Filter from 'react-icons/lib/fa/filter';
+import { FaHeart, FaFilter, FaClockO } from 'react-icons/lib/fa';
 import classnames from 'classnames';
 
-import { setFavoritesFilter } from '../../lib/state/filterState';
+import { setFavoritesFilter, setOnlyInFutureFilter } from '../../lib/state/filterState';
 
-class Filters extends React.Component {
+export class Filters extends React.Component {
   toggleFavoriteFilter() {
     const { filters, dispatch } = this.props;
     dispatch(setFavoritesFilter(!filters.onlyFavorites));
   }
 
+  toggleFutureFilter() {
+    const { filters, dispatch } = this.props;
+    dispatch(setOnlyInFutureFilter(!filters.onlyInFuture));
+  }
+
   render() {
     return (
         <div class="filters">
-          <Filter />
+          <FaFilter />
           <button className={classnames({ active: this.props.filters.onlyFavorites })}
             title="Show only favorited"
-            onClick={() => this.toggleFavoriteFilter()}><Heart /></button>
+            onClick={() => this.toggleFavoriteFilter()}><FaHeart /></button>
+          <button className={classnames({ active: this.props.filters.onlyInFuture })}
+            title="Show only future sessions"
+            onClick={() => this.toggleFutureFilter()}><FaClockO /></button>
         </div>
     );
   }
