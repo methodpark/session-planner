@@ -155,6 +155,8 @@ footer {
 }
 
 #slots {
+  margin-top: 1rem;
+
   .entry {
     margin: 1rem 0;
 
@@ -168,6 +170,48 @@ footer {
 
       > svg {
         float: right;
+      }
+
+      transition: 0.3s;
+      opacity: 1;
+      visibility: visible;
+      height: auto;
+      max-height: 2rem;
+    }
+
+    &.filtered {
+      transition: 0.2s;
+      transition-delay: 0.2s;
+
+      @media screen and (max-width: @breakpoint-xl) {
+        & {
+          margin:0px;
+        }
+
+        + .entry {
+         margin: 0px;
+         margin-top: 0px;
+        }
+      }
+
+      @media screen and (min-width: @breakpoint-xl) {
+        &.filtered {
+          overflow: hidden;
+          max-width: 0px;
+          margin-left: 0px;
+          margin-right: 0px;
+        }
+      }
+
+      > h3 {
+          visibility: hidden;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;
+          opacity: 0;
+          max-height: 0;
+          transition: 0.2s;
+          transition-delay: 0.2s;
       }
     }
 
@@ -187,9 +231,11 @@ footer {
         /* collapsing margins are not your friend */
         margin-top: 1rem;
         padding-bottom: 1rem;
-        transition-duration: 0.3s;
+        transition: 0.3s;
+        transition-delay: 0.2s;
         opacity: 1;
         visibility: visible;
+        max-height: 2000px;
 
         &.filtered {
             visibility: hidden;
@@ -198,6 +244,7 @@ footer {
             padding: 0;
             opacity: 0;
             max-height: 0;
+            border-bottom: 0px;
             transition: 0.3s;
         }
 
@@ -236,10 +283,13 @@ footer {
 		display: flex;
     justify-content: center;
     align-content: center;
+    margin-top: 0px;
 
     .entry {
       width: 20%;
+      max-width: 20%;
       margin: 1rem;
+      transition: max-width 0.3s;
 
       h3 {
         svg {

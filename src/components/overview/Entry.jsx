@@ -38,13 +38,10 @@ export class Entry extends React.Component {
     }
 
     const listClassName = classnames('sessions', { open });
-
-    if(sessions.length === 0) {
-      return '';
-    }
+    const unfilteredItemCount = sessions.filter(session => !session.filtered).length;
 
     return (
-      <li className="entry">
+      <li className={classnames('entry', {filtered: unfilteredItemCount === 0})}>
         <h3 onClick={this.toggle}>
           {slot.title}{open ? <Minus /> : <Plus />}
         </h3>
