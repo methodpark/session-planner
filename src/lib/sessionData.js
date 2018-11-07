@@ -1,6 +1,6 @@
-import { updateSessions } from './state/state';
 import { interceptRequest } from './requestInterceptor';
 import { UPDATE_SESSION_DATA } from './workerMessages';
+import { updateSessions } from './state/reducers/sessions';
 
 function _handleData(store, sessions) {
   store.dispatch(updateSessions({sessions}));

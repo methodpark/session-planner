@@ -5,7 +5,7 @@ import {
 
 import { storePrompt } from '../../localStorage';
 import { call, put } from 'redux-saga/effects';
-import { discardPrompt } from '../state';
+import { discardPrompt } from '../reducers/prompt';
 
 const mockRightNow = '2018-11-06T21:28:12.678Z';
 const TwoHoursAgo = '2018-11-06T19:29:42.678Z';

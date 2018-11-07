@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'
 import { initSessionData } from './lib/sessionData';
 import saga from './lib/state/saga';
-import { reducer, initFavorites, initPrompt } from './lib/state/state';
+import { reducer } from './lib/state/state';
 import { loadFavorites } from './lib/localStorage';
 
 import setupSW from './lib/setupSW';
@@ -13,6 +13,8 @@ import setupSW from './lib/setupSW';
 import App from './App.jsx';
 
 import './index.less';
+import { initPrompt } from './lib/state/reducers/prompt';
+import { initFavorites } from './lib/state/reducers/favorites';
 
 let composeEnhancers = compose;
 if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.env.NODE_ENV !== 'production') {

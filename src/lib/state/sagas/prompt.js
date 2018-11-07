@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { put, call, select, takeLatest } from 'redux-saga/effects';
-import { INIT_PROMPT, DISCARD_PROMPT, discardPrompt } from '../state';
+import { INIT_PROMPT, DISCARD_PROMPT, discardPrompt } from '../reducers/prompt';
 import { loadPrompt, storePrompt } from '../../localStorage';
 
 export function* watchPromptGetDiscarded() {

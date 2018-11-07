@@ -3,8 +3,7 @@ import ms from 'ms';
 
 import { delay } from 'redux-saga';
 import { select, put } from 'redux-saga/effects';
-
-import { setActive } from '../state';
+import { setActive } from '../reducers/slots';
 
 export function* watchActiveSessions() {
   while ((yield select(state => state.slots)).length === 0) {

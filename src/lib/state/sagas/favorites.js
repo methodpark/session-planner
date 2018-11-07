@@ -1,8 +1,8 @@
 import { select, takeLatest, put } from 'redux-saga/effects';
 
-import { SET_FAVORITE, UNSET_FAVORITE } from '../state';
+import { SET_FAVORITE, UNSET_FAVORITE } from '../reducers/favorites';
 import { storeFavorites } from '../../localStorage';
-import { setFavoritesFilter } from '../filterState';
+import { setFavoritesFilter } from '../reducers/filters';
 
 export function* watchFavorites() {
   yield takeLatest([SET_FAVORITE, UNSET_FAVORITE], handleFavoriteChange);

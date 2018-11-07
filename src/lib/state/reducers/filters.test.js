@@ -4,7 +4,7 @@ import {
   SET_FAVORITES_FILTER,
   SET_ONLY_IN_FUTURE_FILTER,
   filtersReducer
-} from './filterState';
+} from './filters';
 
 describe('redux filter state handling', () => {
 

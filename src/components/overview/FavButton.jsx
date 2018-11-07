@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import Heart from 'react-icons/lib/fa/heart';
 
-import { setFavorite, unsetFavorite } from '../../lib/state/state';
+import { unsetFavorite, setFavorite } from '../../lib/state/reducers/favorites';
+
 
 class FavButton extends React.Component {
   toggle() {

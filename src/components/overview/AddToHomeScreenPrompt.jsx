@@ -1,10 +1,10 @@
 import moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
-import { discardPrompt } from '../../lib/state/state';
 
 import './AddToHomeScreenPrompt.less';
 import share from './share.svg';
+import { discardPrompt } from '../../lib/state/reducers/prompt';
 
 function isIOsDevice() {
   const userAgent = window.navigator.userAgent.toLowerCase();

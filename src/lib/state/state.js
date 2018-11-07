@@ -1,130 +1,11 @@
-import moment from 'moment';
-import dedupe from 'dedupe';
-
 import {combineReducers} from 'redux';
 
-import {createAction} from '../../lib/util';
-import { filtersReducer } from './filterState';
-
-// ---------------------- actions ----------------------
-
-export const UPDATE_SESSIONS = 'UPDATE_SESSIONS';
-export const SET_ACTIVE      = 'SET_ACTIVE';
-
-export const INIT_FAVORITES  = 'INIT_FAVORITES';
-export const SET_FAVORITE    = 'SET_FAVORITE';
-export const UNSET_FAVORITE  = 'UNSET_FAVORITE';
-
-export const INIT_PROMPT     = 'INIT_PROMPT';
-export const DISCARD_PROMPT  = 'DISCARD_PROMPT';
-
-export function updateSessions(sessions) {
-  return createAction(UPDATE_SESSIONS, sessions);
-}
-
-export function setActive(slot) {
-  return createAction(SET_ACTIVE, {slot});
-}
-
-export function initFavorites(favorites) {
-  return createAction(INIT_FAVORITES, {favorites});
-}
-
-export function setFavorite(id) {
-  return createAction(SET_FAVORITE, { id });
-}
-
-export function unsetFavorite(id) {
-  return createAction(UNSET_FAVORITE, { id });
-}
-
-export function initPrompt() {
-  return createAction(INIT_PROMPT, {});
-}
-
-export function discardPrompt(timestamp) {
-  return createAction(DISCARD_PROMPT, {timestamp});
-}
-
-// ---------------------- reducers ----------------------
-
-function sessionsReducer(sessions=[], action) {
-  switch (action.type) {
-    case UPDATE_SESSIONS:
-      return action.sessions.map(s => ({...s, slot: _formatSlot(s.start, s.end)}));
-    default:
-      return sessions;
-  }
-}
-
-function slotsReducer(slots=[], action) {
-  switch (action.type) {
-    case UPDATE_SESSIONS:
-      let newSlotList = slots;
-      action.sessions.forEach(session => {
-        const slotTitle = _formatSlot(session.start, session.end);
-        const slotList = [...newSlotList, {title: slotTitle, start: session.start, end: session.end, active: false}];
-        newSlotList = dedupe(slotList, slot => slot.title);
-      });
-      return newSlotList;
-
-    case SET_ACTIVE:
-      return slots.map(slot => {
-        if (slot.title === action.slot) {
-          return {...slot, active: true};
-        }
-
-        return {...slot, active: false}
-      });
-
-    default:
-      return slots;
-  }
-}
-
-function roomsReducer(rooms=[], action) {
-  switch (action.type) {
-    case UPDATE_SESSIONS:
-      let newRoomList = rooms;
-      action.sessions.forEach(session => {
-        newRoomList = dedupe([...newRoomList, session.room]);
-      })
-      return newRoomList;
-
-    default:
-      return rooms;
-  }
-}
-
-function favoritesReducer(favorites=[], action) {
-  switch (action.type) {
-    case INIT_FAVORITES:
-      return action.favorites || [];
-
-    case SET_FAVORITE:
-      return favorites.find(id => id === action.id) !== undefined
-        ? favorites
-        : [...favorites, action.id];
-
-    case UNSET_FAVORITE:
-      return favorites.filter(id => id !== action.id);
-
-    default:
-      return favorites;
-  }
-}
-
-function promptReducer(prompt={}, action) {
-  switch (action.type) {
-    case DISCARD_PROMPT:
-      return {
-        discarded: true,
-        discardedAt: action.timestamp
-      };
-    default:
-      return prompt;
-  }
-}
+import { sessionsReducer } from './reducers/sessions';
+import { slotsReducer } from './reducers/slots';
+import { roomsReducer } from './reducers/rooms';
+import { favoritesReducer } from './reducers/favorites';
+import { promptReducer } from './reducers/prompt';
+import { filtersReducer } from './reducers/filters';
 
 export const reducer = combineReducers({
   sessions:  sessionsReducer,
@@ -134,7 +15,3 @@ export const reducer = combineReducers({
   prompt:    promptReducer,
   filters:   filtersReducer
 });
-
-function _formatSlot(start, end) {
-  return `${moment(start).format('HH:mm')} - ${moment(end).format('HH:mm')}`;
-}
