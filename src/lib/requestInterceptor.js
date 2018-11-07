@@ -9,7 +9,12 @@ export function interceptRequest(url, callback) {
     });
 
   // fetch cached data
-  caches.match(url).then(function (response) {
+  Promise.resolve(window.caches).then((caches)=> {
+    if(!caches) {
+      throw Error("No cache");
+    }
+    return caches.match(url);
+  }).then(function (response) {
     if (!response) throw Error("No data");
     return response;
   }).then(function (data) {
