@@ -10,7 +10,7 @@ class Slots extends React.Component {
       <div>
         <Filters />
         <ul id="slots">
-          {this.props.slots.map(slot => <Entry key={slot.title} slot={slot}/>)}
+          {this.props.slots.map(slot => <Entry key={slot.title} slot={slot} />)}
         </ul>
       </div>
     );
@@ -19,7 +19,7 @@ class Slots extends React.Component {
 
 export default connect(({slots, filters}) => {
   // TODO: Zeitzonendinge?
-  const startsInFuture = (slot) => new Date(slot.start).getTime() - new Date().getTime() > 0;
-  const futureSlots = slots.filter(slot => !filters.onlyInFuture || startsInFuture(slot));
-  return { slots: futureSlots.length === 0 ? slots : futureSlots };
+  const startsInFuture = (slot) => new Date(slot.start).getHours() >= new Date().getHours();
+  const futureSlots = slots.map(slot => ({...slot, filtered: filters.onlyInFuture && !startsInFuture(slot)}));
+  return { slots: futureSlots };
 })(Slots);
