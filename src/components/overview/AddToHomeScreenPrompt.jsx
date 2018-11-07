@@ -32,12 +32,14 @@ class AddToHomeScreenPrompt extends React.Component {
       className={this.display() ? 'active' : 'inactive'}
       onClick={() => this.discard()}
       >
-        <p>Install this application on your home screen for quick and easy access.</p>
-        <p>
-          Just tap
-          <img src={share} className="ios-install-prompt-icon" alt="the share button" />
-          then "Add to Home Screen".
-      </p>
+        <div className="toast">
+          <p>Install this application on your home screen for quick and easy access.</p>
+          <p>
+            Just tap
+            <img src={share} className="ios-install-prompt-icon" alt="the share button" />
+            then "Add to Home Screen".
+          </p>
+        </div>
     </div>;
   }
 }
