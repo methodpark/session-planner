@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { setFavoritesFilter, setOnlyInFutureFilter } from '../../lib/state/filterState';
 
 import './Filters.less';
+import ThemeSwitch from './ThemeSwitch';
 
 export class Filters extends React.Component {
   toggleFavoriteFilter() {
@@ -44,6 +45,7 @@ export class Filters extends React.Component {
         <div className="filters">
           {this.renderFavoritesFilter()}
           {this.renderFutureFilter()}
+          <ThemeSwitch />
         </div>
     );
   }

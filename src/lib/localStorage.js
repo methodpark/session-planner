@@ -1,9 +1,10 @@
 const FAVORITES = 'favorites';
 const PROMPT = 'prompt';
+const THEME = 'theme';
 
-export function load(what) {
+export function load(what, fallback = []) {
   const loadedJson = localStorage.getItem(what);
-  return loadedJson ? JSON.parse(loadedJson) : [];
+  return loadedJson ? JSON.parse(loadedJson) : fallback;
 }
 
 export function loadFavorites() {
@@ -20,4 +21,12 @@ export function storePrompt(status) {
 
 export function loadPrompt() {
   return load(PROMPT);
+}
+
+export function storeTheme(theme) {
+  localStorage.setItem(THEME, JSON.stringify(theme));
+}
+
+export function loadTheme() {
+  return load(THEME, {});
 }

@@ -6,6 +6,7 @@ import { roomsReducer } from './reducers/rooms';
 import { favoritesReducer } from './reducers/favorites';
 import { promptReducer } from './reducers/prompt';
 import { filtersReducer } from './reducers/filters';
+import { themeReducer } from './reducers/theme';
 
 export const reducer = combineReducers({
   sessions:  sessionsReducer,
@@ -13,5 +14,6 @@ export const reducer = combineReducers({
   rooms:     roomsReducer,
   favorites: favoritesReducer,
   prompt:    promptReducer,
-  filters:   filtersReducer
+  filters:   filtersReducer,
+  theme:     themeReducer
 });
