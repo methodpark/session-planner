@@ -11,13 +11,19 @@
     background: transparent;
     transition: all ease-in-out 0.3s;
 
+    color: var(--button-primary);
+
+    &:disabled {
+      color: var(--button-disabled);
+    }
+
     &:focus {
       border: none;
       background: transparent;
     }
 
     &.active {
-      color: red;
+      color: var(--button-active);
     }
   }
 }

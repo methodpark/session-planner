@@ -7,12 +7,12 @@
     margin: 1rem 0;
 
     > h3 {
-      color: var(--color-primary);
+      color: var(--text-primary);
       cursor: pointer;
       user-select: none;
       margin: 0;
       padding: 1rem 0.5rem;
-      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 2rem var(--background-secondary);
 
       > svg {
         float: right;
@@ -95,7 +95,7 @@
         }
 
         @media screen and (max-width: @breakpoint-xl) {
-          border-bottom: 1px solid var(--border-color);
+          border-bottom: 1px solid var(--background-secondary);
 
           &:last-child {
             border: 0;
@@ -105,17 +105,17 @@
         .sub-title {
           padding-top: 0.2rem;
           font-size: 0.8rem;
-          color: var(--color-primary);
+          color: var(--text-primary);
           font-weight: bold;
 
           em {
             font-style: normal;
-            color: var(--color-secondary);
+            color: var(--text-secondary);
           }
         }
 
         h4 {
-          color: var(--color-primary);
+          color: var(--slot-color);
           margin: 0;
           position: relative;
           padding-right: 2em;
