@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 
 import Session from './Session';
 
+import './Screen.less';
+
 function Screen(props) {
   const {sessions, slots, rooms} = props;
 

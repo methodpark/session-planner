@@ -9,7 +9,7 @@
     transition: background-color 5s;
 
     &.active {
-      background-color: @border-color;
+      background-color: var(--background-tertiary);
     }
 
     th, td {
@@ -19,13 +19,20 @@
 
     th {
       white-space: nowrap;
-      background-color: @color-primary;
-      color: @font-color-contrast;
-      border-bottom: 3px solid @color-primary;
+      //we switch background and foreground on purpose here
+      background-color: var(--text-primary);
+      color: var(--background-primary);
+      border-bottom: 3px solid var(--text-primary);
     }
 
     td {
-      border-bottom: 3px solid @border-color;
+      border-bottom: 3px solid var(--background-tertiary);
     }
+  }
+}
+
+footer {
+  .legal {
+    display: none;
   }
 }
