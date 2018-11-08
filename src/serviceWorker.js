@@ -7,7 +7,8 @@ const { assets } = global.serviceWorkerOption;
 const STATIC_RESOURCES = [
   '/',
   '/static/vapid-keys.public.json',
-  '/logo/logo144x144.png'
+  '/logo/logo144x144.png',
+  '/logo/mp.png'
 ].concat(assets);
 
 self.addEventListener('install', () => {

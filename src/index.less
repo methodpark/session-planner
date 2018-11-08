@@ -63,10 +63,36 @@ header {
     top: 0.2rem;
   }
 }
+
 footer {
   p {
     text-align: center;
     color: var(--text-secondary);
     font-size: 0.8rem;
+  }
+}
+
+.footer-logo-mp {
+  height: 16px;
+  margin-bottom: -3px;
+
+  @media all and (min-width: @breakpoint-s) {
+    height: 20px;
+    margin-bottom: -4px;
+  }
+
+  @media all and (min-width: @breakpoint-m) {
+    height: 24px;
+    margin-bottom: -5px;
+  }
+
+  @media all and (min-width: @breakpoint-l) {
+    height: 26px;
+    margin-bottom: -6px;
+  }
+
+  @media all and (min-width: @breakpoint-xl) {
+    height: 28px;
+    margin-bottom: -7px;
   }
 }
