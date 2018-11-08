@@ -20,15 +20,17 @@ function initializeNotifications(vapidKeysFile) {
 
 async function sendNotifications(data) {
   const numberOfSubscribers = subscriptions.length;
-  console.log(`Sending notifications to ${numberOfSubscribers} subscribers.`);
+  if (await notificationTimeFilter.filter()) {
+    console.log(`Sending notifications to ${numberOfSubscribers} subscribers.`);
 
-  subscriptions.forEach(async subscription => {
-    try {
-      await _sendNotification(subscription, JSON.stringify(data));
-    } catch (err) {
-      console.log('Error for sub', subscription, err);
-    }
-  });
+    subscriptions.forEach(async subscription => {
+      try {
+        await _sendNotification(subscription, JSON.stringify(data));
+      } catch (err) {
+        console.log('Error for sub', subscription, err);
+      }
+    });
+  }
 }
 
 function checkSubscriptionRequestForErrors(request) {
@@ -76,7 +78,7 @@ function _loadVapidKeys(filename) {
 }
 
 function _getPersistedSubscriptions(filename) {
-  if (!fs.existsSync(filename)){
+  if (!fs.existsSync(filename)) {
     return [];
   }
 
@@ -97,12 +99,12 @@ const _persistSubscriptions = (() => {
 
     fs.writeFile(filename, JSON.stringify(subscriptions),
       (err) => {
-        if(err !== null){
+        if (err !== null) {
           console.log('Error persisting subscriptions ', err);
         }
 
         delete writeOperationInProgress[filename];
-        if(pendingOperations[filename]){
+        if (pendingOperations[filename]) {
           const pendingWrite = pendingOperations[filename];
           delete pendingOperations[filename];
 
@@ -139,4 +141,4 @@ async function _sendNotification(subscription, dataToSend) {
 module.exports.initializeNotifications = initializeNotifications;
 module.exports.checkSubscriptionRequestForErrors = checkSubscriptionRequestForErrors;
 module.exports.saveSubscriptionToArray = saveSubscriptionToArray;
-module.exports.sendNotifications       = sendNotifications;
+module.exports.sendNotifications = sendNotifications;
