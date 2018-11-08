@@ -6,6 +6,8 @@ import classnames from 'classnames';
 
 import Session from './Session';
 
+import './Entry.less';
+
 export class Entry extends React.Component {
   constructor() {
     super();

@@ -1,0 +1,67 @@
+@import '../../variables.less';
+
+#slots {
+  .entry {
+    .sessions {
+      display: none;
+      padding-left: 0.6rem;
+
+      &.open {
+        display: block;
+      }
+
+      @media screen and (min-width: @breakpoint-xl) {
+        display: block;
+      }
+
+      > li {
+        /* collapsing margins are not your friend */
+        margin-top: 1rem;
+        padding-bottom: 1rem;
+        transition: 0.3s;
+        transition-delay: 0.2s;
+        opacity: 1;
+        visibility: visible;
+        max-height: 2000px;
+
+        &.filtered {
+            visibility: hidden;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            max-height: 0;
+            border-bottom: 0px;
+            transition: 0.3s;
+        }
+
+        @media screen and (max-width: @breakpoint-xl) {
+          border-bottom: 1px solid var(--background-secondary);
+
+          &:last-child {
+            border: 0;
+          }
+        }
+
+        .sub-title {
+          padding-top: 0.2rem;
+          font-size: 0.8rem;
+          color: var(--text-primary);
+          font-weight: bold;
+
+          em {
+            font-style: normal;
+            color: var(--text-secondary);
+          }
+        }
+
+        h4 {
+          color: var(--slot-color);
+          margin: 0;
+          position: relative;
+          padding-right: 2em;
+        }
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@ import classnames from 'classnames';
 
 import FavButton from './FavButton';
 
+import './Session.less'
+
 export default function Session (props) {
   const { title, host, room, id, filtered} = props;
 

@@ -1,0 +1,77 @@
+@import '../../variables.less';
+
+#slots {
+  .entry {
+    margin: 1rem 0;
+
+    > h3 {
+      color: var(--text-primary);
+      cursor: pointer;
+      user-select: none;
+      margin: 0;
+      padding: 1rem 0.5rem;
+      box-shadow: 0 0 2rem var(--background-secondary);
+
+      > svg {
+        float: right;
+      }
+
+      transition: 0.3s;
+      opacity: 1;
+      visibility: visible;
+      height: auto;
+      max-height: 2rem;
+    }
+
+    &.filtered {
+      transition: 0.2s;
+      transition-delay: 0.2s;
+
+      @media screen and (max-width: @breakpoint-xl) {
+        & {
+          margin:0px;
+        }
+
+        + .entry {
+         margin: 0px;
+         margin-top: 0px;
+        }
+      }
+
+      @media screen and (min-width: @breakpoint-xl) {
+        &.filtered {
+          overflow: hidden;
+          max-width: 0px;
+          margin-left: 0px;
+          margin-right: 0px;
+        }
+      }
+
+      > h3 {
+          visibility: hidden;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;
+          opacity: 0;
+          max-height: 0;
+          transition: 0.2s;
+          transition-delay: 0.2s;
+      }
+    }
+  }
+
+  @media screen and (min-width: @breakpoint-xl) {
+    .entry {
+      width: 20%;
+      max-width: 20%;
+      margin: 1rem;
+      transition: max-width 0.3s;
+
+      h3 {
+        svg {
+          display: none;
+        }
+      }
+    }
+  }
+}
