@@ -1,3 +1,5 @@
+@import '../../variables.less';
+
 .filters{
 
   text-align: center;
@@ -10,6 +12,8 @@
     border: none;
     background: transparent;
     transition: all ease-in-out 0.3s;
+
+    cursor: pointer;
 
     color: var(--button-primary);
 
@@ -24,6 +28,17 @@
 
     &.active {
       color: var(--button-active);
+    }
+  }
+
+  @media screen and (min-width: @breakpoint-m) {
+    button::after {
+      content: ' |';
+      color: var(--button-primary);
+    }
+
+    button:last-of-type::after {
+      content: '';
     }
   }
 }

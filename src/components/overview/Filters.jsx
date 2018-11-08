@@ -24,20 +24,22 @@ export class Filters extends React.Component {
 
     return (
       <button className={classnames({ active: filters.onlyFavorites })}
-        title="Show only favorited"
+        title="Show only favorites"
         disabled={favorites.length === 0}
-        onClick={() => this.toggleFavoriteFilter()}><FaHeart /> Only favorited</button>
+        onClick={() => this.toggleFavoriteFilter()}><FaHeart /> Only favorites</button>
     );
   }
 
   renderFutureFilter() {
     const { filters,  sessions } = this.props;
     const isInFuture = (session) => new Date(session.start).getHours() >= new Date().getHours();
+    const isDisabled = sessions.length === 0 || isInFuture(sessions[0]) || !isInFuture(sessions[sessions.length - 1]);
+    const text = isDisabled ? "No more sessions today" : "Only future slots";
 
     return (<button className={classnames({ active: filters.onlyInFuture })}
-      title="Show only future sessions"
-      disabled={sessions.length === 0 || isInFuture(sessions[0]) || !isInFuture(sessions[sessions.length-1])}
-      onClick={() => this.toggleFutureFilter()}><FaClockO /> Only future slots</button>);
+      title="Show only future slots"
+      disabled={isDisabled}
+      onClick={() => this.toggleFutureFilter()}><FaClockO /> {text}</button>);
   }
 
   render() {
