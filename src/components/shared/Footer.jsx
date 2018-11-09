@@ -17,7 +17,7 @@ const Footer = () => (
     <p>Made with <span role="img" aria-label="love">❤️</span> by
       {' '}
       <a href="https://www.methodpark.de/mobileapps-webapps.html" target="_blank" rel="noopener noreferrer">
-        <img src="/logo/mp.png" class="footer-logo-mp" alt="method park" />
+        <img src="/logo/mp.png" className="footer-logo-mp" alt="method park" />
         {' '}
         team mobile
         {' '}
