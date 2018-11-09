@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Legal from './Legal';
 
 const Footer = () => (
   <footer>
@@ -12,10 +14,9 @@ const Footer = () => (
       </a>
       for <a href="https://swe-camp.de/" target="_blank" rel="noopener noreferrer">SWEC</a>
     </p>
-    <p class="legal">
-      <a href="https://www.methodpark.com/overview/imprint.html" target="_blank" rel="noopener noreferrer">Legal Notice</a> |
-      <a href="https://www.methodpark.com/overview/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-    </p>
+    <Router>
+      <Route exact path="/" component={() => <Legal />} />
+    </Router>
   </footer>
 );
 
