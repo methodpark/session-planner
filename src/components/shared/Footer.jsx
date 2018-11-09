@@ -1,6 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import Legal from './Legal';
+
+const OptionalLegal = () => (
+  <Router>
+    <Switch>
+      <Route path="/screen" component={React.Fragment} />
+      <Route component={Legal} />
+    </Switch>
+  </Router>
+);
 
 const Footer = () => (
   <footer>
@@ -14,12 +24,7 @@ const Footer = () => (
       </a>
       for <a href="https://swe-camp.de/" target="_blank" rel="noopener noreferrer">SWEC</a>
     </p>
-    <Router>
-      <Switch>
-        <Route path="/screen" component={React.Fragment} />
-        <Route component={Legal} />
-      </Switch>
-    </Router>
+    <OptionalLegal />
   </footer>
 );
 
