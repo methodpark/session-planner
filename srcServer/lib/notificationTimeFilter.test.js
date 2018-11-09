@@ -9,7 +9,7 @@ describe('notificationTimeFilter ', () => {
 
       expect(isTimeInsideOfTimeInterval(time, timeIntervals)).toBeFalsy;
     })
-
+ 
     it('and valid time should return false', () => {
       const timeIntervals = [];
       const time = moment().hours
