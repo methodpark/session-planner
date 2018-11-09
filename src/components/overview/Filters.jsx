@@ -33,7 +33,7 @@ export class Filters extends React.Component {
   renderFutureFilter() {
     const { filters,  sessions } = this.props;
     const isInFuture = (session) => new Date(session.start).getHours() >= new Date().getHours();
-    const isDisabled = sessions.length === 0 || isInFuture(sessions[0]) || !isInFuture(sessions[sessions.length - 1]);
+    const isDisabled = sessions.length === 0 || !isInFuture(sessions[sessions.length - 1]);
     const text = isDisabled ? "No more sessions today" : "Only future slots";
 
     return (<button className={classnames({ active: filters.onlyInFuture })}
