@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import { reducer as burgerMenu } from 'redux-burger-menu';
 
 import { sessionsReducer } from './reducers/sessions';
 import { slotsReducer } from './reducers/slots';
@@ -15,5 +16,6 @@ export const reducer = combineReducers({
   favorites: favoritesReducer,
   prompt:    promptReducer,
   filters:   filtersReducer,
-  theme:     themeReducer
+  theme:     themeReducer,
+  burgerMenu: burgerMenu
 });
