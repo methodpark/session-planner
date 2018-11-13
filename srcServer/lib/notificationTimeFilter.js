@@ -19,10 +19,7 @@ function isCurrentTimeInsideOfNotificationTimeInterval(timeInterval) {
 function isTimeInsideOfTimeInterval(time, timeInterval) {
   const beginOfInterval = moment(timeInterval.start);
   const endOfInterval = moment(timeInterval.end);
-  if(time instanceof moment){
-    return time.isBetween(beginOfInterval, endOfInterval);
-  }
-  return false;
+  return time.isBetween(beginOfInterval, endOfInterval);
 }
 
 async function _loadData() {
