@@ -1,5 +1,6 @@
 const webpush = require('web-push');
 const fs = require('fs');
+const notificationTimeFilter = require('./lib/notificationTimeFilter');
 
 const SUBSCRIPTION_PERSISTANCE_FILENAME = './subscriptions.json'
 
