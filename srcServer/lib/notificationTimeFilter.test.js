@@ -5,7 +5,7 @@ describe('notificationTimeFilter ', () => {
   describe('with empty time intervall ', () => {   
     it('and valid time should return false', () => {
       const timeIntervals = [];
-      const time = moment().hours
+      const time = moment().year(2018).month(11).day(18).hour(10).minute(30);
 
       expect(isTimeInsideOfTimeInterval(time, timeIntervals)).toBeFalsy;
     })
