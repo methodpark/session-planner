@@ -20,7 +20,7 @@ function initializeNotifications(vapidKeysFile) {
 
 async function sendNotifications(data) {
   const numberOfSubscribers = subscriptions.length;
-  if (await notificationTimeFilter.filter()) {
+  if (await notificationTimeFilter.isCurrentTimeInsideOfAnyNotificationTimeInterval()) {
     console.log(`Sending notifications to ${numberOfSubscribers} subscribers.`);
 
     subscriptions.forEach(async subscription => {

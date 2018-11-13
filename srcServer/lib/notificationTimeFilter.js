@@ -5,10 +5,14 @@ const path = require('path');
 const TIME_CONFIG = '/config/notificationTime.json';
 const configPath = path.join(__dirname, TIME_CONFIG);
 
+let notificationIntervals = [];
+_loadData()
+  .then(times => notificationIntervals = times)
+  .catch(console.error);
 
-async function filter() {
-  var times = await _loadData();
-  return times.some(timeInterval => isCurrentTimeInsideOfNotificationTimeInterval(timeInterval));
+
+function isCurrentTimeInsideOfAnyNotificationTimeInterval() {
+  return notificationIntervals.some(timeInterval => isCurrentTimeInsideOfNotificationTimeInterval(timeInterval));
 }
 
 function isCurrentTimeInsideOfNotificationTimeInterval(timeInterval) {
@@ -40,5 +44,5 @@ async function _loadData() {
   });
 }
 
-module.exports.filter = filter;
+module.exports.isCurrentTimeInsideOfAnyNotificationTimeInterval = isCurrentTimeInsideOfAnyNotificationTimeInterval;
 module.exports.isTimeInsideOfTimeInterval = isTimeInsideOfTimeInterval;
