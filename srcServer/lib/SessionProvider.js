@@ -27,9 +27,7 @@ class SessionProvider extends EventEmitter {
 
   async _handleFileUpdate() {
     const oldList = this._currentData;
-    await jsonFileLoader.loadJsonFile(this._filePath)
-      .then(data => this._currentData = data)
-      .catch(console.error);
+    this._currentData = await jsonFileLoader.loadJsonFile(this._filePath);      
 
     sessionComparator(oldList, this._currentData)
       .forEach(change => this.emit('sessionUpdate', change));
