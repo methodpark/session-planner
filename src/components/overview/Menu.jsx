@@ -22,12 +22,8 @@ const styles = {
 
 export const Menu = () => (
   <ReduxSlideMenu styles={styles}>
-    <a className="menuItem" href="#">Day 1</a>
-    <a className="menuItem" href="#">Day 2</a>
-    <a className="menuItem" href="#">Day 3</a>
-    <div className="divider" />
-
-    <a className="menuItem" href="#">Floor plan</a>
+    <a className="menuItem" href="/sessions">Today's sessions</a>
+    <a className="menuItem" href="/floor-plan">Floor plan</a>
     <div className="divider" />
 
     <ThemeSwitch />

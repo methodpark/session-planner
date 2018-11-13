@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Menu } from './components/overview/Menu';
 
@@ -9,8 +9,11 @@ import Screen from './components/screen/Screen';
 export const AppRouter = () => (
   <Router>
     <React.Fragment>
-      <Route exact path="/" component={() => <Slots />} />
-      <Route path="/screen" component={() => <Screen />} />
+      <Switch>
+        <Route exact path="/floor-plan" component={() => <div>Plan goes here</div>} />
+        <Route exact path="/screen" component={() => <Screen />} />
+        <Route path="/" component={() => <Slots />} />
+      </Switch>
     </React.Fragment>
   </Router>
 );
@@ -18,7 +21,10 @@ export const AppRouter = () => (
 export const MenuRouter = () => (
   <Router>
     <React.Fragment>
-      <Route exact path="/" component={ ()=> <Menu /> } />
+      <Switch>
+        <Route exact path="/screen" component={() => ''} />
+        <Route component={() => <Menu />} />
+      </Switch>
     </React.Fragment>
   </Router>
 );
