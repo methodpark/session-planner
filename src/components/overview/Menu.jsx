@@ -1,6 +1,27 @@
-import { slide as Menu } from 'react-burger-menu';
+import React from 'react';
+
+import { slide as SlideMenu } from 'react-burger-menu';
 import { decorator as reduxBurgerMenu } from 'redux-burger-menu';
 
 import './Menu.less';
+import ThemeSwitch from './ThemeSwitch';
 
-export const slide = reduxBurgerMenu(Menu);
+const ReduxSlideMenu = reduxBurgerMenu(SlideMenu);
+
+const styles = {
+  bmOverlay: {
+    background: 'var(--background-primary)'
+  }
+}
+
+export const Menu = () => (
+  <ReduxSlideMenu styles={styles}>
+    <a className="menuItem" href="#">Day 1</a>
+    <a className="menuItem" href="#">Day 2</a>
+    <a className="menuItem" href="#">Day 3</a><br />
+
+    <a className="menuItem" href="#">Floor plan</a><br />
+
+    <ThemeSwitch />
+  </ReduxSlideMenu>
+)
