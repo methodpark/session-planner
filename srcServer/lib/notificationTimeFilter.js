@@ -10,7 +10,6 @@ jsonFileLoader.loadJsonFile(configPath)
   .then(times => notificationIntervals = times)
   .catch(console.error);
 
-
 function isCurrentTimeInsideOfAnyNotificationTimeInterval() {
   return notificationIntervals.some(timeInterval => isCurrentTimeInsideOfNotificationTimeInterval(timeInterval));
 }
