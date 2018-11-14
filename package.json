@@ -14,9 +14,11 @@
     "react-burger-menu": "^2.5.4",
     "react-hammerjs": "^1.0.1",
     "react-redux": "^5.0.7",
+    "react-swipe": "^5.1.1",
     "redux": "^4.0.1",
     "redux-burger-menu": "^0.2.8",
     "redux-saga": "^0.16.2",
+    "swipe-js-iso": "^2.0.4",
     "web-push": "^3.3.2"
   },
   "devDependencies": {
