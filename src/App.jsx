@@ -7,9 +7,7 @@ import AddToHomeScreenPrompt from './components/overview/AddToHomeScreenPrompt';
 
 const App = () => (
   <React.Fragment>
-    <nav>
-      <MenuRouter {...this.state} />
-    </nav>
+    <MenuRouter {...this.state} />
     <div id="main-container">
       <Header />
       <AppRouter {...this.state} />

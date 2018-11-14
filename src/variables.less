@@ -1,11 +1,18 @@
 :root {
-  --background-primary: #ffffff;
-  --background-secondary: #cacaca;
-  --background-tertiary: #777777;
+  --swec-blue-num: 0, 60, 114;
+  --swec-orange-num: 229, 122, 0;
 
-  --text-primary: #003c72;
+  --background-primary-num: 255, 255, 255;
+  --background-secondary-num: 202, 202, 202;
+  --background-tertiary-num: 119, 119, 119;
+
+  --background-primary: rgb(var(--background-primary-num));
+  --background-secondary: rgb(var(--background-secondary-num));
+  --background-tertiary: rgb(var(--background-tertiary-num));
+
+  --text-primary: rgb(var(--swec-blue-num));
   --text-secondary: #777777;
-  --text-highlight: #e57c00;
+  --text-highlight: rgb(var(--swec-orange-num));
 
   --button-primary: #1c1c1c;
   --button-active: #dd0000;
@@ -13,20 +20,17 @@
 
   --slot-color: var(--text-primary);
   --link-color: var(--text-primary);
-
-  --background-primary-num: 255, 255, 255;
-  --background-secondary-num: 202, 202, 202;
-  --background-tertiary-num: 119, 119, 119;
+  --menu-background: rgba(var(--swec-blue-num), 0.9);
 }
 
 :root[theme=dark] {
-  --background-primary: #000000;
-  --background-secondary: #ff3f80;
-  --background-tertiary: #777777;
+  --background-primary-num: 0, 0, 0;
+  --background-secondary-num: 255, 61, 125;
+  --background-tertiary-num: 119, 119, 119;
 
   --text-primary: rgba(255,255,255,0.9);
   --text-secondary: rgba(255,255,255,0.7);
-  --text-highlight: #003c72;
+  --text-highlight: rgb(var(--swec-blue-num));
 
   --button-primary: #f4f4f4;
   --button-active: #3e50b4;
@@ -34,10 +38,7 @@
 
   --slot-color: var(--text-secondary);
   --link-color: var(--button-active);
-
-  --background-primary-num: 0, 0, 0;
-  --background-secondary-num: 255, 61, 125;
-  --background-tertiary-num: 119, 119, 119;
+  --menu-background: rgba(var(--swec-blue-num), 0.9);
 }
 
 @breakpoint-s: 575px;

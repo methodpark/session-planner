@@ -1,6 +1,10 @@
 
 @import '../../variables.less';
 
+nav.menu-open + #main-container {
+  filter: blur(2px);
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -42,7 +46,7 @@
 
 .bm-menu-wrap {
   top: 0;
-  background: var(--background-tertiary);
+  background: var(--menu-background);
 
   .bm-menu {
     z-index: 1000;
@@ -84,7 +88,7 @@
         visibility: visible;
         text-align: left;
 
-        background-color: rgba(var(--background-secondary-num), 0.2);
+        background-color: rgba(var(--background-secondary-num), 0.5);
         border: 0px solid var(--background-primary);
         border-bottom-width: 1px;
         padding: 0.2em 0.6em;
