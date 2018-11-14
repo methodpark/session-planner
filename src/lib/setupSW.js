@@ -1,13 +1,22 @@
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 import { setPushRegistration } from './toast';
 
+let registration;
+
 export default async function setupSW() {
   if (!navigator.serviceWorker) {
     console.log("No service worker support.");
     return;
   }
 
-  const registration = await runtime.register();
+  registration = await runtime.register();
+}
+
+export async function setupPushNotifications() {
+  // check if service worker was properly set up
+  if (!registration) {
+    return;
+  }
 
   // in case there is no support for push api, exit
   // early instead of provoking exceptions
