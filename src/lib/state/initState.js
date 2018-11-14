@@ -3,6 +3,7 @@ import { initPrompt } from './reducers/prompt';
 import { initFavorites } from './reducers/favorites';
 import { initTheme } from './reducers/theme';
 import { setNotificationSettings } from './reducers/notifications';
+import { setupPushNotifications } from '../setupSW';
 
 export function initializeStateFromLocalStorage(store) {
   const theme = loadTheme();
@@ -15,6 +16,9 @@ export function initializeStateFromLocalStorage(store) {
 
   const notificationSettings = loadNotificationSettings();
   store.dispatch(setNotificationSettings(notificationSettings));
+  if (notificationSettings.active) {
+    setupPushNotifications();
+  }
 
   store.dispatch(initPrompt());
 }

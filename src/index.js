@@ -23,8 +23,6 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(saga);
 
-initializeStateFromLocalStorage(store);
-
 ReactDOM.render((
   <Provider store={store}>
     <App />
@@ -33,4 +31,7 @@ ReactDOM.render((
 
 initSessionData(store);
 
-setupSW();
+(async function() {
+  await setupSW();
+  initializeStateFromLocalStorage(store);
+})();
