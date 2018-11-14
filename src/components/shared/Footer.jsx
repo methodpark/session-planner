@@ -6,7 +6,7 @@ import Legal from './Legal';
 const OptionalLegal = () => (
   <Router>
     <Switch>
-      <Route path="/screen" component={React.Fragment} />
+      <Route path="/screen" render={() => ''} />
       <Route component={Legal} />
     </Switch>
   </Router>
