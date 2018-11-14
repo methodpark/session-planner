@@ -6,16 +6,13 @@ import { Provider } from 'react-redux'
 import { initSessionData } from './lib/sessionData';
 import saga from './lib/state/saga';
 import { reducer } from './lib/state/state';
-import { loadFavorites, loadTheme } from './lib/localStorage';
 
+import { initializeStateFromLocalStorage } from './lib/state/initState';
 import setupSW from './lib/setupSW';
 
 import App from './App.jsx';
 
 import './index.less';
-import { initPrompt } from './lib/state/reducers/prompt';
-import { initFavorites } from './lib/state/reducers/favorites';
-import { initTheme } from './lib/state/reducers/theme';
 
 let composeEnhancers = compose;
 if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.env.NODE_ENV !== 'production') {
@@ -26,16 +23,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(saga);
 
-const theme = loadTheme();
-const htmlElement = document.getElementsByTagName('html')[0];
-htmlElement.setAttribute('theme', theme.name);
-store.dispatch(initTheme(theme));
-
-const favorites = loadFavorites();
-store.dispatch(initFavorites(favorites));
-
-store.dispatch(initPrompt());
-
+initializeStateFromLocalStorage(store);
 
 ReactDOM.render((
   <Provider store={store}>
