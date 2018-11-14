@@ -5,6 +5,7 @@ import { decorator as reduxBurgerMenu } from 'redux-burger-menu';
 import classnames from 'classnames';
 
 import './Menu.less';
+import { isPushApiSupported } from '../../lib/notifications';
 import ThemeSwitch from './ThemeSwitch';
 import ToggleNotifications from './ToggleNotifications';
 
@@ -42,7 +43,7 @@ export class Menu extends React.Component {
         <a className="menuItem" href="/floor-plan">Floor plan</a>
         <div className="divider" />
 
-        <ToggleNotifications />
+        { isPushApiSupported() ? <ToggleNotifications /> : '' }
         <ThemeSwitch />
         <div className="divider" />
       </ReduxSlideMenu>
