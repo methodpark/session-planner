@@ -1,6 +1,12 @@
 export function isIOsDevice() {
   const userAgent = window.navigator.userAgent.toLowerCase();
-  return /iphone|ipad|ipod/.test(userAgent);
+  const isIosDevice = /iphone|ipad|ipod/.test(userAgent);
+  return isIosDevice;
+}
+
+export function isNonSafariOnIos() {
+  const isNonSafari = / ..iOS/.test(window.navigator.userAgent);
+  return isNonSafari;
 }
 
 export function isInStandaloneMode() {

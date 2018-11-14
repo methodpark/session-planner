@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
-import { isInStandaloneMode, isIOsDevice } from '../../lib/iosDetection';
+import { isInStandaloneMode, isIOsDevice, isNonSafariOnIos } from '../../lib/iosDetection';
 
 import './AddToHomeScreenPrompt.less';
 import share from './share.svg';
@@ -15,7 +15,7 @@ class AddToHomeScreenPrompt extends React.Component {
 
   display() {
     const {discarded} = this.props;
-    return !discarded && isIOsDevice() && !isInStandaloneMode();
+    return !discarded && isIOsDevice() && !isInStandaloneMode() && !isNonSafariOnIos();
   }
 
   render() {
