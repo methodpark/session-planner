@@ -8,6 +8,7 @@ import { favoritesReducer } from './reducers/favorites';
 import { promptReducer } from './reducers/prompt';
 import { filtersReducer } from './reducers/filters';
 import { themeReducer } from './reducers/theme';
+import { notificationsReducer } from './reducers/notifications';
 
 export const reducer = combineReducers({
   sessions:  sessionsReducer,
@@ -17,5 +18,6 @@ export const reducer = combineReducers({
   prompt:    promptReducer,
   filters:   filtersReducer,
   theme:     themeReducer,
-  burgerMenu: burgerMenu
+  burgerMenu: burgerMenu,
+  notifications: notificationsReducer
 });

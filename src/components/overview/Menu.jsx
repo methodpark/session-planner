@@ -6,6 +6,7 @@ import classnames from 'classnames';
 
 import './Menu.less';
 import ThemeSwitch from './ThemeSwitch';
+import ToggleNotifications from './ToggleNotifications';
 
 const ReduxSlideMenu = reduxBurgerMenu(SlideMenu);
 
@@ -41,6 +42,7 @@ export class Menu extends React.Component {
         <a className="menuItem" href="/floor-plan">Floor plan</a>
         <div className="divider" />
 
+        <ToggleNotifications />
         <ThemeSwitch />
         <div className="divider" />
       </ReduxSlideMenu>

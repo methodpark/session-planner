@@ -1,4 +1,5 @@
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+import { setPushRegistration } from './toast';
 
 export default async function setupSW() {
   if (!navigator.serviceWorker) {
@@ -13,6 +14,8 @@ export default async function setupSW() {
   if (!registration.pushManager) {
     return;
   }
+
+  setPushRegistration(registration);
 
   try {
     console.log('Unregistering possibly stale subscriptions');

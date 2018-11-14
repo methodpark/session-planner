@@ -1,5 +1,5 @@
 import { clearCaches, fillStaticCache, tryToFetchAndStoreInCache } from './lib/cache';
-import { updateSessionData } from './lib/workerMessages';
+import { receivedPushNotification } from './lib/state/reducers/notifications';
 
 /* eslint no-restricted-globals: "off" */
 
@@ -50,25 +50,23 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(tryToFetchAndStoreInCache(caches, request));
 });
 
-function notifyClientOfSessionUpdate(client) {
+function notifyClientOfSessionUpdate(client, payload) {
   const messageChannel = new MessageChannel();
-  client.postMessage(updateSessionData(), [messageChannel.port2]);
+  client.postMessage(receivedPushNotification(payload), [messageChannel.port2]);
 }
 
 self.addEventListener('push', event => {
   let content = event.data.json();
-  console.log(content);
+
   const title = content.notification.title;
   const options = {
     body: content.notification.body,
     icon: '/logo/logo192x192.png'
   }
 
-  self.registration.showNotification(title, options);
-
   self.clients.matchAll()
     .then(clients => {
-      clients.forEach(notifyClientOfSessionUpdate);
+      clients.forEach(client => notifyClientOfSessionUpdate(client, { title, ...options }));
     })
     .catch(console.error);
 });

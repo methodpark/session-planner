@@ -1,6 +1,6 @@
 import { interceptRequest } from './requestInterceptor';
-import { UPDATE_SESSION_DATA } from './workerMessages';
 import { updateSessions } from './state/reducers/sessions';
+import { NOTIFICATION_RECEIVED } from './state/reducers/notifications';
 
 // Check for new sessions every 30 seconds
 const PollTimeout = 30 * 1000;
@@ -37,7 +37,14 @@ export function initSessionData(store) {
   updateSessionData(store);
   navigator.serviceWorker.addEventListener('message', event => {
     console.log("Received message from Service Worker: ", event.data);
-    if (event.data.type === UPDATE_SESSION_DATA) {
+
+    // check if we received an action -> dispatch to store
+    if (event.data.type) {
+      store.dispatch(event.data);
+    }
+
+    if (event.data.type === NOTIFICATION_RECEIVED) {
+      // todo: move updateSessionData to saga?
       updateSessionData(store);
     }
   });
