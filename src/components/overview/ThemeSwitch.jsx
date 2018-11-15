@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { FaSunO, FaMoonO } from 'react-icons/lib/fa';
+import { FaMoonO } from 'react-icons/lib/fa';
 
+import ToggleButton from './ToggleButton';
 import { setLightTheme, setDarkTheme } from '../../lib/state/reducers/theme';
 
 import './ThemeSwitch.less';
+import './ToggleButton.less';
 
 class ThemeSwitch extends React.Component {
   toggleTheme() {
@@ -16,18 +18,19 @@ class ThemeSwitch extends React.Component {
     }
   }
 
-  renderIcon() {
-    if(this.props.theme.name === 'dark') {
-      return (<span><FaSunO /> Light theme</span >);
-    }else{
-      return (<span><FaMoonO /> Dark theme</span>);
-    }
+  renderButtonContent() {
+    const { name } = this.props.theme;
+    const isDark = name === 'dark';
 
+    return (<Fragment>
+      <FaMoonO /> Dark theme
+      <ToggleButton checked={isDark} />
+    </Fragment>);
   }
 
   render() {
     return (
-      <button className="theme-switch" onClick={() => this.toggleTheme()}>{this.renderIcon()}</button>
+      <button className="theme-switch" onClick={() => this.toggleTheme()}>{this.renderButtonContent()}</button>
     );
   }
 }

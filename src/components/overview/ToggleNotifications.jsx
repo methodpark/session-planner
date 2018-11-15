@@ -5,6 +5,8 @@ import { FaVolumeOff, FaVolumeUp } from 'react-icons/lib/fa';
 import { toggleNotifications } from '../../lib/state/reducers/notifications';
 import { setupPushNotifications } from '../../lib/setupSW';
 
+import ToggleButton from './ToggleButton';
+
 class ToggleNotifications extends React.Component {
   constructor() {
     super();
@@ -28,22 +30,22 @@ class ToggleNotifications extends React.Component {
     }
   }
 
-  renderIcon() {
-    if (this.props.active) {
-      return (<span><FaVolumeUp /> Notifications on</span >);
-    } else {
-      return (<span><FaVolumeOff /> Notifications off</span>);
-    }
+  renderButtonContent() {
+    const { active } = this.props;
 
+    return (<span>
+      {active ? <FaVolumeUp /> : <FaVolumeOff />} Notifications
+      <ToggleButton checked={active} />
+    </span>);
   }
 
   render() {
     return (
-      <button className="theme-switch" onClick={() => this.toggleNotifications()}>{this.renderIcon()}</button>
+      <button className="theme-switch" onClick={() => this.toggleNotifications()}>{this.renderButtonContent()}</button>
     );
   }
 }
 
-export default connect(({ notifications }) => {
+export default connect(({ notifications, theme }) => {
   return notifications;
 })(ToggleNotifications);
