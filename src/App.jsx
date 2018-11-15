@@ -1,20 +1,57 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import {AppRouter, MenuRouter} from './Router';
 import Header from './components/shared/Header';
 import Footer from './components/shared/Footer';
 import AddToHomeScreenPrompt from './components/overview/AddToHomeScreenPrompt';
 
-const App = () => (
-  <React.Fragment>
-    <MenuRouter {...this.state} />
-    <div id="main-container">
-      <Header />
-      <AppRouter {...this.state} />
-      <AddToHomeScreenPrompt />
-      <Footer />
-    </div>
-  </React.Fragment>
-);
+import { action as setMenuOpen } from 'redux-burger-menu';
+import Hammer from 'react-hammerjs';
 
-export default App;
+const maxDistanceFromLeftBorder = 100;
+const maxVerticalDistance = 100;
+const minVelocity = 2;
+
+class App extends React.Component {
+
+  onSwipe(hammerEvent){
+    if(hammerEvent.deltaX < 0) this.onSwipedLeft(hammerEvent);
+    if(hammerEvent.deltaX > 0) this.onSwipedRight(hammerEvent);
+  }
+
+  onSwipedLeft(hammerEvent) {
+    if (hammerEvent.velocityX < -minVelocity) {
+      this.props.dispatch(setMenuOpen(false));
+    }
+  }
+
+  onSwipedRight(hammerEvent) {
+    if (hammerEvent.center.x - hammerEvent.deltaX < maxDistanceFromLeftBorder &&
+      hammerEvent.velocityX > minVelocity &&
+      hammerEvent.deltaY < maxVerticalDistance
+    ) {
+      this.props.dispatch(setMenuOpen(true));
+    }
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Hammer onSwipe={(hammerEvent) => this.onSwipe(hammerEvent)}>
+        <div>
+          <MenuRouter {...this.state} />
+          <div id="main-container">
+            <Header />
+            <AppRouter {...this.state} />
+            <AddToHomeScreenPrompt />
+            <Footer />
+          </div>
+        </div>
+        </Hammer>
+      </React.Fragment>
+    );
+  }
+}
+
+export default connect()(App);

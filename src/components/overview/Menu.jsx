@@ -4,6 +4,7 @@ import { slide as SlideMenu } from 'react-burger-menu';
 import { decorator as reduxBurgerMenu } from 'redux-burger-menu';
 import classnames from 'classnames';
 
+
 import './Menu.less';
 import { isPushApiSupported } from '../../lib/notifications';
 import ThemeSwitch from './ThemeSwitch';
@@ -24,7 +25,6 @@ const styles = {
 }
 
 export class Menu extends React.Component {
-
   constructor() {
     super();
 
@@ -38,15 +38,15 @@ export class Menu extends React.Component {
   render() {
     return (
       <nav className={classnames({ 'menu-open': this.state.isMenuOpen})}>
-      <ReduxSlideMenu onStateChange={(state) => this.setMenuState(state)} styles={styles}>
-        <a className="menuItem" href="/sessions">Today's sessions</a>
-        <a className="menuItem" href="/floor-plan">Floor plan</a>
-        <div className="divider" />
+        <ReduxSlideMenu onStateChange={(state) => this.setMenuState(state)} styles={styles}>
+          <a className="menuItem" href="/sessions">Today's sessions</a>
+          <a className="menuItem" href="/floor-plan">Floor plan</a>
+          <div className="divider" />
 
-        { isPushApiSupported() ? <ToggleNotifications /> : '' }
-        <ThemeSwitch />
-        <div className="divider" />
-      </ReduxSlideMenu>
+          { isPushApiSupported() ? <ToggleNotifications /> : '' }
+          <ThemeSwitch />
+          <div className="divider" />
+        </ReduxSlideMenu>
     </nav>);
   }
 }
