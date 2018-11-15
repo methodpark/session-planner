@@ -10,6 +10,7 @@
     "faker": "^4.1.0",
     "moment": "^2.22.2",
     "ms": "^2.1.1",
+    "node-cron": "^2.0.3",
     "react-burger-menu": "^2.5.4",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",

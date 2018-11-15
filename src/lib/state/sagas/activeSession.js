@@ -4,6 +4,7 @@ import ms from 'ms';
 import { delay } from 'redux-saga';
 import { select, put } from 'redux-saga/effects';
 import { setActive } from '../reducers/slots';
+import { disregardDate } from '../../util';
 
 export function* watchActiveSessions() {
   while ((yield select(state => state.slots)).length === 0) {
@@ -24,16 +25,4 @@ export function* watchActiveSessions() {
 
     yield delay(ms('1m'));
   }
-}
-
-function disregardDate(timeString) {
-  const m = moment(timeString);
-  const now = moment();
-
-  now.hours(m.hours());
-  now.minutes(m.minutes());
-  now.seconds(0);
-  now.milliseconds(0);
-
-  return now;
 }

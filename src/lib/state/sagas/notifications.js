@@ -1,18 +1,24 @@
 import { call, fork, join, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
+import moment from 'moment';
+
 import {
   TOGGLE_NOTIFICATIONS,
+  SESSION_START_NOTIFICATION,
   FETCH_SESSIONS
 } from '../reducers/notifications';
 import {   UPDATE_SINGLE_SESSION } from '../reducers/sessions';
 import { updateSessions } from '../reducers/sessions';
 import { storeNotificationSettings } from '../../localStorage';
 import { toast } from '../../toast';
+import { disregardDate } from '../../util';
 
+const TimeForNotificationInMinutes = 10;
 
 export function* watchPushNotification() {
   yield takeEvery(UPDATE_SINGLE_SESSION, notifyUser);
   yield takeLatest(TOGGLE_NOTIFICATIONS, toggleNotifications);
   yield takeLatest(FETCH_SESSIONS, fetchSessions);
+  yield takeLatest(SESSION_START_NOTIFICATION, notifyUserOfSessionStart);
 }
 
 export function* notifyUser(action) {
@@ -29,6 +35,35 @@ export function* notifyUser(action) {
 
     yield call(toast, title, body, options);
   }
+}
+
+export function* notifyUserOfSessionStart(action) {
+  const favoriteSessions = yield select(state => {
+    const {favorites, sessions} = state;
+    return favorites
+      .map(index => sessions[index])
+      .filter(s => s !== undefined);
+  });
+  const now = moment(action.timestamp);
+
+  const favoriteSessionsAboutToStart = favoriteSessions.filter(({ start }) => {
+    const tenMinutesBeforeStart = moment(start).subtract(TimeForNotificationInMinutes, 'minutes');
+    return now.isBetween(disregardDate(tenMinutesBeforeStart), disregardDate(start));
+  });
+
+  if (favoriteSessionsAboutToStart.length > 0) {
+    const isOnlyOne = favoriteSessionsAboutToStart.length === 1;
+    let title = `${favoriteSessionsAboutToStart.length} sessions you liked are about to start`;
+    if (isOnlyOne) {
+      title = `${favoriteSessionsAboutToStart.length} session you liked is about to start`;
+    }
+
+    const body = favoriteSessionsAboutToStart.map(s => `${s.title} - ${s.room}`).join('\n');
+    const options = {icon: '/logo/logo192x192.png'};
+
+    yield call(toast, title, body, options);
+  }
+
 }
 
 export function* toggleNotifications() {

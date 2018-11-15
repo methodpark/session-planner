@@ -2,6 +2,8 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cron = require('node-cron');
+const moment = require('moment');
 
 const { initializeNotifications, sendNotifications } = require('./notifications');
 const listSessions = require('./controllers/list-sessions');
@@ -46,4 +48,15 @@ sessionsProvider.on('sessionUpdate', async change => {
     change
   };
   await sendNotifications(action);
+});
+
+cron.schedule('25,55 * * * *', () => {
+  const action = {
+    type: 'SESSION_START_NOTIFICATION',
+    timestamp: moment().format()
+  }
+
+  console.log('sending out session start notifications');
+  sendNotifications(action)
+    .catch(console.error);
 });
