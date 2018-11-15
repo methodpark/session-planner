@@ -16,6 +16,14 @@ export function sessionsReducer(sessions = [], action) {
       const { session } = action.change;
       const { id } = session;
 
+      if (action.change.what === 'DELETED') {
+        return sessions.filter(s => s.id !== id);
+      }
+
+      if (action.change.what === 'NEW') {
+        return [...sessions, {...session, slot: _formatSlot(session.start, session.end)}];
+      }
+
       return sessions.map(s => (s.id === id ? {...session, slot: s.slot} : s));
     default:
       return sessions;
