@@ -1,19 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Switch from 'react-switch';
+import { FaToggleOff, FaToggleOn } from 'react-icons/lib/fa';
 
 import './ToggleButton.less';
 
 const ToggleButton = (props) => {
-  const { onColor } = props;
-
-  return <Switch
-    onChange={() => { }}
-    onColor={onColor}
-    checked={props.checked}
-    className='react-switch toggle-button'
-    id='notification-switch'
-  />;
+  return (<span className="toggle-button">
+    {
+      props.checked ?
+      <FaToggleOn /> :
+      <FaToggleOff />
+    }
+  </span>);
 };
 
 export default connect(({theme}) => {
