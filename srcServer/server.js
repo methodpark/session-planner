@@ -41,9 +41,9 @@ sessionsProvider.on('sessionUpdate', async change => {
   console.log('change happened', change);
 
   // TODO: check diff, send s.th. that's actually useful
-  const notification = {
-    title: 'Sessions updated! \\o/',
-    body: 'Check out the new stuff and such.'
-  }
-  await sendNotifications({ notification });
+  const action = {
+    type: 'UPDATE_SINGLE_SESSION',
+    change
+  };
+  await sendNotifications(action);
 });

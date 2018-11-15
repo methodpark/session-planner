@@ -1,25 +1,32 @@
 import { call, fork, join, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import {
-  NOTIFICATION_RECEIVED,
   TOGGLE_NOTIFICATIONS,
   FETCH_SESSIONS
 } from '../reducers/notifications';
+import {   UPDATE_SINGLE_SESSION } from '../reducers/sessions';
 import { updateSessions } from '../reducers/sessions';
 import { storeNotificationSettings } from '../../localStorage';
 import { toast } from '../../toast';
 
 
 export function* watchPushNotification() {
-  yield takeEvery(NOTIFICATION_RECEIVED, notifyUser);
+  yield takeEvery(UPDATE_SINGLE_SESSION, notifyUser);
   yield takeLatest(TOGGLE_NOTIFICATIONS, toggleNotifications);
   yield takeLatest(FETCH_SESSIONS, fetchSessions);
 }
 
 export function* notifyUser(action) {
   const notifications = yield select(state => state.notifications);
+  const favorites = yield select(state => state.favorites);
 
-  if (notifications.active) {
-    const {title, body, ...options} = action;
+  const { session } = action.change;
+  const sessionIsFavorite = favorites.find(i => i === session.id) !== undefined;
+
+  if (notifications.active && sessionIsFavorite) {
+    const title = 'A session you liked was updated'
+    const body = `${session.title} was updated.`;
+    const options = { icon: '/logo/logo192x192.png' };
+
     yield call(toast, title, body, options);
   }
 }

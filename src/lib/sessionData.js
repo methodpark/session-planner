@@ -26,7 +26,5 @@ export function initSessionData(store) {
     if (event.data.type) {
       store.dispatch(event.data);
     }
-
-    store.dispatch(fetchSessions());
   });
 }
