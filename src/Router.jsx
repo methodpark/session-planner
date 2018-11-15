@@ -5,12 +5,13 @@ import { Menu } from './components/overview/Menu';
 
 import Slots from './components/overview/Slots';
 import Screen from './components/screen/Screen';
+import Floors from './components/floorPlan/FloorPlan';
 
 export const AppRouter = () => (
   <Router>
     <React.Fragment>
       <Switch>
-        <Route exact path="/floor-plan" component={() => <div>Plan goes here</div>} />
+        <Route exact path="/floor-plan" component={() => <Floors />} />
         <Route exact path="/screen" component={() => <Screen />} />
         <Route path="/" component={() => <Slots />} />
       </Switch>
