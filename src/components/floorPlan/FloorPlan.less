@@ -1,4 +1,44 @@
-.roomImage{
-  width: 100%;
-  height: 100%;
+@import '../../variables.less';
+
+.floor-plan-carousel-container {
+  text-align: center;
+
+  .carousel {
+    max-width: 800px;
+    margin: auto;
+
+    .roomImage {
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide-controls {
+      display: flex;
+      justify-content: center;
+
+      button {
+        color: var(--button-primary);
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 0px;
+
+        &.current {
+          color: var(--button-active);
+        }
+
+        font-size: 1rem;
+
+        @media screen and (max-width: @breakpoint-s) {
+          font-size: 2rem;
+        }
+
+        @media screen and (max-width: @breakpoint-m) {
+          font-size: 1.5rem;
+        }
+      }
+
+    }
+  }
 }
