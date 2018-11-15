@@ -11,13 +11,13 @@ export default class RoomPlan extends React.Component {
     return (
       <ReactSwipe swipeOptions={{ continuous: true }}>
         <div>
-          <img width="100%" height="100%" src={roomEG} className="roomImage" alt="room plan" />
+          <img  src={roomEG} className="roomImage" alt="room plan" />
         </div>
         <div>
-          <img width="100%" height="100%" src={room1OG} className="roomImage" alt="room plan" />
+          <img  src={room1OG} className="roomImage" alt="room plan" />
         </div>
         <div>
-          <img width="100%" height="100%" src={room2OG} className="roomImage" alt="room plan" />
+          <img  src={room2OG} className="roomImage" alt="room plan" />
         </div>
       </ReactSwipe>
     )
