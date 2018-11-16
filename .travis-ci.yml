@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "10"
+
+install:
+  - npm ci
+
+script:
+  - npm test
+  - npm run build
