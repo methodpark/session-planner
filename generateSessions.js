@@ -10,7 +10,7 @@ let start = startOfDay;
 const sessions = [];
 while (start.isBefore(endOfDay)) {
   for (const room of rooms) {
-    const id = `${baseId}-0-${sessions.length.toString().padStart(3, '0')}`;
+    const id = `${baseId}-${sessions.length.toString().padStart(3, '0')}`;
     sessions.push({
       id,
       title: '',
