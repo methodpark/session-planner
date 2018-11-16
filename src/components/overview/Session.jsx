@@ -8,6 +8,10 @@ import './Session.less'
 export default function Session (props) {
   const { title, host, room, id, filtered} = props;
 
+  if (!title) {
+    return null;
+  }
+
   return (
     <li className={classnames({filtered: filtered})}>
       <h4>
