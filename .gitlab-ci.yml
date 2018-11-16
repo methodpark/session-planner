@@ -38,3 +38,19 @@ publish:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build -t $CI_REGISTRY/$IMAGE:latest .
     - docker push $CI_REGISTRY/$IMAGE:latest
+
+publish-feature:
+  image: docker:stable
+  stage: deploy
+  dependencies:
+    - build
+  services:
+    - docker:dind
+  only:
+    - web
+  variables:
+    IMAGE: mobileteam/swec-planner
+  script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker build -t $CI_REGISTRY/$IMAGE:$CI_COMMIT_REF_NAME .
+    - docker push $CI_REGISTRY/$IMAGE:$CI_COMMIT_REF_NAME

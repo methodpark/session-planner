@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {AppRouter, MenuRouter} from './Router';
-import Header from './components/shared/Header';
 import Footer from './components/shared/Footer';
 import AddToHomeScreenPrompt from './components/overview/AddToHomeScreenPrompt';
 
@@ -42,7 +41,6 @@ class App extends React.Component {
         <div>
           <MenuRouter {...this.state} />
           <div id="main-container">
-            <Header />
             <AppRouter {...this.state} />
             <AddToHomeScreenPrompt />
             <Footer />

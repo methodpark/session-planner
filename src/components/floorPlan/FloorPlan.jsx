@@ -6,6 +6,7 @@ import room2OG from './BuildingMap_2OG_pdt.png';
 
 import { FaArrowCircleRight, FaArrowCircleLeft } from 'react-icons/lib/fa';
 import classnames from 'classnames'
+import Header from '../shared/Header';
 
 import './FloorPlan.less';
 
@@ -72,22 +73,25 @@ export default class RoomPlan extends React.Component {
 
   render() {
     return (
-      <div class="floor-plan-carousel-container">
-        <div class="carousel">
-          <ReactSwipe ref={this.setSwipeComponentRef} swipeOptions={{ continuous: true, transitionEnd: () => this.transitionEnd() }}>
-            <div>
-              <img  src={roomEG} className="roomImage" alt="room plan" />
-            </div>
-            <div>
-              <img  src={room1OG} className="roomImage" alt="room plan" />
-            </div>
-            <div>
-              <img  src={room2OG} className="roomImage" alt="room plan" />
-            </div>
-          </ReactSwipe>
-          {this.renderControls()}
+      <React.Fragment>
+        <Header />
+        <div class="floor-plan-carousel-container">
+          <div class="carousel">
+            <ReactSwipe ref={this.setSwipeComponentRef} swipeOptions={{ continuous: true, transitionEnd: () => this.transitionEnd() }}>
+              <div>
+                <img src={roomEG} className="roomImage" alt="room plan" />
+              </div>
+              <div>
+                <img src={room1OG} className="roomImage" alt="room plan" />
+              </div>
+              <div>
+                <img src={room2OG} className="roomImage" alt="room plan" />
+              </div>
+            </ReactSwipe>
+            {this.renderControls()}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

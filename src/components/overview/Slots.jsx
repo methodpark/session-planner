@@ -3,18 +3,22 @@ import { connect } from 'react-redux';
 
 import Entry from './Entry';
 import Filters from './Filters';
+import Header from '../shared/Header';
 
 import './Slots.less';
 
 class Slots extends React.Component {
   render() {
     return (
-      <div>
-        <Filters />
-        <ul id="slots">
-          {this.props.slots.map(slot => <Entry key={slot.title} slot={slot} />)}
-        </ul>
-      </div>
+      <React.Fragment>
+        <Header />
+        <div>
+          <Filters />
+          <ul id="slots">
+            {this.props.slots.map(slot => <Entry key={slot.title} slot={slot} />)}
+          </ul>
+        </div>
+      </React.Fragment>
     );
   }
 }
