@@ -1,13 +1,34 @@
-# SWEC Planner
+# Session planner
 
-## Dev
+> A progressive web app to manage the sessions of an (un)conference.
+
+This web app can display the sessions of an (un)conference, notify users of
+updates regarding sessions they liked and tell them when a session they are
+interested in is about to start.
+
+This app was written at ![mp logo](./public/logo/mp.png) Method Park for the
+![swec logo](./public/logo/logo16x16.png) Software Engineering Camp.
+
+See it in action: <https://sessions.swe.camp>.
+
+More information about [SWEC](https://swe-camp.de) and [Method Park](https://methodpark.com).
+
+## Setup
+
+This project requires Node 10 or later. To build a docker image or run the
+docker image you need docker as well.
+
+Clone the repository and install the dependencies with
 
 ```sh
-git clone ssh://git@scm.methodpark.de:29419/MobileTeam/swec-planner.git
+npm ci
+npm run generate-notification-keys
+```
 
-npm i
+Then start the webpack dev server with
 
-npm start   # start frontend and server concurrently
+```sh
+npm start
 ```
 
 or (if you prefer having frontend and backend running in separate shells):
@@ -17,55 +38,28 @@ npm run start:server
 npm run start:frontend
 ```
 
-## PWA Objective
+The sessions are stored in `sessionsData.json` in the root directory.
 
-* the app can be added to the homescreen
-* the app shows a "splash screen"
-* the app is usable even if there is no network connection
-* the app checks for changes of the schedule in the background (even if it is
-  not opened)
-* if there is any, the app shows a notification
-* alternatively the server pushes notifications about changes to the client(s)
+### Build and run a docker image
 
-## Story Map
+To build a docker image use the Dockerfile in the project root:
 
-* overview story:
-  * shows a list of all tracks
-  * each track can be expanded to show the list of sessions with their respective slot
-  * it is possible to switch from track view to slot view
-  * in the slot view all slots are shown
-  * each slot can be expended to show the list of sessions with their respective track
-* detail story:
-  * shows details of a certain session (start/end time, room, title, short
-    description)
-* admin story:
-  * the admin screen is protected by a password
-  * the admin screen gives the possibility to add/modify/delete tracks, add/modify/delete
-    slots, add/modify sessions and to assign sessions to tracks and slots
-* room plan story:
-  * shows a list of all rooms
-  * each room links to the respective track
-  * shows a building layout with the locations of the room
-* schedule story:
-  * on the overview and the details screen from each slot one session can be marked as "scheduled"  
-    this is a marker for the user as a reminder which session they want to attend  
-    only one session per slot can be scheduled (you can't be on two places at once)
-  * on the schedule screen all scheduled sessions can be accessed and viewed in order
-  * on the overview screen sessions that are scheduled are marked as such (❤ symbol)
-  * on the detail screen scheduled sessions are marked as such (❤ symbol)
-  * on the schedule screen a horizontal line marks the current time in relation to the 
-    scheduled session plan
-  * if for a given slot another session is already scheduled the user is queried if
-    they want to change this subscription or cancel
-  * create a notification shortly (10min) before a scheduled session is due
-* settings story:
-  * the settings screen has a list of features that can by customized
-  * gives the user the possibility to switch off notifications for upcoming
-    sessions they have scheduled
-  * gives the user the possibility to switch off notifications from the server
-* matrix overview story:
-  * shows a complete vertical session matrix with all tracks side by side
-  * shows a line that marks the current time in relation to the session plan
-  * has the possibility to add session to scheduled sessions
-  * marks sessions as scheduled
-  * has a dropdown menu that allows for a day selection (saturday/sunday)
+```sh
+docker build -t swecapp .
+docker run -p 3000:8080 -v /path/to/data:/data --name swec swecapp
+```
+
+The docker image expects some configuration files in a volume:
+
+* the sessions data (sessionsData.json)
+* public/private key pair for the push notifications (vapid-keys.*)
+* metadata about the push subscriptions (subscriptions.json)
+
+## License
+
+This project is licensed under the terms of the MIT license
+([LICENSE](./LICENSE) or <http://opensource.org/licenses/MIT>).
+
+If you use this app for your own event we would appreciate it if you kept our
+logo and a link to our homepage below the session plan. Similar to what we have
+in our [Footer component](./src/components/shared/Footer.jsx).
