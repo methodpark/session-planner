@@ -6,5 +6,5 @@ install:
   - npm ci
 
 script:
-  - npm test
+  - npm test -- --forceExit
   - npm run build
