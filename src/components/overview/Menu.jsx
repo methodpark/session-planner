@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { slide as SlideMenu } from 'react-burger-menu';
-import { decorator as reduxBurgerMenu } from 'redux-burger-menu';
+import { decorator as reduxBurgerMenu, action as setMenuOpen } from 'redux-burger-menu';
 import classnames from 'classnames';
 
 
@@ -25,9 +26,9 @@ const styles = {
   }
 }
 
-export class Menu extends React.Component {
-  constructor() {
-    super();
+class Menu extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.state = { isMenuOpen: false };
   }
@@ -37,13 +38,13 @@ export class Menu extends React.Component {
   }
 
   navigationEvent() {
-    this.setState({...this.state, isMenuOpen: false});
+    this.props.dispatch(setMenuOpen(false));
   }
 
   render() {
     return (
       <nav className={classnames({ 'menu-open': this.state.isMenuOpen})}>
-        <ReduxSlideMenu isOpen={this.state.isMenuOpen} onStateChange={(state) => this.setMenuState(state)} styles={styles}>
+        <ReduxSlideMenu onStateChange={(state) => this.setMenuState(state)} styles={styles}>
           <Link className="menuItem" to="/sessions" onClick={() => this.navigationEvent()}>Today's sessions</Link>
           <Link className="menuItem" to="/floor-plan" onClick={() => this.navigationEvent()}>Floor plan</Link>
           <div className="divider" />
@@ -55,3 +56,5 @@ export class Menu extends React.Component {
     </nav>);
   }
 }
+
+export default connect()(Menu);

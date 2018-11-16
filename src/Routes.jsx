@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Menu } from './components/overview/Menu';
+import Menu  from './components/overview/Menu';
 
 import Slots from './components/overview/Slots';
 import Screen from './components/screen/Screen';
@@ -20,6 +20,6 @@ export const AppRoutes = () => (
 export const MenuRoutes = () => (
       <Switch>
         <Route exact path="/screen" component={() => ''} />
-        <Route render={() => <Menu />} />
+        <Route render={() => (<Menu />)} />
       </Switch>
 );
