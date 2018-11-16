@@ -8,9 +8,9 @@ import AddToHomeScreenPrompt from './components/overview/AddToHomeScreenPrompt';
 import { action as setMenuOpen } from 'redux-burger-menu';
 import Hammer from 'react-hammerjs';
 
-const maxDistanceFromLeftBorder = 100;
+const maxDistanceFromLeftBorder = 50;
 const maxVerticalDistance = 100;
-const minVelocity = 2;
+const minVelocity = 0.5;
 
 class App extends React.Component {
 
