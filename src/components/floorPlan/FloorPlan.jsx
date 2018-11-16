@@ -18,11 +18,14 @@ export default class RoomPlan extends React.Component {
     this.swipeComponent = null;
     this.setSwipeComponentRef = (ref) => {
       this.swipeComponent = ref;
-      this.setState({
-        ...this.state,
-        currentImage: ref.getPos(),
-        totalImages: ref.getNumSlides()
-      });
+
+      if (ref !== null){
+        this.setState({
+          ...this.state,
+          currentImage: ref.getPos(),
+          totalImages: ref.getNumSlides()
+        });
+      }
     };
   }
 
@@ -56,6 +59,7 @@ export default class RoomPlan extends React.Component {
     const bulletPoints = () => {
       return [...Array(this.state.totalImages)].map((_, index) => (
         <button
+          key={index}
           aria-label={ 'Goto plan number ' + (index + 1) }
           onClick={() => {this.gotoImage(index); return false;} }
           className={ classnames({current: index === this.state.currentImage}) }>
@@ -64,7 +68,7 @@ export default class RoomPlan extends React.Component {
       );
     }
 
-    return (<div class="slide-controls">
+    return (<div className="slide-controls">
       {prevButton()}
       {bulletPoints()}
       {nextButton()}
@@ -75,8 +79,8 @@ export default class RoomPlan extends React.Component {
     return (
       <React.Fragment>
         <Header />
-        <div class="floor-plan-carousel-container">
-          <div class="carousel">
+        <div className="floor-plan-carousel-container">
+          <div className="carousel">
             <ReactSwipe ref={this.setSwipeComponentRef} swipeOptions={{ continuous: true, transitionEnd: () => this.transitionEnd() }}>
               <div>
                 <img src={roomEG} className="roomImage" alt="room plan" />

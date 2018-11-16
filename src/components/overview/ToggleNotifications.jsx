@@ -41,7 +41,7 @@ class ToggleNotifications extends React.Component {
 
   render() {
     return (
-      <button className="theme-switch" onClick={() => this.toggleNotifications()}>{this.renderButtonContent()}</button>
+      <button onClick={() => this.toggleNotifications()}>{this.renderButtonContent()}</button>
     );
   }
 }

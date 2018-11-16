@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { slide as SlideMenu } from 'react-burger-menu';
 import { decorator as reduxBurgerMenu } from 'redux-burger-menu';
@@ -35,12 +36,16 @@ export class Menu extends React.Component {
     this.setState({...this.state, isMenuOpen: menuState.isOpen});
   }
 
+  navigationEvent() {
+    this.setState({...this.state, isMenuOpen: false});
+  }
+
   render() {
     return (
       <nav className={classnames({ 'menu-open': this.state.isMenuOpen})}>
-        <ReduxSlideMenu onStateChange={(state) => this.setMenuState(state)} styles={styles}>
-          <a className="menuItem" href="/sessions">Today's sessions</a>
-          <a className="menuItem" href="/floor-plan">Floor plan</a>
+        <ReduxSlideMenu isOpen={this.state.isMenuOpen} onStateChange={(state) => this.setMenuState(state)} styles={styles}>
+          <Link className="menuItem" to="/sessions" onClick={() => this.navigationEvent()}>Today's sessions</Link>
+          <Link className="menuItem" to="/floor-plan" onClick={() => this.navigationEvent()}>Floor plan</Link>
           <div className="divider" />
 
           { isPushApiSupported() ? <ToggleNotifications /> : '' }

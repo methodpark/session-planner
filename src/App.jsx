@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router} from 'react-router-dom';
 
-import {AppRouter, MenuRouter} from './Router';
+import {AppRoutes, MenuRoutes} from './Routes';
 import Footer from './components/shared/Footer';
 import AddToHomeScreenPrompt from './components/overview/AddToHomeScreenPrompt';
 
@@ -37,16 +38,18 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Hammer onSwipe={(hammerEvent) => this.onSwipe(hammerEvent)}>
-        <div>
-          <MenuRouter {...this.state} />
-          <div id="main-container">
-            <AppRouter {...this.state} />
-            <AddToHomeScreenPrompt />
-            <Footer />
+        <Router>
+          <Hammer onSwipe={(hammerEvent) => this.onSwipe(hammerEvent)}>
+          <div>
+            <MenuRoutes {...this.state} />
+            <div id="main-container">
+              <AppRoutes {...this.state} />
+              <AddToHomeScreenPrompt />
+              <Footer />
+            </div>
           </div>
-        </div>
-        </Hammer>
+          </Hammer>
+        </Router>
       </React.Fragment>
     );
   }
