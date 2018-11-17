@@ -1,0 +1,481 @@
+[
+  {
+    "id": "SWEC18-01-000",
+    "title": "",
+    "host": "",
+    "room": "BASIC",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-001",
+    "title": "Event-Storming vs. Actor",
+    "host": "Wolfgang",
+    "room": "Clojure",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-002",
+    "title": "",
+    "host": "",
+    "room": "Dylan",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-003",
+    "title": "Einführung in die funktionale Programmierung",
+    "host": "Martin",
+    "room": "Eiffel",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-004",
+    "title": "Werdet Ausbilder",
+    "host": "Alan",
+    "room": "Forth",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-005",
+    "title": "",
+    "host": "",
+    "room": "Groovy",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-006",
+    "title": "IOT Sprechstunde + Creative Coding Session (powered by Thomann)",
+    "host": "Dr. Justi + Manuel",
+    "room": "Haskell",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-007",
+    "title": "Nativer x86 Microservice in Java",
+    "host": "Jörg",
+    "room": "Idris",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-008",
+    "title": "",
+    "host": "",
+    "room": "Julia",
+    "start": "2018-11-17T11:00:00+01:00",
+    "end": "2018-11-17T12:00:00+01:00"
+  },
+
+
+
+
+
+
+
+
+  {
+    "id": "SWEC18-01-009",
+    "title": "",
+    "host": "",
+    "room": "BASIC",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-010",
+    "title": "UI-Prototyping",
+    "host": "Nico",
+    "room": "Clojure",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-011",
+    "title": "Python Features ab 3.0",
+    "host": "Richard",
+    "room": "Dylan",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-012",
+    "title": "Diskussion: Lernen in der Zukunft",
+    "host": "Latti",
+    "room": "Eiffel",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-013",
+    "title": "Graph of Winnetou (Text Analytics)",
+    "host": "Markus",
+    "room": "Forth",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-014",
+    "title": "Codegenerierung",
+    "host": "Philipp",
+    "room": "Groovy",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-015",
+    "title": "IOT Sprechstunde + Creative Coding Session (powered by Thomann)",
+    "host": "Justi + Manuel",
+    "room": "Haskell",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-016",
+    "title": "Solidity from the ground",
+    "host": "Jens und Tobias",
+    "room": "Idris",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-017",
+    "title": "Agile Yoga",
+    "host": "Christian",
+    "room": "Julia",
+    "start": "2018-11-17T12:00:00+01:00",
+    "end": "2018-11-17T13:00:00+01:00"
+  },
+
+
+
+
+
+
+
+
+
+
+  {
+    "id": "SWEC18-01-027",
+    "title": "",
+    "host": "",
+    "room": "BASIC",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-028",
+    "title": "Testing Microservices",
+    "host": "Dominik",
+    "room": "Clojure",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-029",
+    "title": "GDCR - Game of Life Kata",
+    "host": "Stefan",
+    "room": "Dylan",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-030",
+    "title": "Agile Sprechstunde",
+    "host": "Alex",
+    "room": "Eiffel",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-031",
+    "title": "Datenbankmissbrauch",
+    "host": "",
+    "room": "Forth",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-032",
+    "title": "Learning aus gut 5 PDF-Software-Projekten",
+    "host": "Patrick",
+    "room": "Groovy",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-033",
+    "title": "IOT Sprechstunde + Creative Coding Session (powered by Thomann)",
+    "host": "Dr. Justi + Manuel",
+    "room": "Haskell",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-034",
+    "title": "TypeScript Einführung",
+    "host": "@Poschi3",
+    "room": "Idris",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-035",
+    "title": "",
+    "host": "",
+    "room": "Julia",
+    "start": "2018-11-17T14:00:00+01:00",
+    "end": "2018-11-17T15:00:00+01:00"
+  },
+
+
+
+
+
+
+
+
+  {
+    "id": "SWEC18-01-036",
+    "title": "",
+    "host": "",
+    "room": "BASIC",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-037",
+    "title": "Managing for Happiness",
+    "host": "Jörg",
+    "room": "Clojure",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-038",
+    "title": "Diskussion Codeanalyse + Datascience",
+    "host": "Alex + Markus",
+    "room": "Dylan",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-039",
+    "title": "DesignThinking aus Japan",
+    "host": "Sasabe-san",
+    "room": "Eiffel",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-040",
+    "title": "Der agile Festpreis",
+    "host": "Stephan",
+    "room": "Forth",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-041",
+    "title": "(Code-)Racer",
+    "host": "Jens",
+    "room": "Groovy",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-042",
+    "title": "IOT Sprechstunde + Creative Coding Session (powered by Thomann)",
+    "host": "Dr. Justi + Manuel",
+    "room": "Haskell",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-043",
+    "title": "Smart Home",
+    "host": "Peter",
+    "room": "Idris",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-044",
+    "title": "",
+    "host": "",
+    "room": "Julia",
+    "start": "2018-11-17T15:00:00+01:00",
+    "end": "2018-11-17T16:00:00+01:00"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "id": "SWEC18-01-045",
+    "title": "",
+    "host": "",
+    "room": "BASIC",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-046",
+    "title": "Legacy Code Love",
+    "host": "Markus",
+    "room": "Clojure",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-047",
+    "title": "",
+    "host": "",
+    "room": "Dylan",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-048",
+    "title": "Selbst und ständig",
+    "host": "Frank",
+    "room": "Eiffel",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-049",
+    "title": "Machine Learning - Big picture & zoom-in",
+    "host": "Wolfi und Christian",
+    "room": "Forth",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-050",
+    "title": "Datenintegration mit Apache Spark + Hadoop",
+    "host": "Frank",
+    "room": "Groovy",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-051",
+    "title": "IOT Sprechstunde + Creative Coding Session (powered by Thomann)",
+    "host": "Dr. Justi + Manuel",
+    "room": "Haskell",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-052",
+    "title": "Papierloses Büro",
+    "host": "Jens",
+    "room": "Idris",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-053",
+    "title": "",
+    "host": "",
+    "room": "Julia",
+    "start": "2018-11-17T16:00:00+01:00",
+    "end": "2018-11-17T17:00:00+01:00"
+  },
+
+
+
+
+
+
+
+
+  
+  {
+    "id": "SWEC18-01-054",
+    "title": "",
+    "host": "",
+    "room": "BASIC",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-055",
+    "title": "Rust",
+    "host": "Flauer",
+    "room": "Clojure",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-056",
+    "title": "Geschichte der Vorgehensmodelle",
+    "host": "Simon",
+    "room": "Dylan",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-057",
+    "title": "Web: Verteilte Systeme in der Praxis",
+    "host": "Marcel",
+    "room": "Eiffel",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-058",
+    "title": "Podcasts",
+    "host": "Alex",
+    "room": "Forth",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-059",
+    "title": "SEO Future",
+    "host": "Alex",
+    "room": "Groovy",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-060",
+    "title": "IOT Sprechstunde + Creative Coding Session (powered by Thomann)",
+    "host": "Dr. Justi + Manuel",
+    "room": "Haskell",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-061",
+    "title": "Daten überall, aber woher?",
+    "host": "Tobi",
+    "room": "Idris",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  },
+  {
+    "id": "SWEC18-01-062",
+    "title": "Arduino, ESP & Co",
+    "host": "Justi",
+    "room": "Julia",
+    "start": "2018-11-17T17:00:00+01:00",
+    "end": "2018-11-17T18:00:00+01:00"
+  }
+]
