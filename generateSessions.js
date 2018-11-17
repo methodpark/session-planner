@@ -1,9 +1,9 @@
 const moment = require('moment');
 
 const rooms = ['BASIC', 'Clojure', 'Dylan', 'Eiffel', 'Forth', 'Groovy', 'Haskell', 'Idris', 'Julia'];
-const startOfDay = moment('2018-11-17 11:00:00');
-const endOfDay = moment('2018-11-17 18:00:00');
-const baseId = 'SWEC18-01';
+const startOfDay = moment('2018-11-17 10:30:00');
+const endOfDay = moment('2018-11-17 13:30:00');
+const baseId = 'SWEC18-02';
 
 
 let start = startOfDay;
@@ -17,7 +17,7 @@ while (start.isBefore(endOfDay)) {
       host: '',
       room,
       start: start.format(),
-      end: moment(start).add(1, 'hour').format()
+      end: moment(start).add(45, 'minutes').format()
     });
   }
   start.add(1, 'hour');
