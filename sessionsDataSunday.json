@@ -9,32 +9,32 @@
   },
   {
     "id": "SWEC18-02-001",
-    "title": "",
-    "host": "",
+    "title": "Coding Rules - Weg zu beserer SW?",
+    "host": "Wolfram",
     "room": "Clojure",
     "start": "2018-11-17T10:30:00+01:00",
     "end": "2018-11-17T11:15:00+01:00"
   },
   {
     "id": "SWEC18-02-002",
-    "title": "",
-    "host": "",
+    "title": "Security Awareness",
+    "host": "Doro",
     "room": "Dylan",
     "start": "2018-11-17T10:30:00+01:00",
     "end": "2018-11-17T11:15:00+01:00"
   },
   {
     "id": "SWEC18-02-003",
-    "title": "",
-    "host": "",
+    "title": "Datenanalyse in Python & Panda",
+    "host": "Markus",
     "room": "Eiffel",
     "start": "2018-11-17T10:30:00+01:00",
     "end": "2018-11-17T11:15:00+01:00"
   },
   {
     "id": "SWEC18-02-004",
-    "title": "",
-    "host": "",
+    "title": "Serverless",
+    "host": "@raupack",
     "room": "Forth",
     "start": "2018-11-17T10:30:00+01:00",
     "end": "2018-11-17T11:15:00+01:00"
@@ -49,24 +49,24 @@
   },
   {
     "id": "SWEC18-02-006",
-    "title": "IOT Sprechstunde + Creative Coding",
-    "host": "Dr. Justi + Manuel",
+    "title": "Creative Coding",
+    "host": "Manuel",
     "room": "Haskell",
     "start": "2018-11-17T10:30:00+01:00",
     "end": "2018-11-17T11:15:00+01:00"
   },
   {
     "id": "SWEC18-02-007",
-    "title": "",
-    "host": "",
+    "title": "Delegation Poker",
+    "host": "Jörn",
     "room": "Idris",
     "start": "2018-11-17T10:30:00+01:00",
     "end": "2018-11-17T11:15:00+01:00"
   },
   {
     "id": "SWEC18-02-008",
-    "title": "",
-    "host": "",
+    "title": "Microcontroller & Peltier Element und Seebeck (Demo)",
+    "host": "Justi",
     "room": "Julia",
     "start": "2018-11-17T10:30:00+01:00",
     "end": "2018-11-17T11:15:00+01:00"
@@ -91,8 +91,8 @@
   },
   {
     "id": "SWEC18-02-010",
-    "title": "",
-    "host": "",
+    "title": "Diskussion/Austausch: Gilden, Communities of Practice usw.",
+    "host": "Renato",
     "room": "Clojure",
     "start": "2018-11-17T11:30:00+01:00",
     "end": "2018-11-17T12:15:00+01:00"
@@ -107,40 +107,40 @@
   },
   {
     "id": "SWEC18-02-012",
-    "title": "",
-    "host": "",
+    "title": "No PowerPoint - RevealJS",
+    "host": "Patrick",
     "room": "Eiffel",
     "start": "2018-11-17T11:30:00+01:00",
     "end": "2018-11-17T12:15:00+01:00"
   },
   {
     "id": "SWEC18-02-013",
-    "title": "",
-    "host": "",
+    "title": "Personal Knowledge Mastery - reloaded",
+    "host": "Alex/Dominik",
     "room": "Forth",
     "start": "2018-11-17T11:30:00+01:00",
     "end": "2018-11-17T12:15:00+01:00"
   },
   {
     "id": "SWEC18-02-014",
-    "title": "",
-    "host": "",
+    "title": "Multi-PM mit Scrum",
+    "host": "Felix",
     "room": "Groovy",
     "start": "2018-11-17T11:30:00+01:00",
     "end": "2018-11-17T12:15:00+01:00"
   },
   {
     "id": "SWEC18-02-015",
-    "title": "IOT Sprechstunde + Creative Coding",
-    "host": "Dr. Justi + Manuel",
+    "title": "Creative Coding",
+    "host": "Manuel",
     "room": "Haskell",
     "start": "2018-11-17T11:30:00+01:00",
     "end": "2018-11-17T12:15:00+01:00"
   },
   {
     "id": "SWEC18-02-016",
-    "title": "",
-    "host": "",
+    "title": "Adult Fan of LEGO - #AFOL",
+    "host": "Jörn",
     "room": "Idris",
     "start": "2018-11-17T11:30:00+01:00",
     "end": "2018-11-17T12:15:00+01:00"
@@ -175,32 +175,32 @@
   },
   {
     "id": "SWEC18-02-019",
-    "title": "",
-    "host": "",
+    "title": "Rust Kata",
+    "host": "Flauer",
     "room": "Clojure",
     "start": "2018-11-17T12:30:00+01:00",
     "end": "2018-11-17T13:15:00+01:00"
   },
   {
     "id": "SWEC18-02-020",
-    "title": "",
-    "host": "",
+    "title": "(not so) Agile Yoga v2.1",
+    "host": "Christian",
     "room": "Dylan",
     "start": "2018-11-17T12:30:00+01:00",
     "end": "2018-11-17T13:15:00+01:00"
   },
   {
     "id": "SWEC18-02-021",
-    "title": "",
-    "host": "",
+    "title": "Sketchnotes",
+    "host": "Christian",
     "room": "Eiffel",
     "start": "2018-11-17T12:30:00+01:00",
     "end": "2018-11-17T13:15:00+01:00"
   },
   {
     "id": "SWEC18-02-022",
-    "title": "",
-    "host": "",
+    "title": "Chihuahuhas vs. Muffins",
+    "host": "Toby",
     "room": "Forth",
     "start": "2018-11-17T12:30:00+01:00",
     "end": "2018-11-17T13:15:00+01:00"
@@ -215,8 +215,8 @@
   },
   {
     "id": "SWEC18-02-024",
-    "title": "IOT Sprechstunde + Creative Coding",
-    "host": "Dr. Justi + Manuel",
+    "title": "Creative Coding",
+    "host": "Manuel",
     "room": "Haskell",
     "start": "2018-11-17T12:30:00+01:00",
     "end": "2018-11-17T13:15:00+01:00"
@@ -231,9 +231,39 @@
   },
   {
     "id": "SWEC18-02-026",
+    "title": "Blockchain Kicker",
+    "host": "Jens",
+    "room": "Julia",
+    "start": "2018-11-17T12:30:00+01:00",
+    "end": "2018-11-17T13:15:00+01:00"
+  },
+
+
+
+
+
+  
+  {
+    "id": "SWEC18-02-027",
+    "title": "Fuck up Session",
+    "host": "Alex",
+    "room": "Bällebad",
+    "start": "2018-11-17T10:30:00+01:00",
+    "end": "2018-11-17T11:15:00+01:00"
+  },
+  {
+    "id": "SWEC18-02-028",
+    "title": "Entwicklung in Laravel/PHP",
+    "host": "",
+    "room": "Bällebad",
+    "start": "2018-11-17T11:30:00+01:00",
+    "end": "2018-11-17T12:15:00+01:00"
+  },
+  {
+    "id": "SWEC18-02-029",
     "title": "",
     "host": "",
-    "room": "Julia",
+    "room": "Bällebad",
     "start": "2018-11-17T12:30:00+01:00",
     "end": "2018-11-17T13:15:00+01:00"
   }
